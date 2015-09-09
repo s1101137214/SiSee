@@ -1,0 +1,42 @@
+﻿@model SiSee_v1.Models.TEST_USER
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TEST_USER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER_Phone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.USER_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
