@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace SiSee_forTest
+namespace SiSee_v1
 {
     public class FilterConfig
     {
