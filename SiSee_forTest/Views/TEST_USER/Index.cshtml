@@ -9,6 +9,26 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div id="test">
+    <div id="fb-root"></div>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+
+
+    <!--
+      Below we include the Login Button social plugin. This button uses
+      the JavaScript SDK to present a graphical Login button that triggers
+      the FB.login() function when clicked.
+    -->
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+    <div id="status">
+    </div>
+
+</div>
+
+
 <table class="table">
     <tr>
         <th>
@@ -23,23 +43,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.USER_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.USER_Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.USER_Phone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.USER_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.USER_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.USER_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.USER_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.USER_Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.USER_Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.USER_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.USER_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.USER_ID })
+            </td>
+        </tr>
+    }
+
 
 </table>

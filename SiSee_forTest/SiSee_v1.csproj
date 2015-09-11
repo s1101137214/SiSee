@@ -332,7 +332,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Index.html" />
+    <Content Include="Data\Index.html" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -423,7 +423,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="Data\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Ltinerary\" />
@@ -446,9 +445,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64108</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5678/</IISUrl>
+          <IISUrl>http://localhost:63955/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:5678/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:63955/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
