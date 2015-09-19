@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SiSee_v1.Models.Spot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_context)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_optimeS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_optimeE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_add)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_fee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spot_other)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area.area_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class.class_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_context)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_optimeS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_optimeE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_add)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_fee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_other)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area.area_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class.class_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.spot_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.spot_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.spot_ID })
+        </td>
+    </tr>
+}
+
+</table>
