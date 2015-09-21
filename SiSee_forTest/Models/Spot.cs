@@ -11,7 +11,8 @@ namespace SiSee_v1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Spot
     {
         public Spot()
@@ -20,9 +21,12 @@ namespace SiSee_v1.Models
             this.ScoreRecord = new HashSet<ScoreRecord>();
             this.SearchRecord = new HashSet<SearchRecord>();
         }
-    
+
+
         public int spot_ID { get; set; }
         public int area_ID { get; set; }
+
+        [Display(Name = "名稱")]
         public string spot_name { get; set; }
         public string spot_tel { get; set; }
         public string spot_context { get; set; }
@@ -33,7 +37,7 @@ namespace SiSee_v1.Models
         public string spot_score { get; set; }
         public string spot_other { get; set; }
         public int class_ID { get; set; }
-    
+
         public virtual Area Area { get; set; }
         public virtual Class Class { get; set; }
         public virtual ICollection<FavoriteRecord> FavoriteRecord { get; set; }

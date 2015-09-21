@@ -1,0 +1,16 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: '微軟正黑體',Arial;
+    font-size:larger;
+}
+
+#navbartop {
+    background-color: #4E0606;
+    border-color: #4E0606;
+}
+
+#navbartopfont li a {
+    color: white;
+}
+

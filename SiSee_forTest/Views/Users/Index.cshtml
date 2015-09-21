@@ -1,0 +1,80 @@
+﻿@model IEnumerable<SiSee_v1.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>該頁面為user管理介面 理論上來說不會出現在給使用者進入</p>
+<p>
+    陳志忠 要設計的相關首頁
+</p>
+<p>
+    CRUD都有內建了 剩餘版面設計 不見得要用內建的
+</p>
+<p>
+    這邊主要做的是使用者認可FB後會轉到 是否確定利用FB與本app連結 並會取得相關欄位(EX:mail tel)
+</p>
+<p>
+    因此該畫面會印出FB取的資料 跟 確認 取消 按鈕之類的
+</p>
+<p>
+    跟FB串聯 寫入資料庫的部分我會做 不過也能研究一下
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user_FBID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_birth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_other)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_FBID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_tel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_other)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.user_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.user_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.user_ID })
+            </td>
+        </tr>
+    }
+
+</table>
