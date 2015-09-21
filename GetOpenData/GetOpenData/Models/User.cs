@@ -7,12 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SiSee_v1.Models
+namespace GetOpenData.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class User
     {
         public User()
@@ -21,23 +20,15 @@ namespace SiSee_v1.Models
             this.ScoreRecord = new HashSet<ScoreRecord>();
             this.SearchRecord = new HashSet<SearchRecord>();
         }
-
-        [Display(Name = "ID")]
+    
         public int user_ID { get; set; }
-        [Display(Name = "FBID")]
         public int user_FBID { get; set; }
-        [Display(Name = "Email")]
-        [DataType(DataType.EmailAddress)]
         public string user_email { get; set; }
-        [Display(Name = "電話")]
         public string user_tel { get; set; }
-        [Display(Name = "生日")]
-        [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> user_birth { get; set; }
-        [Display(Name = "姓名")]
         public string user_name { get; set; }
         public string user_other { get; set; }
-
+    
         public virtual ICollection<FavoriteRecord> FavoriteRecord { get; set; }
         public virtual ICollection<ScoreRecord> ScoreRecord { get; set; }
         public virtual ICollection<SearchRecord> SearchRecord { get; set; }

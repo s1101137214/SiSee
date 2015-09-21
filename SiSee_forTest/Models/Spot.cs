@@ -22,20 +22,37 @@ namespace SiSee_v1.Models
             this.SearchRecord = new HashSet<SearchRecord>();
         }
 
-
+        [Display(Name = "ID")]
         public int spot_ID { get; set; }
+        [Display(Name = "地區")]
         public int area_ID { get; set; }
 
+        [Required]
         [Display(Name = "名稱")]
         public string spot_name { get; set; }
+        [Display(Name = "連絡電話")]
         public string spot_tel { get; set; }
+        [Display(Name = "介紹")]
         public string spot_context { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Name = "營業時間起時")]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public Nullable<System.TimeSpan> spot_optimeS { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Name = "營業時間訖時")]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public Nullable<System.TimeSpan> spot_optimeE { get; set; }
+        [Display(Name = "地址")]
         public string spot_add { get; set; }
+        [Display(Name = "門票")]
         public string spot_fee { get; set; }
+        [Display(Name = "評分")]
         public string spot_score { get; set; }
+        [Display(Name = "其他")]
         public string spot_other { get; set; }
+        [Display(Name = "類型")]
         public int class_ID { get; set; }
 
         public virtual Area Area { get; set; }

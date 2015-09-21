@@ -7,37 +7,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SiSee_v1.Models
+namespace GetOpenData.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class User
+    
+    public partial class Spot
     {
-        public User()
+        public Spot()
         {
             this.FavoriteRecord = new HashSet<FavoriteRecord>();
             this.ScoreRecord = new HashSet<ScoreRecord>();
             this.SearchRecord = new HashSet<SearchRecord>();
         }
-
-        [Display(Name = "ID")]
-        public int user_ID { get; set; }
-        [Display(Name = "FBID")]
-        public int user_FBID { get; set; }
-        [Display(Name = "Email")]
-        [DataType(DataType.EmailAddress)]
-        public string user_email { get; set; }
-        [Display(Name = "電話")]
-        public string user_tel { get; set; }
-        [Display(Name = "生日")]
-        [DataType(DataType.DateTime)]
-        public Nullable<System.DateTime> user_birth { get; set; }
-        [Display(Name = "姓名")]
-        public string user_name { get; set; }
-        public string user_other { get; set; }
-
+    
+        public int spot_ID { get; set; }
+        public int area_ID { get; set; }
+        public string spot_name { get; set; }
+        public string spot_tel { get; set; }
+        public string spot_context { get; set; }
+        public Nullable<System.TimeSpan> spot_optimeS { get; set; }
+        public Nullable<System.TimeSpan> spot_optimeE { get; set; }
+        public string spot_add { get; set; }
+        public string spot_fee { get; set; }
+        public string spot_score { get; set; }
+        public string spot_other { get; set; }
+        public int class_ID { get; set; }
+    
+        public virtual Area Area { get; set; }
+        public virtual Class Class { get; set; }
         public virtual ICollection<FavoriteRecord> FavoriteRecord { get; set; }
         public virtual ICollection<ScoreRecord> ScoreRecord { get; set; }
         public virtual ICollection<SearchRecord> SearchRecord { get; set; }

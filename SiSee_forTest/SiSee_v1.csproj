@@ -414,7 +414,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\SpotsController.cs" />
     <Compile Include="Controllers\TEST_USERController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
