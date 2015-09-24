@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -15,19 +16,19 @@ namespace SiSee_v1.Controllers
         private sisdbEntities1 db = new sisdbEntities1();
 
         // GET: Users
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.User.ToList());
+            return View(await db.User.ToListAsync());
         }
 
         // GET: Users/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
+            User user = await db.User.FindAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -46,12 +47,12 @@ namespace SiSee_v1.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "user_ID,user_FBID,user_email,user_tel,user_birth,user_name,user_other")] User user)
+        public async Task<ActionResult> Create([Bind(Include = "user_ID,user_FBID,user_email,user_tel,user_birth,user_name,user_other")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.User.Add(user);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -59,13 +60,13 @@ namespace SiSee_v1.Controllers
         }
 
         // GET: Users/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
+            User user = await db.User.FindAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -78,25 +79,25 @@ namespace SiSee_v1.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "user_ID,user_FBID,user_email,user_tel,user_birth,user_name,user_other")] User user)
+        public async Task<ActionResult> Edit([Bind(Include = "user_ID,user_FBID,user_email,user_tel,user_birth,user_name,user_other")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(user);
         }
 
         // GET: Users/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
+            User user = await db.User.FindAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -107,11 +108,11 @@ namespace SiSee_v1.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            User user = db.User.Find(id);
+            User user = await db.User.FindAsync(id);
             db.User.Remove(user);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

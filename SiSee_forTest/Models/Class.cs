@@ -14,14 +14,7 @@ namespace SiSee_v1.Models
     
     public partial class Class
     {
-        public Class()
-        {
-            this.Spot = new HashSet<Spot>();
-        }
-    
         public int class_ID { get; set; }
         public string class_Name { get; set; }
-    
-        public virtual ICollection<Spot> Spot { get; set; }
     }
 }

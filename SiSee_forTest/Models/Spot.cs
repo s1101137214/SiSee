@@ -26,7 +26,6 @@ namespace SiSee_v1.Models
         public int spot_ID { get; set; }
         [Display(Name = "地區")]
         public int area_ID { get; set; }
-
         [Required]
         [Display(Name = "名稱")]
         public string spot_name { get; set; }
@@ -34,29 +33,20 @@ namespace SiSee_v1.Models
         public string spot_tel { get; set; }
         [Display(Name = "介紹")]
         public string spot_context { get; set; }
-
-        [DataType(DataType.Time)]
-        [Display(Name = "營業時間起時")]
-        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
-        public Nullable<System.TimeSpan> spot_optimeS { get; set; }
-
-        [DataType(DataType.Time)]
-        [Display(Name = "營業時間訖時")]
-        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
-        public Nullable<System.TimeSpan> spot_optimeE { get; set; }
+        [Display(Name = "營業時間")]
+        public string spot_optimeS { get; set; }
         [Display(Name = "地址")]
         public string spot_add { get; set; }
-        [Display(Name = "門票")]
+        [Display(Name = "費用")]
         public string spot_fee { get; set; }
         [Display(Name = "評分")]
         public string spot_score { get; set; }
-        [Display(Name = "其他")]
+        [Display(Name = "備註")]
         public string spot_other { get; set; }
-        [Display(Name = "類型")]
-        public int class_ID { get; set; }
+        [Display(Name = "縣市")]
+        public string spot_loaction { get; set; }
 
         public virtual Area Area { get; set; }
-        public virtual Class Class { get; set; }
         public virtual ICollection<FavoriteRecord> FavoriteRecord { get; set; }
         public virtual ICollection<ScoreRecord> ScoreRecord { get; set; }
         public virtual ICollection<SearchRecord> SearchRecord { get; set; }
