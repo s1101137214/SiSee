@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiSee_v1", "SiSee_forTest\SiSee_v1.csproj", "{AB2E91C4-4E11-415F-92A3-7C308E4B7C4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetData", "GetData\GetData.csproj", "{6B1F88EB-1F5A-487D-81E4-3A4E7676BFB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiSee_html", "SiSee_html\SiSee_html.csproj", "{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6B1F88EB-1F5A-487D-81E4-3A4E7676BFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B1F88EB-1F5A-487D-81E4-3A4E7676BFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B1F88EB-1F5A-487D-81E4-3A4E7676BFB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
