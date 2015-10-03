@@ -2,10 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Index</h2>
 
-<input id="SearchButton" type="text" />
-<button id="Search">搜尋辣</button>
+@Scripts.Render("~/Scripts/Index.js")
+
+<h2>Index</h2>
+<input class="SearchText text-info" type="text" />
+<button type="submit" class="SearchButton btn btn-default">搜尋唷~</button>
 
 <p>
     @Html.ActionLink("Create New", "Create")

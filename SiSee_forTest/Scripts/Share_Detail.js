@@ -1,16 +1,24 @@
 ﻿
 $(document).ready(function () {
 
-    var fbcomment = $(".fb-comments");
+    CheckAreaAndFBcomment();
 
-    fbcomment.hide();
+    //景點自動搜尋
+    $(".SpotSearchButton").click(function () {
+        SearchSpotName();
+    });
 
-    CheckAreaAndFBcomment(fbcomment);
+
+
 
 });
 
 //檢查選取的景點位置取得對應的FB留言板
-function CheckAreaAndFBcomment(fbcomment) {
+function CheckAreaAndFBcomment() {
+
+    var fbcomment = $(".fb-comments");
+
+    fbcomment.hide();
 
     var areaName = $(".AreaName").val();
 
@@ -34,4 +42,13 @@ function CheckAreaAndFBcomment(fbcomment) {
 
     fbcomment.show();
 
+}
+
+function SearchSpotName() {
+
+    var searchlink = $(".SpotName").val();
+
+    searchlink = "https://www.facebook.com/search/results/?q=" + searchlink;
+
+    window.open(searchlink);
 }
