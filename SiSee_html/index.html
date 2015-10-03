@@ -1,10 +1,35 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
+    <script src="Scripts/fbapiconnect.js"></script>
 </head>
-<body>
 
+<body>
+    <div id="fb-root"></div>
+
+    <div class="fb-like"
+         data-share="true"
+         data-width="450"
+         data-show-faces="true">
+    </div>
+
+    <!--
+      Below we include the Login Button social plugin. This button uses
+      the JavaScript SDK to present a graphical Login button that triggers
+      the FB.login() function when clicked.
+    -->
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" autologoutlink="true">
+    </fb:login-button>
+
+    <div id="status">
+    </div>
+    <input id="SearchButton" type="text" />
+    <button id="Search">Search</button>
+    <div id="fb-root"></div>
+    
+  
 </body>
 </html>
