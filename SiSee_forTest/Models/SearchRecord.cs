@@ -17,6 +17,7 @@ namespace SiSee_v1.Models
         public int search_ID { get; set; }
         public int user_ID { get; set; }
         public int spot_ID { get; set; }
+        public Nullable<System.DateTime> search_date { get; set; }
     
         public virtual Spot Spot { get; set; }
         public virtual User User { get; set; }

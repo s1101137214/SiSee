@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SiSee_v1.Models;
+using SiSee_v1.Models.ViewModels;
 
 namespace SiSee_v1.Controllers
 {
@@ -25,6 +26,8 @@ namespace SiSee_v1.Controllers
 
             if (!String.IsNullOrEmpty(searchName))
             {
+                TempData["SearchName"] = searchName;
+
                 List<Spot> spot_name = spot.Where(s => s.spot_name.Contains(searchName)).ToList();
 
                 spotList.AddRange(spot_name);
@@ -38,8 +41,12 @@ namespace SiSee_v1.Controllers
             }
             else
             {
+                TempData["SearchName"] = "全部";
+
                 spotList.AddRange(spot);
             }
+
+            ViewData["TotalCount"] = spotList.Count();
 
             return View(spotList);
         }
@@ -51,12 +58,29 @@ namespace SiSee_v1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Spot spot = db.Spot.Find(id);
-            if (spot == null)
+
+            List<CommentRecord> commentRecord = db.CommentRecord.Where(s => s.spot_ID == id).ToList();
+
+            if (spot != null)
+            {
+                SpotDetail spotDetail = new SpotDetail();
+
+                spotDetail.Spot = spot;
+
+                spotDetail.CommentRecords = commentRecord;
+
+                return View(spot);
+
+              //  return View("SpotDetail", spotDetail);
+
+            }
+            else
             {
                 return HttpNotFound();
             }
-            return View(spot);
+
         }
 
         // GET: Spots/Create
@@ -151,5 +175,15 @@ namespace SiSee_v1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: Spots/BlogSearch
+        [HttpGet, ActionName("SearchBlog")]
+        public ActionResult SearchBlog(string searchName)
+        {
+            ViewData["SearchName"] = searchName;
+
+            return View();
+        }
+
     }
 }

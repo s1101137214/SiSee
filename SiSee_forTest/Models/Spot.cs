@@ -18,7 +18,7 @@ namespace SiSee_v1.Models
         public Spot()
         {
             this.FavoriteRecord = new HashSet<FavoriteRecord>();
-            this.ScoreRecord = new HashSet<ScoreRecord>();
+            this.CommentRecord = new HashSet<CommentRecord>();
             this.SearchRecord = new HashSet<SearchRecord>();
         }
 
@@ -48,7 +48,7 @@ namespace SiSee_v1.Models
 
         public virtual Area Area { get; set; }
         public virtual ICollection<FavoriteRecord> FavoriteRecord { get; set; }
-        public virtual ICollection<ScoreRecord> ScoreRecord { get; set; }
+        public virtual ICollection<CommentRecord> CommentRecord { get; set; }
         public virtual ICollection<SearchRecord> SearchRecord { get; set; }
     }
 }

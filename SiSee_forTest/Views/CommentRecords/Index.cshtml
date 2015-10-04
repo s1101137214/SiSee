@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SiSee_v1.Models.CommentRecord>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.comment_context)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comment_grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comment_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Spot.spot_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.user_email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.comment_context)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comment_grade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comment_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Spot.spot_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.user_email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.commentrecord_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.commentrecord_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.commentrecord_ID })
+        </td>
+    </tr>
+}
+
+</table>

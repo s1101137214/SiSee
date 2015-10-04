@@ -12,7 +12,7 @@ namespace SiSee_v1.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class sisdbEntities1 : DbContext
     {
         public sisdbEntities1()
@@ -27,8 +27,8 @@ namespace SiSee_v1.Models
     
         public virtual DbSet<Area> Area { get; set; }
         public virtual DbSet<Class> Class { get; set; }
+        public virtual DbSet<CommentRecord> CommentRecord { get; set; }
         public virtual DbSet<FavoriteRecord> FavoriteRecord { get; set; }
-        public virtual DbSet<ScoreRecord> ScoreRecord { get; set; }
         public virtual DbSet<SearchRecord> SearchRecord { get; set; }
         public virtual DbSet<Spot> Spot { get; set; }
         public virtual DbSet<User> User { get; set; }

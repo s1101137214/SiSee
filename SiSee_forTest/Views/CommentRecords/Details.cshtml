@@ -1,0 +1,58 @@
+﻿@model SiSee_v1.Models.CommentRecord
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CommentRecord</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.comment_context)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comment_context)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comment_grade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comment_grade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comment_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comment_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Spot.spot_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Spot.spot_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.user_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.user_email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.commentrecord_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

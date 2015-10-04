@@ -10,11 +10,12 @@
     @RenderSection("scripts", required: false)
 
     <link href="~/Content/css/_layout.css" rel="stylesheet" />
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/fbapiconnect.js")
     @Scripts.Render("~/Scripts/Share_Detail.js")
     @Scripts.Render("~/Scripts/Share.js")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" id="navbartop">

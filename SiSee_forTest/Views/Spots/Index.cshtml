@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<SiSee_v1.Models.Spot>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -6,14 +7,37 @@
 @Scripts.Render("~/Scripts/Index.js")
 
 <h2>Index</h2>
-<input class="SearchText text-info" type="text" />
-<button type="submit" class="SearchButton btn btn-default">搜尋唷~</button>
+
+@using (Html.BeginForm("SearchBlog", "Spots", FormMethod.Get))
+{
+    <div>
+        @Html.TextBox("SearchText", null, new { @class = "SearchText text text-info" })
+        <button type="button" class="SearchButton btn btn-info">站內搜尋</button>
+        <button type="submit" class="SpotBlogSearchButton btn btn-info">Blog大神</button>
+    </div>
+}
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
+<div>
+    <span id="SearchName">
+        @if (TempData["SearchName"] != "全部")
+        {
+            <span> 搜尋: @TempData["SearchName"] </span>
+        }
+        else
+        {
+            <span>  @TempData["SearchName"] </span>
+        }
+    </span>
+    <span>
+        共 @ViewData["TotalCount"] 筆
+    </span>
+</div>
+
+<table class="table col-lg-12">
+    <tr class="info">
         <th>
             @Html.DisplayNameFor(model => model.spot_name)
         </th>
@@ -48,43 +72,43 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_tel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_context)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_optimeS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_add)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_fee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_score)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_other)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.spot_loaction)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Area.area_Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.spot_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.spot_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.spot_ID })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_context)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_optimeS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_add)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_fee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_other)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spot_loaction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area.area_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.spot_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.spot_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.spot_ID })
+        </td>
+    </tr>
     }
 </table>
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sisdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SiSeeModel1V2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Area">
           <Key>
             <PropertyRef Name="area_ID" />
@@ -19,19 +19,22 @@
           <Property Name="class_ID" Type="int" Nullable="false" />
           <Property Name="class_Name" Type="nvarchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="CommentRecord">
+          <Key>
+            <PropertyRef Name="commentrecord_ID" />
+          </Key>
+          <Property Name="commentrecord_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="spot_ID" Type="int" Nullable="false" />
+          <Property Name="user_ID" Type="int" Nullable="false" />
+          <Property Name="comment_context" Type="nvarchar(max)" />
+          <Property Name="comment_grade" Type="varchar" MaxLength="10" />
+          <Property Name="comment_date" Type="datetime" />
+        </EntityType>
         <EntityType Name="FavoriteRecord">
           <Key>
             <PropertyRef Name="searchrecord_ID" />
           </Key>
           <Property Name="searchrecord_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="spot_ID" Type="int" Nullable="false" />
-          <Property Name="user_ID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ScoreRecord">
-          <Key>
-            <PropertyRef Name="scorerecord_ID" />
-          </Key>
-          <Property Name="scorerecord_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="spot_ID" Type="int" Nullable="false" />
           <Property Name="user_ID" Type="int" Nullable="false" />
         </EntityType>
@@ -42,6 +45,7 @@
           <Property Name="search_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_ID" Type="int" Nullable="false" />
           <Property Name="spot_ID" Type="int" Nullable="false" />
+          <Property Name="search_date" Type="datetime" />
         </EntityType>
         <EntityType Name="Spot">
           <Key>
@@ -103,12 +107,12 @@
           <End Role="Spot" Type="Self.Spot" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ScoreRecord" Type="Self.ScoreRecord" Multiplicity="*" />
+          <End Role="CommentRecord" Type="Self.CommentRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Spot">
               <PropertyRef Name="spot_ID" />
             </Principal>
-            <Dependent Role="ScoreRecord">
+            <Dependent Role="CommentRecord">
               <PropertyRef Name="spot_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -117,12 +121,12 @@
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ScoreRecord" Type="Self.ScoreRecord" Multiplicity="*" />
+          <End Role="CommentRecord" Type="Self.CommentRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="user_ID" />
             </Principal>
-            <Dependent Role="ScoreRecord">
+            <Dependent Role="CommentRecord">
               <PropertyRef Name="user_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -169,11 +173,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sisdbModelStoreContainer">
+        <EntityContainer Name="SiSeeModel1V2StoreContainer">
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentRecord" EntityType="Self.CommentRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FavoriteRecord" EntityType="Self.FavoriteRecord" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ScoreRecord" EntityType="Self.ScoreRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SearchRecord" EntityType="Self.SearchRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spot" EntityType="Self.Spot" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -187,11 +191,11 @@
           </AssociationSet>
           <AssociationSet Name="FK__scr__spot___619B8048" Association="Self.FK__scr__spot___619B8048">
             <End Role="Spot" EntitySet="Spot" />
-            <End Role="ScoreRecord" EntitySet="ScoreRecord" />
+            <End Role="CommentRecord" EntitySet="CommentRecord" />
           </AssociationSet>
           <AssociationSet Name="FK__scr_user___628FA481" Association="Self.FK__scr_user___628FA481">
             <End Role="User" EntitySet="User" />
-            <End Role="ScoreRecord" EntitySet="ScoreRecord" />
+            <End Role="CommentRecord" EntitySet="CommentRecord" />
           </AssociationSet>
           <AssociationSet Name="fk_sr_spot_id" Association="Self.fk_sr_spot_id">
             <End Role="Spot" EntitySet="Spot" />
@@ -210,7 +214,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="sisdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SiSeeModel1V2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Area">
           <Key>
             <PropertyRef Name="area_ID" />
@@ -226,6 +230,19 @@
           <Property Name="class_ID" Type="Int32" Nullable="false" />
           <Property Name="class_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="CommentRecord">
+          <Key>
+            <PropertyRef Name="commentrecord_ID" />
+          </Key>
+          <Property Name="commentrecord_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="spot_ID" Type="Int32" Nullable="false" />
+          <Property Name="user_ID" Type="Int32" Nullable="false" />
+          <Property Name="comment_context" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="comment_grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="comment_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Spot" Relationship="Self.FK__scr__spot___619B8048" FromRole="CommentRecord" ToRole="Spot" />
+          <NavigationProperty Name="User" Relationship="Self.FK__scr_user___628FA481" FromRole="CommentRecord" ToRole="User" />
+        </EntityType>
         <EntityType Name="FavoriteRecord">
           <Key>
             <PropertyRef Name="searchrecord_ID" />
@@ -236,16 +253,6 @@
           <NavigationProperty Name="Spot" Relationship="Self.FK__fr_spot___5DCAEF64" FromRole="FavoriteRecord" ToRole="Spot" />
           <NavigationProperty Name="User" Relationship="Self.FK__fr_user___5EBF139D" FromRole="FavoriteRecord" ToRole="User" />
         </EntityType>
-        <EntityType Name="ScoreRecord">
-          <Key>
-            <PropertyRef Name="scorerecord_ID" />
-          </Key>
-          <Property Name="scorerecord_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="spot_ID" Type="Int32" Nullable="false" />
-          <Property Name="user_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Spot" Relationship="Self.FK__scr__spot___619B8048" FromRole="ScoreRecord" ToRole="Spot" />
-          <NavigationProperty Name="User" Relationship="Self.FK__scr_user___628FA481" FromRole="ScoreRecord" ToRole="User" />
-        </EntityType>
         <EntityType Name="SearchRecord">
           <Key>
             <PropertyRef Name="search_ID" />
@@ -253,6 +260,7 @@
           <Property Name="search_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_ID" Type="Int32" Nullable="false" />
           <Property Name="spot_ID" Type="Int32" Nullable="false" />
+          <Property Name="search_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Spot" Relationship="Self.fk_sr_spot_id" FromRole="SearchRecord" ToRole="Spot" />
           <NavigationProperty Name="User" Relationship="Self.fk_sr_user_id" FromRole="SearchRecord" ToRole="User" />
         </EntityType>
@@ -272,8 +280,8 @@
           <Property Name="spot_other" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="spot_loaction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Area" Relationship="Self.spot_area_ID" FromRole="Spot" ToRole="Area" />
+          <NavigationProperty Name="CommentRecord" Relationship="Self.FK__scr__spot___619B8048" FromRole="Spot" ToRole="CommentRecord" />
           <NavigationProperty Name="FavoriteRecord" Relationship="Self.FK__fr_spot___5DCAEF64" FromRole="Spot" ToRole="FavoriteRecord" />
-          <NavigationProperty Name="ScoreRecord" Relationship="Self.FK__scr__spot___619B8048" FromRole="Spot" ToRole="ScoreRecord" />
           <NavigationProperty Name="SearchRecord" Relationship="Self.fk_sr_spot_id" FromRole="Spot" ToRole="SearchRecord" />
         </EntityType>
         <EntityType Name="User">
@@ -287,8 +295,8 @@
           <Property Name="user_birth" Type="DateTime" Precision="3" />
           <Property Name="user_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="user_other" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CommentRecord" Relationship="Self.FK__scr_user___628FA481" FromRole="User" ToRole="CommentRecord" />
           <NavigationProperty Name="FavoriteRecord" Relationship="Self.FK__fr_user___5EBF139D" FromRole="User" ToRole="FavoriteRecord" />
-          <NavigationProperty Name="ScoreRecord" Relationship="Self.FK__scr_user___628FA481" FromRole="User" ToRole="ScoreRecord" />
           <NavigationProperty Name="SearchRecord" Relationship="Self.fk_sr_user_id" FromRole="User" ToRole="SearchRecord" />
         </EntityType>
         <Association Name="spot_area_ID">
@@ -302,6 +310,34 @@
             </Principal>
             <Dependent Role="Spot">
               <PropertyRef Name="area_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__scr__spot___619B8048">
+          <End Role="Spot" Type="Self.Spot" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommentRecord" Type="Self.CommentRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spot">
+              <PropertyRef Name="spot_ID" />
+            </Principal>
+            <Dependent Role="CommentRecord">
+              <PropertyRef Name="spot_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__scr_user___628FA481">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommentRecord" Type="Self.CommentRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="CommentRecord">
+              <PropertyRef Name="user_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -333,34 +369,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__scr__spot___619B8048">
-          <End Role="Spot" Type="Self.Spot" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ScoreRecord" Type="Self.ScoreRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Spot">
-              <PropertyRef Name="spot_ID" />
-            </Principal>
-            <Dependent Role="ScoreRecord">
-              <PropertyRef Name="spot_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__scr_user___628FA481">
-          <End Role="User" Type="Self.User" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ScoreRecord" Type="Self.ScoreRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="user_ID" />
-            </Principal>
-            <Dependent Role="ScoreRecord">
-              <PropertyRef Name="user_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_sr_spot_id">
           <End Role="Spot" Type="Self.Spot" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -389,17 +397,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="sisdbEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Area" EntityType="Self.Area" />
           <EntitySet Name="Class" EntityType="Self.Class" />
+          <EntitySet Name="CommentRecord" EntityType="Self.CommentRecord" />
           <EntitySet Name="FavoriteRecord" EntityType="Self.FavoriteRecord" />
-          <EntitySet Name="ScoreRecord" EntityType="Self.ScoreRecord" />
           <EntitySet Name="SearchRecord" EntityType="Self.SearchRecord" />
           <EntitySet Name="Spot" EntityType="Self.Spot" />
           <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="spot_area_ID" Association="Self.spot_area_ID">
             <End Role="Area" EntitySet="Area" />
             <End Role="Spot" EntitySet="Spot" />
+          </AssociationSet>
+          <AssociationSet Name="FK__scr__spot___619B8048" Association="Self.FK__scr__spot___619B8048">
+            <End Role="Spot" EntitySet="Spot" />
+            <End Role="CommentRecord" EntitySet="CommentRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK__scr_user___628FA481" Association="Self.FK__scr_user___628FA481">
+            <End Role="User" EntitySet="User" />
+            <End Role="CommentRecord" EntitySet="CommentRecord" />
           </AssociationSet>
           <AssociationSet Name="FK__fr_spot___5DCAEF64" Association="Self.FK__fr_spot___5DCAEF64">
             <End Role="Spot" EntitySet="Spot" />
@@ -408,14 +424,6 @@
           <AssociationSet Name="FK__fr_user___5EBF139D" Association="Self.FK__fr_user___5EBF139D">
             <End Role="User" EntitySet="User" />
             <End Role="FavoriteRecord" EntitySet="FavoriteRecord" />
-          </AssociationSet>
-          <AssociationSet Name="FK__scr__spot___619B8048" Association="Self.FK__scr__spot___619B8048">
-            <End Role="Spot" EntitySet="Spot" />
-            <End Role="ScoreRecord" EntitySet="ScoreRecord" />
-          </AssociationSet>
-          <AssociationSet Name="FK__scr_user___628FA481" Association="Self.FK__scr_user___628FA481">
-            <End Role="User" EntitySet="User" />
-            <End Role="ScoreRecord" EntitySet="ScoreRecord" />
           </AssociationSet>
           <AssociationSet Name="fk_sr_spot_id" Association="Self.fk_sr_spot_id">
             <End Role="Spot" EntitySet="Spot" />
@@ -431,9 +439,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="sisdbModelStoreContainer" CdmEntityContainer="sisdbEntities1">
+        <EntityContainerMapping StorageEntityContainer="SiSeeModel1V2StoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Area">
-            <EntityTypeMapping TypeName="sisdbModel.Area">
+            <EntityTypeMapping TypeName="SiSeeModel1V2.Area">
               <MappingFragment StoreEntitySet="Area">
                 <ScalarProperty Name="area_ID" ColumnName="area_ID" />
                 <ScalarProperty Name="area_Name" ColumnName="area_Name" />
@@ -441,15 +449,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Class">
-            <EntityTypeMapping TypeName="sisdbModel.Class">
+            <EntityTypeMapping TypeName="SiSeeModel1V2.Class">
               <MappingFragment StoreEntitySet="Class">
                 <ScalarProperty Name="class_ID" ColumnName="class_ID" />
                 <ScalarProperty Name="class_Name" ColumnName="class_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CommentRecord">
+            <EntityTypeMapping TypeName="SiSeeModel1V2.CommentRecord">
+              <MappingFragment StoreEntitySet="CommentRecord">
+                <ScalarProperty Name="commentrecord_ID" ColumnName="commentrecord_ID" />
+                <ScalarProperty Name="spot_ID" ColumnName="spot_ID" />
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="comment_context" ColumnName="comment_context" />
+                <ScalarProperty Name="comment_grade" ColumnName="comment_grade" />
+                <ScalarProperty Name="comment_date" ColumnName="comment_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FavoriteRecord">
-            <EntityTypeMapping TypeName="sisdbModel.FavoriteRecord">
+            <EntityTypeMapping TypeName="SiSeeModel1V2.FavoriteRecord">
               <MappingFragment StoreEntitySet="FavoriteRecord">
                 <ScalarProperty Name="searchrecord_ID" ColumnName="searchrecord_ID" />
                 <ScalarProperty Name="spot_ID" ColumnName="spot_ID" />
@@ -457,26 +477,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ScoreRecord">
-            <EntityTypeMapping TypeName="sisdbModel.ScoreRecord">
-              <MappingFragment StoreEntitySet="ScoreRecord">
-                <ScalarProperty Name="scorerecord_ID" ColumnName="scorerecord_ID" />
-                <ScalarProperty Name="spot_ID" ColumnName="spot_ID" />
-                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SearchRecord">
-            <EntityTypeMapping TypeName="sisdbModel.SearchRecord">
+            <EntityTypeMapping TypeName="SiSeeModel1V2.SearchRecord">
               <MappingFragment StoreEntitySet="SearchRecord">
                 <ScalarProperty Name="search_ID" ColumnName="search_ID" />
                 <ScalarProperty Name="user_ID" ColumnName="user_ID" />
                 <ScalarProperty Name="spot_ID" ColumnName="spot_ID" />
+                <ScalarProperty Name="search_date" ColumnName="search_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Spot">
-            <EntityTypeMapping TypeName="sisdbModel.Spot">
+            <EntityTypeMapping TypeName="SiSeeModel1V2.Spot">
               <MappingFragment StoreEntitySet="Spot">
                 <ScalarProperty Name="spot_ID" ColumnName="spot_ID" />
                 <ScalarProperty Name="area_ID" ColumnName="area_ID" />
@@ -493,7 +505,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="sisdbModel.User">
+            <EntityTypeMapping TypeName="SiSeeModel1V2.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="user_ID" ColumnName="user_ID" />
                 <ScalarProperty Name="user_FBID" ColumnName="user_FBID" />

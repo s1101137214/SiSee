@@ -1,5 +1,4 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     CheckAreaAndFBcomment();
 
@@ -7,9 +6,6 @@ $(document).ready(function () {
     $(".SpotSearchButton").click(function () {
         SearchSpotName();
     });
-
-
-
 
 });
 
@@ -44,11 +40,13 @@ function CheckAreaAndFBcomment() {
 
 }
 
+//搜尋FB
 function SearchSpotName() {
 
-    var searchlink = $(".SpotName").val();
+    var spotName = $(".SpotName").val();
 
-    searchlink = "https://www.facebook.com/search/results/?q=" + searchlink;
+    var searchlink = "https://www.facebook.com/search/results/?q=" + spotName;
 
     window.open(searchlink);
 }
+

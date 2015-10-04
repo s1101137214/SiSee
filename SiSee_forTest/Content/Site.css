@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: "微軟正黑體",'Comic Sans MS';
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -15,4 +16,3 @@ select,
 textarea {
     max-width: 280px;
 }
-
