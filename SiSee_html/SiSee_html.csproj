@@ -143,9 +143,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53796</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53796/</IISUrl>
+          <IISUrl>http://localhost:63976/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:53796/</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:63976/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
