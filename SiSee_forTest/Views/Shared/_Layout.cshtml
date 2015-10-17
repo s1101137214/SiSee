@@ -4,18 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SiSee ASP.NET Application</title>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
     <link href="~/Content/css/_layout.css" rel="stylesheet" />
     @Scripts.Render("~/Scripts/fbapiconnect.js")
     @Scripts.Render("~/Scripts/Share_Detail.js")
     @Scripts.Render("~/Scripts/Share.js")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" id="navbartop">
@@ -26,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("SiSee 旅遊Go", "Index", "Spots", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SiSee", "Index", "Spots", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav " id="navbartopfont">
@@ -39,7 +36,6 @@
             </div>
         </div>
     </div>
-
     <!-- 各自VIEW 內容-->
     <div class="container body-content">
         @RenderBody()
@@ -48,6 +44,5 @@
             <p>&copy; @DateTime.Now.Year - KUAS MIS ASP.NET Application</p>
         </footer>
     </div>
-
 </body>
 </html>

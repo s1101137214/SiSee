@@ -11,16 +11,23 @@ namespace SiSee_v1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CommentRecord
     {
+        [Display(Name = "ID")]
         public int commentrecord_ID { get; set; }
+        [Display(Name = "景點")]
         public int spot_ID { get; set; }
+        [Display(Name = "會員")]
         public int user_ID { get; set; }
+        [Display(Name = "評論")]
         public string comment_context { get; set; }
         public string comment_grade { get; set; }
+        [Display(Name = "評論時間")]
+        [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> comment_date { get; set; }
-    
+
         public virtual Spot Spot { get; set; }
         public virtual User User { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿@model SiSee_v1.Models.Spot
+﻿@model SiSee_v1.Models.ViewModels.SpotDetail
 
 @{
     ViewBag.Title = "Details";
@@ -6,7 +6,7 @@
 
 <h2>Details</h2>
 <div class="Control">
-    <input class="SpotName" value=@Html.DisplayFor(model => model.spot_name) type="hidden" />
+    <input class="SpotName" value=@Html.DisplayFor(model => model.Spot.spot_name) type="hidden" />
     <button type="button" class="SpotSearchButton btn btn-info">FB大神 </button>
 </div>
 <div>
@@ -14,93 +14,125 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.spot_name)
+            @Html.DisplayNameFor(model => model.Spot.spot_name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_name)
+            @Html.DisplayFor(model => model.Spot.spot_name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.spot_tel)
+            @Html.DisplayNameFor(model => model.Spot.spot_tel)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_tel)
+            @Html.DisplayFor(model => model.Spot.spot_tel)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.spot_context)
+            @Html.DisplayNameFor(model => model.Spot.spot_context)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_context)
+            @Html.DisplayFor(model => model.Spot.spot_context)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.spot_optimeS)
+            @Html.DisplayNameFor(model => model.Spot.spot_optimeS)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_optimeS)
+            @Html.DisplayFor(model => model.Spot.spot_optimeS)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.spot_add)
+            @Html.DisplayNameFor(model => model.Spot.spot_add)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_add)
+            @Html.DisplayFor(model => model.Spot.spot_add)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.spot_fee)
+            @Html.DisplayNameFor(model => model.Spot.spot_fee)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_fee)
+            @Html.DisplayFor(model => model.Spot.spot_fee)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.spot_score)
+            @Html.DisplayNameFor(model => model.Spot.spot_score)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_score)
+            @Html.DisplayFor(model => model.Spot.spot_score)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.spot_other)
+            @Html.DisplayNameFor(model => model.Spot.spot_other)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_other)
+            @Html.DisplayFor(model => model.Spot.spot_other)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.spot_loaction)
+            @Html.DisplayNameFor(model => model.Spot.spot_loaction)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.spot_loaction)
+            @Html.DisplayFor(model => model.Spot.spot_loaction)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Area.area_Name)
+            @Html.DisplayNameFor(model => model.Spot.Area.area_Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Area.area_Name)
+            @Html.DisplayFor(model => model.Spot.Area.area_Name)
         </dd>
 
     </dl>
 </div>
+
+<h3>Command</h3>
+<table>
+    <tr style="background-color: #E8EEF4;" class="table">
+        <td>編號</td>
+        <td>評論者</td>
+        <td>評分</td>
+        <td>日期</td>
+        <td>內容</td>
+    </tr>
+    @foreach (var item in Model.CommentRecords)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.commentrecord_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.user_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_context)
+            </td>
+        </tr>
+    }
+</table>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.spot_ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Spot.spot_ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
 
 <div class="FBCommentt" style="display:block">
-    <input class="AreaName" value=@Html.DisplayFor(model => model.Area.area_Name) type="hidden" />
+    <input class="AreaName" value=@Html.DisplayFor(model => model.Spot.Area.area_Name) type="hidden" />
     <div class=" fb-comments" data-href="" data-width="100%" data-numposts="4"></div>
 </div>

@@ -71,9 +71,9 @@ namespace SiSee_v1.Controllers
 
                 spotDetail.CommentRecords = commentRecord;
 
-                return View(spot);
+                return View(spotDetail);
 
-              //  return View("SpotDetail", spotDetail);
+                //  return View("SpotDetail", spotDetail);
 
             }
             else
