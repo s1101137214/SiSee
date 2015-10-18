@@ -24,19 +24,19 @@ namespace SiSee_v1.Controllers
 
             List<Spot> spotList = new List<Spot>();
 
+            //取得含有搜尋內容的資料
             if (!String.IsNullOrEmpty(searchName))
             {
                 TempData["SearchName"] = searchName;
+
+                //取得含有該區域的資料
+                List<Spot> spot_area = spot.Where(s => s.Area.area_Name.Contains(searchName)).ToList();
 
                 List<Spot> spot_name = spot.Where(s => s.spot_name.Contains(searchName)).ToList();
 
                 spotList.AddRange(spot_name);
 
-                //List<Spot> spot_contextname = spot.Where(s => s.spot_context.Contains(searchName)).ToList();
-
-                //List<Spot> spot_except = spot_name.Except(spot_contextname).ToList();
-
-                //spotList.AddRange(spot_except);
+                spotList.AddRange(spot_area);
 
             }
             else

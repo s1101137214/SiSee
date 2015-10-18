@@ -13,7 +13,7 @@
     <div>
         @Html.TextBox("SearchText", null, new { @class = "SearchText text text-info" })
         <button type="button" class="SearchButton btn btn-info">站內搜尋</button>
-        <button type="submit" class="SpotBlogSearchButton btn btn-info">Blog大神</button>
+        <button type="button" class="SpotBlogSearchButton btn btn-info">Blog大神</button>
     </div>
 }
 
@@ -34,6 +34,16 @@
     <span>
         共 @ViewData["TotalCount"] 筆
     </span>
+
+    <div  style="float:right">
+        @*樣式在自己調整*@
+        <p>醜陋的分類</p>
+        <a href="http://localhost:63955/Spots/Index/北部/">北部</a>
+        <a href="http://localhost:63955/Spots/Index/中部/">中部</a>
+        <a href="http://localhost:63955/Spots/Index/南部/">南部</a>
+        <a href="http://localhost:63955/Spots/Index/東部/">東部</a>
+    </div>
+
 </div>
 
 <table class="table col-lg-12">
@@ -44,9 +54,9 @@
         <th>
             @Html.DisplayNameFor(model => model.spot_tel)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.spot_context)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.spot_optimeS)
         </th>
@@ -74,14 +84,14 @@
     {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.spot_name)
+            @Html.ActionLink(Html.DisplayFor(modelItem => item.spot_name).ToString(), "Details", new { id = item.spot_ID })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.spot_tel)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.spot_context)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.spot_optimeS)
         </td>

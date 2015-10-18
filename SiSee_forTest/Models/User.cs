@@ -27,12 +27,12 @@ namespace SiSee_v1.Models
         [Display(Name = "FBID")]
         public int user_FBID { get; set; }
         [Display(Name = "Email")]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress, ErrorMessage = "請輸入正確的電子信箱")]
         public string user_email { get; set; }
         [Display(Name = "電話")]
         public string user_tel { get; set; }
         [Display(Name = "生日")]
-        [DataType(DataType.DateTime)]
+         [DataType(DataType.Date, ErrorMessage = "請輸入正確的日期")]
         public Nullable<System.DateTime> user_birth { get; set; }
         [Display(Name = "姓名")]
         public string user_name { get; set; }

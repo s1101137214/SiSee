@@ -40,7 +40,7 @@ namespace SiSee_v1.Controllers
         public ActionResult Create()
         {
             ViewBag.spot_ID = new SelectList(db.Spot, "spot_ID", "spot_name");
-            ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_email");
+            ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_name");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace SiSee_v1.Controllers
             }
 
             ViewBag.spot_ID = new SelectList(db.Spot, "spot_ID", "spot_name", commentRecord.spot_ID);
-            ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_email", commentRecord.user_ID);
+            ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_name", commentRecord.user_ID);
             return View(commentRecord);
         }
 
@@ -76,7 +76,7 @@ namespace SiSee_v1.Controllers
                 return HttpNotFound();
             }
             ViewBag.spot_ID = new SelectList(db.Spot, "spot_ID", "spot_name", commentRecord.spot_ID);
-            ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_email", commentRecord.user_ID);
+            ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_name", commentRecord.user_ID);
             return View(commentRecord);
         }
 
@@ -94,7 +94,7 @@ namespace SiSee_v1.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.spot_ID = new SelectList(db.Spot, "spot_ID", "spot_name", commentRecord.spot_ID);
-            ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_email", commentRecord.user_ID);
+            ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_name", commentRecord.user_ID);
             return View(commentRecord);
         }
 

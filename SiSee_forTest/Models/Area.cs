@@ -11,17 +11,20 @@ namespace SiSee_v1.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Area
     {
         public Area()
         {
             this.Spot = new HashSet<Spot>();
         }
-    
+
+        [Display(Name = "ID")]
         public int area_ID { get; set; }
+        [Display(Name = "區域")]
         public string area_Name { get; set; }
-    
+
         public virtual ICollection<Spot> Spot { get; set; }
     }
 }

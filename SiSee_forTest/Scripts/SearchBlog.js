@@ -39,7 +39,8 @@ function SearchBlogSpotName() {
             console.log(e);
         }
     });
-
+    
+    //取得blog api回傳資料 取得內容可在調整
     function GetData(data) {
 
         $("#ResultCount").text(data.total);
