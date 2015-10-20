@@ -1,0 +1,12 @@
+起始專案 請設成專案內的SiSee_v1(右鍵 Set up Start project..)
+
+起始URL設定成: http://localhost:63955/Spots/Index
+
+專案URL: http://localhost:63955/
+
+複寫根目錄
+
+之後確定個大家都可以的PORT在統一修改
+
+
+
