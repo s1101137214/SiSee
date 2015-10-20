@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SiSee_v1.Models;
+using SiSee_v1.Models.Repository;
 using SiSee_v1.Models.ViewModels;
 
 namespace SiSee_v1.Controllers
@@ -15,12 +16,15 @@ namespace SiSee_v1.Controllers
     {
         private sisdbEntities1 db = new sisdbEntities1();
 
+        private SpotRepository spotRepository = new SpotRepository();
+
+
         // GET: Spots
         public ActionResult Index(string id)
         {
             string searchName = id;
 
-            var spot = db.Spot.Include(s => s.Area);
+            var spot = spotRepository.GetAll();
 
             List<Spot> spotList = new List<Spot>();
 

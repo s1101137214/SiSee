@@ -197,6 +197,7 @@
     <Compile Include="Models\FavoriteRecord.cs">
       <DependentUpon>SiSeeModel1V2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Repository\SpotRepository.cs" />
     <Compile Include="Models\SearchRecord.cs">
       <DependentUpon>SiSeeModel1V2.tt</DependentUpon>
     </Compile>
