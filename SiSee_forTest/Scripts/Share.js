@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     //景點自動搜尋
     $(".SearchButton").click(function () {
-        window.location = "http://localhost:63955/Spots/Index/" + $(".SearchText").val() + "/";
+        window.location = "http://localhost:9542/Spots/Index/" + $(".SearchText").val() + "/";
     });
 
 });

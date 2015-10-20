@@ -16,14 +16,20 @@ namespace SiSee_v1.Models
     public partial class CommentRecord
     {
         [Display(Name = "ID")]
-        public int commentrecord_ID { get; set; }
+        public int? commentrecord_ID { get; set; }
+
         [Display(Name = "景點")]
         public int spot_ID { get; set; }
+
         [Display(Name = "會員")]
         public int user_ID { get; set; }
+
         [Display(Name = "評論")]
         public string comment_context { get; set; }
+
+        [Display(Name = "評分")]
         public string comment_grade { get; set; }
+
         [Display(Name = "評論時間")]
         [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> comment_date { get; set; }

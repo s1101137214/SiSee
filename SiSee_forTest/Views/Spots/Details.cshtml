@@ -127,6 +127,31 @@
     }
 </table>
 
+<div>
+    @using (Html.BeginForm("CreateNewCommand", "CommentRecords", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Spot.spot_ID)
+        @Html.Hidden("UserID", "1")
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                評論<input type="text" class="text" name="Command"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+               評分<input type="text" class="text" name="Grade" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="新增評論唷" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+
+</div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Spot.spot_ID }) |
     @Html.ActionLink("Back to List", "Index")

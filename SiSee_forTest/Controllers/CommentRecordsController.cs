@@ -7,12 +7,16 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SiSee_v1.Models;
+using SiSee_v1.Models.Repository;
+using SiSee_v1.Models.ViewModels;
 
 namespace SiSee_v1.Controllers
 {
     public class CommentRecordsController : Controller
     {
         private sisdbEntities1 db = new sisdbEntities1();
+
+        private SpotRepository spotRepository = new SpotRepository();
 
         // GET: CommentRecords
         public ActionResult Index()
@@ -35,6 +39,30 @@ namespace SiSee_v1.Controllers
             }
             return View(commentRecord);
         }
+
+        //自訂新增評論
+        [HttpPost]
+        public ActionResult CreateNewCommand(FormCollection data)
+        {
+            CommentRecord commentRecord = new CommentRecord()
+            {
+                spot_ID = int.Parse(data["Spot.spot_ID"]),
+                comment_context = data["Command"],
+                comment_grade = data["Grade"],
+                user_ID = int.Parse(data["UserID"]),
+                comment_date = System.DateTime.Now,
+                commentrecord_ID = null
+
+            };
+
+            db.CommentRecord.Add(commentRecord);
+            db.SaveChanges();
+
+            //SpotRepository.CreateCommand(commentRecord)
+
+            return RedirectToAction("Details", "Spots", new { id = data["Spot.spot_ID"] });
+        }
+
 
         // GET: CommentRecords/Create
         public ActionResult Create()

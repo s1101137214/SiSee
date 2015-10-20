@@ -20,19 +20,19 @@ function CheckAreaAndFBcomment() {
 
     switch (areaName) {
         case "北部":
-            fbcomment.attr("data-href", "http://localhost:63955/Spots/Detailsl/1");
+            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/1");
             break;
         case "中部":
-            fbcomment.attr("data-href", "http://localhost:63955/Spots/Detailsl/2");
+            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/2");
             break;
         case "南部":
-            fbcomment.attr("data-href", "http://localhost:63955/Spots/Detailsl/3");
+            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/3");
             break;
         case "東部":
-            fbcomment.attr("data-href", "http://localhost:63955/Spots/Detailsl/4");
+            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/4");
             break;
         default:
-            fbcomment.attr("data-href", "http://localhost:63955/");
+            fbcomment.attr("data-href", "http://localhost:9542/");
             break;
     }
 
