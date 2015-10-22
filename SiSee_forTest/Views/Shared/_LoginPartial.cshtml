@@ -1,11 +1,23 @@
 ﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="#" class="FBloginbutton"><span class="glyphicon glyphicon-th-large"></span>關於我</a>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @*<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" style="margin-top:10px">
+                </fb:login-button>*@
+            <a href="#" class="FBloginbutton"><span class="glyphicon glyphicon-user"></span>登入/註冊</a>
+        </li>
+        @*<li>@Html.ActionLink("註冊", "Create", "Users", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
-<ul class="nav navbar-nav navbar-right">
-    <li>
-        @*<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" style="margin-top:10px">
-        </fb:login-button>*@
-    </li>
-    <li>@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("登入", "Login", "Users", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+    </ul>
+}
 
-    <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-</ul>
