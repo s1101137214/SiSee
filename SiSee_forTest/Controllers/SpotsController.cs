@@ -80,7 +80,7 @@ namespace SiSee_v1.Controllers
                 {
                     spot_ID = id,
                     search_date = System.DateTime.Now,
-                    user_ID = !String.IsNullOrEmpty(User.Identity.Name) ? 1 : int.Parse(User.Identity.Name)
+                    user_ID = String.IsNullOrEmpty(User.Identity.Name) ? 1 : int.Parse(User.Identity.Name)
                 };
 
                 SpotRepository.CreateSearchReacord(searchReacord);
