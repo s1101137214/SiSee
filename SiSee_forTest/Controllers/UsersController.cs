@@ -52,7 +52,6 @@ namespace SiSee_v1.Controllers
 
             try
             {
-
                 UserRepository.CreateUser(user);
 
                 CheckLogined(id);
@@ -63,6 +62,15 @@ namespace SiSee_v1.Controllers
             }
 
             return null;
+        }
+
+        public ActionResult Logout()
+        {
+            Session.RemoveAll();
+
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Spots");
         }
 
         public bool CheckLogined(string id)
@@ -76,14 +84,14 @@ namespace SiSee_v1.Controllers
                 return false;
             }
 
-            var userstring = user.ToString();
+            var userID = user.user_FBID.ToString();
 
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
-                userstring,//你想要存放在 User.Identy.Name 的值，通常是使用者帳號
+                userID,//你想要存放在 User.Identy.Name 的值，通常是使用者帳號
                 DateTime.Now,
                 DateTime.Now.AddMinutes(30),
-                false,//將管理者登入的 Cookie 設定成 Session Cookie
-               userstring,//userdata看你想存放啥
+                true,//將管理者登入的 Cookie 設定成 Session Cookie
+               userID,//userdata看你想存放啥
                 FormsAuthentication.FormsCookiePath);
 
             string encTicket = FormsAuthentication.Encrypt(ticket);
@@ -92,6 +100,7 @@ namespace SiSee_v1.Controllers
 
             return true;
         }
+
         // GET: Users/Create
         public ActionResult Create()
         {

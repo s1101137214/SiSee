@@ -18,12 +18,10 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    //景點自動搜尋
     $(".FBloginbutton").click(function () {
 
-        CheckUserLoginStatus();
+        checkLoginState();
 
-        //       checkLoginState()
     });
 
 });
@@ -36,14 +34,9 @@ function statusChangeCallback(response) {
         ConnentedInf();
 
     } else if (response.status === 'not_authorized') {
-        // The person is logged into Facebook, but not your app.
-        //document.getElementById('status').innerHTML = 'Please log ' +
-        //  'into this app.';
+
     } else {
-        // The person is not logged into Facebook, so we're not sure if
-        // they are logged into this app or not.
-        //document.getElementById('status').innerHTML = 'Please log ' +
-        //  'into Facebook.';
+
     }
 }
 
@@ -56,7 +49,6 @@ function checkLoginState() {
         FB.login(function (response) {
             if (response.authResponse) {
                 FetchUserInfromation();
-
             } else {
 
             }
@@ -68,27 +60,9 @@ function checkLoginState() {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function FetchUserInfromation() {
-    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me?fields=id,name,email', function (response) {
 
-        console.log(response);
-
-        $("#FBName").text(response.name);
-
-        $("#FBMail").text(response.email);
-
-        //   $("#FBBirth").text(response.user_birthday);
-
-        $('#LoginDialog').modal('show');
-
-        $(".CreateNewUserButton").click(function () {
-
-            if ((typeof response.email == "undefined")) {
-                response.email = "";
-            }
-
-            CreateNewUser(response.id, response.name, response.email)
-        });
+        CheckUserDBStatus(response);
 
     });
 
@@ -100,17 +74,65 @@ function ConnentedInf() {
         $(".LoginedInfo span").text('Successful login for: ' + response.name);
 
         $(".LoginedInfo").show();
+
     });
 }
 
-function CreateNewUser(id, name, email) {
+function CreateNewUser(response) {
+    $('#LoginDialog').modal('show');
+
+    $("#FBName").text(response.name);
+
+    $("#FBMail").text(response.email);
+
+    //   $("#FBBirth").text(response.user_birthday);
+
+    $(".CreateNewUserButton").click(function () {
+
+        if ((typeof response.email == "undefined")) {
+            response.email = "";
+        }
+
+        $.ajax({
+            url: '/Users/CreateByFB',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                id: response.id,
+                name: response.name,
+                email: response.email
+            }),
+            type: 'POST',
+            async: true,
+            datatype: "text",
+            processData: false,
+            complete: function () {
+                $.unblockUI();
+
+            },
+            beforeSend: function () {
+                $.blockUI({
+                    message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
+                    css: { backgroundColor: '#fff', color: 'black' }
+                });
+            },
+            success: function (result) {
+                alert("finish");
+                $.unblockUI();
+            },
+            error: function (xhr, status) {
+                $.unblockUI();
+                alert(xhr);
+            }
+        })
+    });
+}
+
+function CheckUserDBStatus(response) {
     $.ajax({
-        url: '/Users/CreateByFB',
+        url: '/Users/CheckLogined',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
-            id: id,
-            name: name,
-            email: email
+            id: response.id
         }),
         type: 'POST',
         async: true,
@@ -118,44 +140,25 @@ function CreateNewUser(id, name, email) {
         processData: false,
         complete: function () {
             $.unblockUI();
+        },
+        beforeSend: function () {
+            $.blockUI({
+                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
+                css: { backgroundColor: '#fff', color: 'black' }
+            });
+        },
+        success: function (result) {
+            $.unblockUI();
 
-        },
-        beforeSend: function () {
-            $.blockUI({
-                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
-                css: { backgroundColor: '#fff', color: 'black' }
-            });
-        },
-        success: function (result) {
-            alert("finish");
-            $.unblockUI();
-        },
-        error: function (xhr, status) {
-            $.unblockUI();
-            alert(xhr);
-        }
-    })
-}
-function CheckUserLoginStatus() {
-    $.ajax({
-        url: '/Users/CheckLogined',
-        contentType: 'application/json; charset=utf-8',
-        type: 'POST',
-        async: true,
-        datatype: "text",
-        processData: false,
-        complete: function () {
-            $.unblockUI();
-        },
-        beforeSend: function () {
-            $.blockUI({
-                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
-                css: { backgroundColor: '#fff', color: 'black' }
-            });
-        },
-        success: function (result) {
-            console.log(result);
-            $.unblockUI();
+            console.log(result)
+
+            if (result === "False") {
+                console.log('fff')
+                CreateNewUser(response);
+            } else {
+                ConnentedInf();
+            }
+
         },
         error: function (xhr, status) {
             $.unblockUI();
