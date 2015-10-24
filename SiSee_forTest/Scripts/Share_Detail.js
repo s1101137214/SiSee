@@ -66,14 +66,6 @@ function initialize() {
 
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    //加入標記點
-    //marker = new google.maps.Marker({
-    //    draggable: true,
-    //    position: latlng,
-    //    title: "台灣 Taiwan",
-    //    map: map
-    //});
-
     var geocoder = new google.maps.Geocoder();
     GetLatlng($("#address").text(), "123", geocoder, map);
 }
