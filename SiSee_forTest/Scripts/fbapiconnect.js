@@ -79,6 +79,11 @@ function FetchUserInfromation() {
         $('#LoginDialog').modal('show');
 
         $(".CreateNewUserButton").click(function () {
+
+            if ((typeof response.email == "undefined")) {
+                response.email = "";
+            }
+
             CreateNewUser(response.id, response.name, response.email)
         });
 
