@@ -111,15 +111,16 @@ function CreateNewUser(id, name, email) {
         processData: false,
         complete: function () {
             $.unblockUI();
-            alert("finish");
+
         },
         beforeSend: function () {
             $.blockUI({
-                message: "<h4><img src='../Content/img/ajax-loader.gif'/> loading...</h4>",
+                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
                 css: { backgroundColor: '#fff', color: 'black' }
             });
         },
         success: function (result) {
+            alert("finish");
             $.unblockUI();
         },
         error: function (xhr, status) {
