@@ -20,7 +20,10 @@
 
     //景點自動搜尋
     $(".FBloginbutton").click(function () {
-        checkLoginState()
+
+        CheckUserLoginStatus();
+
+        //       checkLoginState()
     });
 
 });
@@ -101,7 +104,6 @@ function ConnentedInf() {
 }
 
 function CreateNewUser(id, name, email) {
-
     $.ajax({
         url: '/Users/CreateByFB',
         contentType: 'application/json; charset=utf-8',
@@ -126,6 +128,33 @@ function CreateNewUser(id, name, email) {
         },
         success: function (result) {
             alert("finish");
+            $.unblockUI();
+        },
+        error: function (xhr, status) {
+            $.unblockUI();
+            alert(xhr);
+        }
+    })
+}
+function CheckUserLoginStatus() {
+    $.ajax({
+        url: '/Users/CheckLogined',
+        contentType: 'application/json; charset=utf-8',
+        type: 'POST',
+        async: true,
+        datatype: "text",
+        processData: false,
+        complete: function () {
+            $.unblockUI();
+        },
+        beforeSend: function () {
+            $.blockUI({
+                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
+                css: { backgroundColor: '#fff', color: 'black' }
+            });
+        },
+        success: function (result) {
+            console.log(result);
             $.unblockUI();
         },
         error: function (xhr, status) {

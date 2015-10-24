@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using SiSee_v1.Models;
 using SiSee_v1.Models.Repository;
 
@@ -51,7 +52,11 @@ namespace SiSee_v1.Controllers
 
             try
             {
+
                 UserRepository.CreateUser(user);
+
+                CheckLogined(id);
+
             } catch (Exception e)
             {
                 return e.ToString();
@@ -60,6 +65,33 @@ namespace SiSee_v1.Controllers
             return null;
         }
 
+        public bool CheckLogined(string id)
+        {
+            Session.RemoveAll();
+
+            var user = db.User.Where(u => u.user_FBID.Contains(id)).FirstOrDefault();
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            var userstring = user.ToString();
+
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
+                userstring,//你想要存放在 User.Identy.Name 的值，通常是使用者帳號
+                DateTime.Now,
+                DateTime.Now.AddMinutes(30),
+                false,//將管理者登入的 Cookie 設定成 Session Cookie
+               userstring,//userdata看你想存放啥
+                FormsAuthentication.FormsCookiePath);
+
+            string encTicket = FormsAuthentication.Encrypt(ticket);
+
+            Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+            return true;
+        }
         // GET: Users/Create
         public ActionResult Create()
         {

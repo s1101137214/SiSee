@@ -12,6 +12,7 @@
 <div>
     <h4>Spot</h4>
     <hr />
+    <div id="map-canvas" style="width:250px;height:250px"></div>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Spot.spot_name)
@@ -49,7 +50,7 @@
             @Html.DisplayNameFor(model => model.Spot.spot_add)
         </dt>
 
-        <dd>
+        <dd id="address">
             @Html.DisplayFor(model => model.Spot.spot_add)
         </dd>
 
