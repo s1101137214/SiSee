@@ -3,99 +3,63 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<style type="text/css">
+    .background{
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        background-color:#e9eaee;
+    }
+    .contains-white{
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        background-color: white;
+    }
+</style>
 <h2>Details</h2>
 <div class="Control">
     <input class="SpotName" value=@Html.DisplayFor(model => model.Spot.spot_name) type="hidden" />
-    <button type="button" class="SpotSearchButton btn btn-info">FB大神 </button>
+    <button type="button" class="SpotSearchButton btn btn-default">FB大神 </button>
 </div>
-<div>
-    <h4>Spot</h4>
-    <hr />
-    <div id="map-canvas" style="width:250px;height:250px"></div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Spot.spot_name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_tel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Spot.spot_tel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_context)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Spot.spot_context)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_optimeS)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Spot.spot_optimeS)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_add)
-        </dt>
-
-        <dd id="address">
-            @Html.DisplayFor(model => model.Spot.spot_add)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_fee)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Spot.spot_fee)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_score)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Spot.spot_score)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_other)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Spot.spot_other)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.spot_loaction)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Spot.spot_loaction)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Spot.Area.area_Name)
-        </dt>
-
-        <dd>
+    <div class ="background">
+        <div>
+                <span style="font-size:30px;">
+                    @Html.DisplayFor(model => model.Spot.spot_name)
+                </span>
+                | @Html.DisplayNameFor(model => model.Spot.spot_add) :
+                <span id="address">@Html.DisplayFor(model => model.Spot.spot_add)</span>
+        </div>
+        <div style="float:left; width:30%;">
             @Html.DisplayFor(model => model.Spot.Area.area_Name)
-        </dd>
+            <br />
+            @Html.DisplayNameFor(model => model.Spot.spot_optimeS) :
+            @Html.DisplayFor(model => model.Spot.spot_optimeS)
+            <br />
+            @Html.DisplayNameFor(model => model.Spot.spot_fee) :
+            @Html.DisplayFor(model => model.Spot.spot_fee)
+            <br />
+            @Html.DisplayNameFor(model => model.Spot.spot_score) :
+            @Html.DisplayFor(model => model.Spot.spot_score)
+            <p>
+            <button type="button" class="btn btn-warning">評分/論</button>
+            <p>
+            <button type="button" class="btn btn-warning">收藏</button>
+            <p>
+            <button type="button" class="btn btn-warning">加入規劃路線</button>
+        </div>
+        <div style="float:left; width:70%">
+            <h4>
+                @Html.DisplayNameFor(model => model.Spot.spot_context) :
+            </h4>
+            @Html.DisplayFor(model => model.Spot.spot_context)
+            <div class="contains-white">
+                <div id="map-canvas" style="width:250px;height:250px;float:left;"></div>
+            </div>
+            
+        </div>
 
-    </dl>
-</div>
+    </div>
 
 <h3>Command</h3>
 <table>
@@ -144,6 +108,7 @@
             </div>
         </div>
         <div class="form-group">
+            Google mpa 地圖
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="新增評論唷" class="btn btn-default" />
             </div>
