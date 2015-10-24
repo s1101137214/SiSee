@@ -14,7 +14,6 @@ namespace SiSee_v1.Models.Repository
 
         #region Create
 
-        //幹結果這個寫這麼久不能用
         public void CreateCommand(CommentRecord CommentRecord)
         {
             db.Database.SqlQuery<CommentRecord>(
@@ -37,6 +36,8 @@ namespace SiSee_v1.Models.Repository
                new SqlParameter("comment_date", CommentRecord.comment_date)
            );
 
+            db.SaveChanges();
+
         }
 
 
@@ -48,16 +49,33 @@ namespace SiSee_v1.Models.Repository
         //首頁預設取得全部Spot
         public IEnumerable<Spot> GetAll()
         {
+            //IEnumerable<Spot> spot = db.Database.SqlQuery<Spot>(
+            //    "Select TOP 10 * FROM SPOT"
+            //    );
+            //   return db.Spot.take<Spot>(10);
+
             return db.Spot;
         }
 
         public IEnumerable<Spot> test()
         {
-            IEnumerable<Spot> t = db.Database.SqlQuery<Spot>(
-                "Select * FROM SPOT where 1=@p", new SqlParameter("p", "1")
-                );
+            //IEnumerable<Spot> t = db.Database.SqlQuery<Spot>(
+            //    "Select TOP 10 * FROM SPOT WHERE 1=1"
+            //    );
 
-            return t;
+            return db.Spot;
+        }
+
+        public List<Spot> GetByName(String searchName)
+        {
+            List<Spot> spot = db.Spot.Where(s => s.spot_name.Contains(searchName)).ToList();
+
+            return spot;
+        }
+
+        public List<Spot> GetByAreaName(String areaName)
+        {
+            return null;
         }
 
         #endregion

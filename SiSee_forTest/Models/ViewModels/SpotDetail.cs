@@ -11,5 +11,9 @@ namespace SiSee_v1.Models.ViewModels
 
         public IEnumerable<CommentRecord> CommentRecords { get; set; }
 
+        public IEnumerable<FavoriteRecord> FavoriteRecord { get; set; }
+
+        public IEnumerable<SearchRecord> SearchRecord { get; set; }
+
     }
 }

@@ -47,7 +47,7 @@ namespace SiSee_v1.Controllers
             {
                 TempData["SearchName"] = "全部";
 
-                spotList.AddRange(spot);
+                spotList.AddRange(spot.Take<Spot>(10));
             }
 
             ViewData["TotalCount"] = spotList.Count();

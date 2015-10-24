@@ -244,7 +244,6 @@
     <Content Include="Views\Spots\Edit.cshtml" />
     <Content Include="Views\Spots\Index.cshtml" />
     <Content Include="Views\Spots\SearchBlog.cshtml" />
-    <Content Include="Views\Spots\SpotDeatail.cshtml" />
     <Content Include="Views\CommentRecords\Create.cshtml" />
     <Content Include="Views\CommentRecords\Delete.cshtml" />
     <Content Include="Views\CommentRecords\Details.cshtml" />

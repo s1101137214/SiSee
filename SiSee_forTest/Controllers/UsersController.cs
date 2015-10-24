@@ -54,7 +54,6 @@ namespace SiSee_v1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(user);
         }
 

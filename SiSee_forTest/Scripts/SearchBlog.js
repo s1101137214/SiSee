@@ -18,7 +18,7 @@ function SearchBlogSpotName() {
 
     var spotName = $.urlParam('SearchText');
 
-    //   $("#SearchName").text(spotName);
+    //https://developer.pixnet.pro/#!/doc/pixnetApi/oauthApi API相關變數
 
     var page = "1";
 
