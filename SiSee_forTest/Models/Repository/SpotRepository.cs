@@ -49,18 +49,19 @@ namespace SiSee_v1.Models.Repository
         //首頁預設取得全部Spot
         public IEnumerable<Spot> GetAll()
         {
-            IEnumerable<Spot> spot = db.Database.SqlQuery<Spot>(
-                "Select TOP 10 * FROM SPOT"
-                );
-            return spot;
+            //IEnumerable<Spot> spot = db.Database.SqlQuery<Spot>(
+            //    "Select TOP 10 * FROM SPOT"
+            //    );
+            //   return db.Spot.take<Spot>(10);
+
+            return db.Spot;
         }
 
-        //暫取前10
         public IEnumerable<Spot> test()
         {
-            IEnumerable<Spot> t = db.Database.SqlQuery<Spot>(
-                "Select TOP10 * FROM SPOT WHERE 1=1"
-                );
+            //IEnumerable<Spot> t = db.Database.SqlQuery<Spot>(
+            //    "Select TOP 10 * FROM SPOT WHERE 1=1"
+            //    );
 
             return db.Spot;
         }
