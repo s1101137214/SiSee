@@ -71,11 +71,12 @@ function FetchUserInfromation() {
 function ConnentedInf() {
     FB.api('/me', function (response) {
 
-        $(".LoginedInfo span").text('Successful login for: ' + response.name);
+        $(".LoginedInfo span").text('歡迎回來唷～ ' + response.name);
 
         $(".LoginedInfo").show();
 
     });
+
 }
 
 function CreateNewUser(response) {
@@ -106,8 +107,7 @@ function CreateNewUser(response) {
             datatype: "text",
             processData: false,
             complete: function () {
-                $.unblockUI();
-
+                window.location.replace("http://localhost:9542/Spots/Index");
             },
             beforeSend: function () {
                 $.blockUI({
@@ -116,7 +116,6 @@ function CreateNewUser(response) {
                 });
             },
             success: function (result) {
-                alert("finish");
                 $.unblockUI();
             },
             error: function (xhr, status) {
@@ -128,6 +127,9 @@ function CreateNewUser(response) {
 }
 
 function CheckUserDBStatus(response) {
+
+    var loaded = false;
+
     $.ajax({
         url: '/Users/CheckLogined',
         contentType: 'application/json; charset=utf-8',
@@ -139,7 +141,9 @@ function CheckUserDBStatus(response) {
         datatype: "text",
         processData: false,
         complete: function () {
-            $.unblockUI();
+            if (loaded == true) {
+                window.location.replace("http://localhost:9542/Spots/Index");
+            }
         },
         beforeSend: function () {
             $.blockUI({
@@ -148,22 +152,21 @@ function CheckUserDBStatus(response) {
             });
         },
         success: function (result) {
-            $.unblockUI();
 
-            console.log(result)
+            console.log('登入狀態:'+result)
 
             if (result === "False") {
-                console.log('fff')
                 CreateNewUser(response);
             } else {
+                loaded = true;
                 ConnentedInf();
             }
-
         },
         error: function (xhr, status) {
             $.unblockUI();
             alert(xhr);
         }
     })
+
 }
 

@@ -40,11 +40,28 @@ namespace SiSee_v1.Models.Repository
 
         }
 
-
+        public void CreateSearchReacord(SearchRecord searchRecord)
+        {
+            db.Database.ExecuteSqlCommand(
+                @"INSERT INTO [dbo].[SearchRecord] (
+	                    [spot_ID],
+	                    [user_ID],
+	                    [search_date]
+                    )
+                    VALUES
+	                    (
+		                    @spot_ID ,@user_ID ,@search_date
+	                    );
+                    ",
+        new SqlParameter("@spot_ID", searchRecord.spot_ID),
+        new SqlParameter("@user_ID", searchRecord.user_ID),
+        new SqlParameter("@search_date", searchRecord.search_date)
+    );
+            db.SaveChanges();
+        }
         #endregion
 
         #region Select
-
 
         //首頁預設取得全部Spot
         public IEnumerable<Spot> GetAll()
