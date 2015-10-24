@@ -75,9 +75,17 @@ namespace SiSee_v1.Controllers
 
                 spotDetail.CommentRecords = commentRecord;
 
-                return View(spotDetail);
+                //新增瀏覽次數
+                SearchRecord searchReacord = new SearchRecord()
+                {
+                    spot_ID = id,
+                    search_date = System.DateTime.Now,
+                    user_ID =  int.Parse(User.Identity.Name)
+                };
 
-                //  return View("SpotDetail", spotDetail);
+                SpotRepository.CreateSearchReacord(searchReacord);
+
+                return View(spotDetail);
 
             }
             else
