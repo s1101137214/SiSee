@@ -16,7 +16,7 @@ namespace SiSee_v1.Controllers
     {
         private sisdbEntities1 db = new sisdbEntities1();
 
-        private SpotRepository spotRepository = new SpotRepository();
+        private SpotRepository SpotRepository = new SpotRepository();
 
 
         // GET: Spots
@@ -24,7 +24,7 @@ namespace SiSee_v1.Controllers
         {
             string searchName = id;
 
-            var spot = spotRepository.GetAll();
+            var spot = SpotRepository.GetAll();
 
             List<Spot> spotList = new List<Spot>();
 
@@ -33,10 +33,10 @@ namespace SiSee_v1.Controllers
             {
                 TempData["SearchName"] = searchName;
 
-                //取得含有該區域的資料
+                //取得含有該區域的資料 取得方式有點詭異 之後再改
                 List<Spot> spot_area = spot.Where(s => s.Area.area_Name.Contains(searchName)).ToList();
 
-                List<Spot> spot_name = spot.Where(s => s.spot_name.Contains(searchName)).ToList();
+                List<Spot> spot_name = SpotRepository.GetByName(searchName);
 
                 spotList.AddRange(spot_name);
 

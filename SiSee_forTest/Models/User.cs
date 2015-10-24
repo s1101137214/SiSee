@@ -25,7 +25,7 @@ namespace SiSee_v1.Models
         [Display(Name = "ID")]
         public int user_ID { get; set; }
         [Display(Name = "FBID")]
-        public int user_FBID { get; set; }
+        public string user_FBID { get; set; }
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress, ErrorMessage = "請輸入正確的電子信箱")]
         public string user_email { get; set; }

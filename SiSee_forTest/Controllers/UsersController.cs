@@ -7,12 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SiSee_v1.Models;
+using SiSee_v1.Models.Repository;
 
 namespace SiSee_v1.Controllers
 {
     public class UsersController : Controller
     {
         private sisdbEntities1 db = new sisdbEntities1();
+
+        private UserRepository UserRepository = new UserRepository();
 
         // GET: Users
         public ActionResult Index()
@@ -33,6 +36,28 @@ namespace SiSee_v1.Controllers
                 return HttpNotFound();
             }
             return View(user);
+        }
+
+        // POST: Users/CreateByFB
+        [HttpPost]
+        public String CreateByFB(string id, string name, string email)
+        {
+            User user = new User()
+            {
+                user_FBID = id,
+                user_name = name,
+                user_email = email
+            };
+
+            try
+            {
+                UserRepository.CreateUser(user);
+            } catch (Exception e)
+            {
+                return e.ToString();
+            }
+
+            return null;
         }
 
         // GET: Users/Create

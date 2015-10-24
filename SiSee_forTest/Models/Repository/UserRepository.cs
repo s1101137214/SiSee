@@ -15,20 +15,22 @@ namespace SiSee_v1.Models.Repository
 
         public void CreateUser(User user)
         {
-            db.Database.SqlQuery<User>(
-         @"INSERT INTO CommentRecord (
-	            user_FBID,
-	            user_name,
-	            user_email
+            db.Database.ExecuteSqlCommand(
+         @"INSERT INTO [dbo].[USER] (
+	            [user_FBID],
+	            [user_name],
+	            [user_email],
+                [user_birth]
             )
             VALUES
 	            (
-		            @user_FBID ,@user_name ,@user_email 
+		            @user_FBID ,@user_name ,@user_email, @user_birth
 	            );
             ",
-            new SqlParameter("spot_ID", user.user_FBID),
-            new SqlParameter("user_ID", user.user_name),
-            new SqlParameter("comment_grade", user.user_email)
+            new SqlParameter("@user_FBID", user.user_FBID),
+            new SqlParameter("@user_name", user.user_name),
+            new SqlParameter("@user_email", user.user_email),
+            new SqlParameter("@user_birth", System.DateTime.Now)
         );
             db.SaveChanges();
         }

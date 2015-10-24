@@ -9,5 +9,5 @@ $(document).ready(function () {
     $(".SearchButton").click(function () {
         window.location = "http://localhost:9542/Spots/Index/" + $(".SearchText").val() + "/";
     });
-
+    
 });
