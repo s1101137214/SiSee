@@ -66,6 +66,18 @@ namespace SiSee_v1.Models.Repository
             return db.Spot;
         }
 
+        public List<Spot> GetByName(String searchName)
+        {
+            List<Spot> spot = db.Spot.Where(s => s.spot_name.Contains(searchName)).ToList();
+
+            return spot;
+        }
+
+        public List<Spot> GetByAreaName(String areaName)
+        {
+            return null;
+        }
+
         #endregion
     }
 }

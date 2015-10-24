@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -12,9 +13,24 @@ namespace SiSee_v1.Models.Repository
 
         #region Create
 
-        public void CreateUser()
+        public void CreateUser(User user)
         {
-
+            db.Database.SqlQuery<User>(
+         @"INSERT INTO CommentRecord (
+	            user_FBID,
+	            user_name,
+	            user_email
+            )
+            VALUES
+	            (
+		            @user_FBID ,@user_name ,@user_email 
+	            );
+            ",
+            new SqlParameter("spot_ID", user.user_FBID),
+            new SqlParameter("user_ID", user.user_name),
+            new SqlParameter("comment_grade", user.user_email)
+        );
+            db.SaveChanges();
         }
 
         #endregion
