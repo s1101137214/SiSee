@@ -92,7 +92,7 @@
         </div>
     }
     <div class="contains-white">
-        @using (Html.BeginForm("CreateNewCommand", "CommentRecords", FormMethod.Post))
+        @using (Html.BeginForm("CreateCommandRecord", "CommentRecords", FormMethod.Post))
         {
             @Html.HiddenFor(model => model.Spot.spot_ID)
             @Html.Hidden("UserID", "1")

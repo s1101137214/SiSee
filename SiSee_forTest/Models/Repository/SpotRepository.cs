@@ -16,7 +16,7 @@ namespace SiSee_v1.Models.Repository
 
         public void CreateCommand(CommentRecord CommentRecord)
         {
-            db.Database.SqlQuery<CommentRecord>(
+            db.Database.ExecuteSqlCommand(
             @"INSERT INTO CommentRecord (
 	            spot_ID,
 	            user_ID,

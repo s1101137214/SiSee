@@ -49,7 +49,7 @@ namespace SiSee_v1.Controllers
                 spot_ID = int.Parse(data["Spot.spot_ID"]),
                 comment_context = data["Command"],
                 comment_grade = data["Grade"],
-                user_ID = int.Parse(data["UserID"]),
+                user_ID = int.Parse(User.Identity.Name),
                 comment_date = System.DateTime.Now,
                 commentrecord_ID = null
 
@@ -121,15 +121,21 @@ namespace SiSee_v1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "commentrecord_ID,spot_ID,user_ID,comment_context,comment_grade,comment_date")] CommentRecord commentRecord)
         {
+            var id = User.Identity.Name;
+
+            commentRecord.comment_date = System.DateTime.Now;
+            commentRecord.user_ID = int.Parse(id);
+
             if (ModelState.IsValid)
             {
                 db.Entry(commentRecord).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Comment", "Users");
             }
             ViewBag.spot_ID = new SelectList(db.Spot, "spot_ID", "spot_name", commentRecord.spot_ID);
             ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_name", commentRecord.user_ID);
-            return View(commentRecord);
+
+            return RedirectToAction("Comment", "Users");
         }
 
         // GET: CommentRecords/Delete/5
@@ -144,7 +150,7 @@ namespace SiSee_v1.Controllers
             {
                 return HttpNotFound();
             }
-            return View(commentRecord);
+            return RedirectToAction("Details", "Users", id);
         }
 
         // POST: CommentRecords/Delete/5

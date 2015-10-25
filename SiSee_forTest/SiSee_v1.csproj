@@ -231,6 +231,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>SiSeeModel1V2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\SpotComment.cs" />
     <Compile Include="Models\ViewModels\SpotDetail.cs" />
     <Compile Include="Models\ViewModels\UserDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -263,7 +264,8 @@
     <Content Include="Views\FavoriteRecords\Details.cshtml" />
     <Content Include="Views\FavoriteRecords\Edit.cshtml" />
     <Content Include="Views\FavoriteRecords\Index.cshtml" />
-    <Content Include="Views\Spots\Home.cshtml" />
+    <Content Include="Views\Users\Comment.cshtml" />
+    <Content Include="Views\Users\Favorite.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
