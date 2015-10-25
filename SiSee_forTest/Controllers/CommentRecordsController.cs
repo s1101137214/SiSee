@@ -42,7 +42,7 @@ namespace SiSee_v1.Controllers
 
         //自訂新增評論
         [HttpPost]
-        public ActionResult CreateNewCommand(FormCollection data)
+        public ActionResult CreateCommandRecord(FormCollection data)
         {
             CommentRecord commentRecord = new CommentRecord()
             {
@@ -55,14 +55,14 @@ namespace SiSee_v1.Controllers
 
             };
 
+            //SpotRepository.CreateCommand(commentRecord) 
+            //暫先用linq新增
             db.CommentRecord.Add(commentRecord);
-            db.SaveChanges();
 
-            //SpotRepository.CreateCommand(commentRecord)
+            db.SaveChanges();
 
             return RedirectToAction("Details", "Spots", new { id = data["Spot.spot_ID"] });
         }
-
 
         // GET: CommentRecords/Create
         public ActionResult Create()

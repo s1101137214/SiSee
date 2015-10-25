@@ -9,7 +9,7 @@ namespace SiSee_v1.Models.Repository
 {
     public class SpotRepository
     {
-        //
+        
         private sisdbEntities1 db = new sisdbEntities1();
 
         #region Create
@@ -53,32 +53,59 @@ namespace SiSee_v1.Models.Repository
 		                    @spot_ID ,@user_ID ,@search_date
 	                    );
                     ",
-        new SqlParameter("@spot_ID", searchRecord.spot_ID),
-        new SqlParameter("@user_ID", searchRecord.user_ID),
-        new SqlParameter("@search_date", searchRecord.search_date)
-    );
+                     new SqlParameter("@spot_ID", searchRecord.spot_ID),
+                     new SqlParameter("@user_ID", searchRecord.user_ID),
+                     new SqlParameter("@search_date", searchRecord.search_date)
+                     );
+
             db.SaveChanges();
         }
+
+        public void CreateFavoriteReacord(FavoriteRecord favoriteRecord)
+        {
+            db.Database.ExecuteSqlCommand(
+                @"INSERT INTO [dbo].[FavoriteRecord] (
+	                    [spot_ID],
+	                    [user_ID]
+                    )
+                    VALUES
+	                    (
+		                    @spot_ID ,@user_ID 
+	                    );
+                    ",
+                     new SqlParameter("@spot_ID", favoriteRecord.spot_ID),
+                     new SqlParameter("@user_ID", favoriteRecord.user_ID)
+                     );
+
+            db.SaveChanges();
+        }
+
         #endregion
 
         #region Select
 
         //首頁預設取得全部Spot
+        public int? GetSpotFavoriteRecordCount(int spotID)
+        {
+            var spot = db.Database.SqlQuery<int>(
+                     @"SELECT
+	                        COUNT (1)
+                        FROM
+	                        FavoriteRecord R
+                        WHERE
+	                        R.spot_ID = @spot_ID",
+                      new SqlParameter("@spot_ID", spotID)
+                      );
+
+            return spot.First();
+        }
+
         public IEnumerable<Spot> GetAll()
         {
             //IEnumerable<Spot> spot = db.Database.SqlQuery<Spot>(
             //    "Select TOP 10 * FROM SPOT"
             //    );
             //   return db.Spot.take<Spot>(10);
-
-            return db.Spot;
-        }
-
-        public IEnumerable<Spot> test()
-        {
-            //IEnumerable<Spot> t = db.Database.SqlQuery<Spot>(
-            //    "Select TOP 10 * FROM SPOT WHERE 1=1"
-            //    );
 
             return db.Spot;
         }
@@ -92,7 +119,52 @@ namespace SiSee_v1.Models.Repository
 
         public List<Spot> GetByAreaName(String areaName)
         {
-            return null;
+            //有bug
+            List<Spot> spot = db.Spot.Where(s => s.Area.area_Name.Contains(areaName)).ToList();
+
+            return spot;
+        }
+
+        public bool GetSpotFavoriteRecordIsSet(int spotID,string userID)
+        {
+            IEnumerable<FavoriteRecord> favoriteRecord = db.Database.SqlQuery<FavoriteRecord>(
+                        @"SELECT 
+                        *
+                        FROM
+                        [dbo].[FavoriteRecord] AS F
+                        WHERE
+                        F.spot_ID = @spot_ID
+                        AND F.user_ID = @user_ID",
+                         new SqlParameter("@spot_ID", spotID),
+                         new SqlParameter("@user_ID", int.Parse(userID))
+                         );
+
+            if (favoriteRecord.Count() > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        #endregion
+
+        #region Delete
+
+        public void DeleteFavoriteRecord(int spotID, string userID)
+        {
+            db.Database.ExecuteSqlCommand(
+            @"DELETE 
+                    FROM
+	                    [dbo].[FavoriteRecord]
+                    WHERE
+	                    spot_ID = @spot_ID
+                    AND user_ID = @user_ID",
+                        new SqlParameter("@spot_ID", spotID),
+                        new SqlParameter("@user_ID", int.Parse(userID))
+                 );
+
+            db.SaveChanges();
         }
 
         #endregion
