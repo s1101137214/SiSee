@@ -128,6 +128,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\_layout.css" />
     <Content Include="Content\img\ajax-loader.gif" />
+    <Content Include="Content\img\home01.png" />
+    <Content Include="Content\img\home02.png" />
+    <Content Include="Content\img\home03.png" />
+    <Content Include="Content\img\home04.png" />
+    <Content Include="Content\img\home05.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -258,6 +263,7 @@
     <Content Include="Views\FavoriteRecords\Details.cshtml" />
     <Content Include="Views\FavoriteRecords\Edit.cshtml" />
     <Content Include="Views\FavoriteRecords\Index.cshtml" />
+    <Content Include="Views\Spots\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
