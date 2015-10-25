@@ -98,7 +98,7 @@ function CheckFavoriteRecordIsSet() {
         processData: false,
         success: function (result) {
             if (result) {
-                $(".FavoriteRecordCount").text('：' + result);
+                $(".FavoriteRecordCount").text(result);
             }
         }
     });

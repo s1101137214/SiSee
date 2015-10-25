@@ -20,6 +20,9 @@
         border-radius: 10px;
         background-color: white;
     }
+    .context{
+        color:#565656;
+    }
 </style>
 <div class="Control">
     <input class="SpotName" value=@Html.DisplayFor(model => model.Spot.spot_name) type="hidden" />
@@ -34,28 +37,33 @@
         <span id="address">@Html.DisplayFor(model => model.Spot.spot_add)</span>
     </div>
     <div style="float:left; width:30%;">
-        <h4>
+        <div style="font-size:medium;" class="context">
             @Html.DisplayFor(model => model.Spot.Area.area_Name)
-            <br />
+            <p />
             @Html.DisplayNameFor(model => model.Spot.spot_optimeS) :
             @Html.DisplayFor(model => model.Spot.spot_optimeS)
-            <br />
+            <p />
             @Html.DisplayNameFor(model => model.Spot.spot_fee) :
             @Html.DisplayFor(model => model.Spot.spot_fee)
-            <br />
+            <p />
+            @Html.DisplayNameFor(model => model.Spot.spot_tel) :
+            @Html.DisplayFor(model => model.Spot.spot_tel)
+            <p />
             @Html.DisplayNameFor(model => model.Spot.spot_score) :
             @Html.DisplayFor(model => model.Spot.spot_score)
-        </h4>
+        </div>
         <p />
-        <button type="button" class="btn btn-warning CommentRecordButton">評分/論</button>
+        <button type="button" class="btn btn-warning CommentRecordButton">評論</button>
+        <span class="CommentCount" style="color:#db3a0e;">  </span>則評論
         <p />
-        <button type="button" class="btn btn-warning FavoriteRecordButton">收藏</button>
+        <button type="button" class="btn btn-warning FavoriteRecordButton"><span class="glyphicon glyphicon-heart "></span>收藏</button>
+        <span class="FavoriteRecordCount" style="color:#db3a0e;">  </span>人收藏
         <p />
         <button type="button" class="btn btn-warning">加入規劃路線</button>
         <p />
-        <span class="glyphicon glyphicon-heart "></span><span class="FavoriteRecordCount">：</span>
     </div>
-    <div style="float:left; width:70%">
+    <div style="float:left; width:70%;" class="context">
+        <p/>
         <h4>
             @Html.DisplayNameFor(model => model.Spot.spot_context) :
         </h4>
@@ -66,21 +74,21 @@
             <div id="map-canvas" style="width:730px ;height:300px;"></div>
         </div>
     </div>
-    <h4 style="color:#db3a0e">評論</h4>  | 共<span class="CommentCount"></span>則
+    <span style="font-size:20px;color:#db3a0e;">評論</span>  |  共<span class="CommentCount"></span>則
     @foreach (var item in Model.CommentRecords)
     {
         <div class="contains-white">
-            <div>
+            <span style="width:20%">
                 @Html.HiddenFor(modelItem => item.commentrecord_ID)
                 @Html.DisplayFor(modelItem => item.comment_grade) 分
                 <br />
                 @Html.DisplayFor(modelItem => item.User.user_name) 覺得:
                 <br />
                 於 @Html.DisplayFor(modelItem => item.comment_date)
-            </div>
-            <div>
+            </span>
+            <span>
                 @Html.DisplayFor(modelItem => item.comment_context)
-            </div>
+            </span>
         </div>
     }
     <div class="contains-white">
