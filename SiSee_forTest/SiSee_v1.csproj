@@ -172,7 +172,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\SearchBlog.js" />
     <Content Include="Scripts\Share.js" />
-    <Content Include="Scripts\Share_Detail.js" />
+    <Content Include="Scripts\Detail.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

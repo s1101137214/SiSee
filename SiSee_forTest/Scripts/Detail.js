@@ -55,6 +55,7 @@ function SearchSpotName() {
 
     window.open(searchlink);
 }
+
 function CheckFavoriteRecordIsSet() {
     $.ajax({
         url: '/FavoriteRecords/CheckFavoriteRecord',
@@ -74,7 +75,7 @@ function CheckFavoriteRecordIsSet() {
                 $(".FavoriteRecordButton").click(function () {
                     DeleteFavoriteRecord();
                 });;
-            }else{
+            } else {
                 $(".FavoriteRecordButton").html('收藏');
                 $(".FavoriteRecordButton").removeClass("btn-danger").addClass("btn-warning");
 
@@ -83,7 +84,24 @@ function CheckFavoriteRecordIsSet() {
                 });;
             }
         }
-    })
+    });
+
+    $.ajax({
+        url: '/FavoriteRecords/CheckFavoriteRecordCount',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            id: $(".SpotID").val()
+        }),
+        type: 'POST',
+        async: true,
+        datatype: "text",
+        processData: false,
+        success: function (result) {
+            if (result) {
+                $(".FavoriteRecordCount").text('：' + result);
+            }
+        }
+    });
 }
 
 function CreateFavoriteRecord() {

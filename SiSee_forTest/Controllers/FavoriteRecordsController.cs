@@ -74,6 +74,12 @@ namespace SiSee_v1.Controllers
             return true;
         }
 
+        // GET: FavoriteRecords/CheckFavoriteRecordCount
+        public int? CheckFavoriteRecordCount(int id)
+        {
+            return SpotRepository.GetSpotFavoriteRecordCount(id);
+        }
+
         // GET: FavoriteRecords/CheckFavoriteRecord
         public bool DeleteFavoriteRecord(int id)
         {
