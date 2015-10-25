@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SiSee_v1.Models.FavoriteRecord>
+
+<h2>我的收藏</h2>
+
+@Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Spot.spot_name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spot.spot_name)
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+</table>
+

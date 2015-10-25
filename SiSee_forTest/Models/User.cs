@@ -24,18 +24,28 @@ namespace SiSee_v1.Models
 
         [Display(Name = "ID")]
         public int user_ID { get; set; }
+
         [Display(Name = "FBID")]
         public string user_FBID { get; set; }
+
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress, ErrorMessage = "請輸入正確的電子信箱")]
         public string user_email { get; set; }
+
         [Display(Name = "電話")]
+        [Range(0, 999999999, ErrorMessage = "請輸入正確電話格式")]
         public string user_tel { get; set; }
+
         [Display(Name = "生日")]
-         [DataType(DataType.Date, ErrorMessage = "請輸入正確的日期")]
+        [DataType(DataType.Date, ErrorMessage = "請輸入正確的日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> user_birth { get; set; }
+
         [Display(Name = "姓名")]
+        [Required(ErrorMessage = "請輸入姓名")]
         public string user_name { get; set; }
+
+        [Display(Name = "這個欄位幹嘛的?")]
         public string user_other { get; set; }
 
         public virtual ICollection<FavoriteRecord> FavoriteRecord { get; set; }

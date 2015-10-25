@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using SiSee_v1.Models;
 using SiSee_v1.Models.Repository;
+using SiSee_v1.Models.ViewModels;
 
 namespace SiSee_v1.Controllers
 {
@@ -29,14 +30,42 @@ namespace SiSee_v1.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Index", "Spots");
             }
+
             User user = db.User.Find(id);
+
+            UserDetail userDetails = new UserDetail()
+            {
+                User = user
+            };
+
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+
+            return View(userDetails);
+        }
+
+        // GET: Comment
+        public ActionResult Comment()
+        {
+            int id = int.Parse(User.Identity.Name);
+
+            var commentRecord = db.CommentRecord.Where(s => s.user_ID ==id ).Include(c => c.Spot).Include(c => c.User);
+
+            return View(commentRecord);
+        }
+
+        // GET: Comment
+        public ActionResult Favorite()
+        {
+            int id = int.Parse(User.Identity.Name);
+
+            var favoriteRecord = db.FavoriteRecord.Where(s => s.user_ID == id).Include(c => c.Spot).Include(c => c.User);
+
+            return View(favoriteRecord);
         }
 
         // POST: Users/CreateByFB
@@ -138,6 +167,14 @@ namespace SiSee_v1.Controllers
             return View(user);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateUser(User user)
+        {
+            UserRepository.UpdateUser(user);
+
+            return RedirectToAction("Details", "Users", new { @id = user.user_ID });
+        }
         // POST: Users/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。

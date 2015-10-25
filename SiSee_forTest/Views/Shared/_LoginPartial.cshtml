@@ -3,7 +3,7 @@
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("關於我", "Details", "Users", null, new { @class = "glyphicon glyphicon-th-large AboutMe" })
+            @Html.ActionLink("關於我", "Details", "Users", new { @id = User.Identity.Name }, new { @class = "glyphicon glyphicon-th-large", id = User.Identity.Name })
         </li>
         <li>
             @Html.ActionLink("登出", "Logout", "Users", null, new { @class = "glyphicon glyphicon-log-out" })

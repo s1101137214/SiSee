@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SiSee_v1.Models.CommentRecord>
+
+<h2>我的評論</h2>
+
+@Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Spot.spot_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comment_grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comment_context)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comment_date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spot.spot_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_context)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_date)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", "CommentRecords", new { id = item.commentrecord_ID }, null) |
+                @Html.ActionLink("Delete", "DeleteByUser", "CommentRecords", new { id = item.commentrecord_ID }, null)
+            </td>
+        </tr>
+    }
+</table>
