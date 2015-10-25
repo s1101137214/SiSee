@@ -84,7 +84,6 @@ namespace SiSee_v1.Models.Repository
 
         #region Select
 
-        //首頁預設取得全部Spot
         public int? GetSpotFavoriteRecordCount(int spotID)
         {
             var spot = db.Database.SqlQuery<int>(
@@ -92,6 +91,21 @@ namespace SiSee_v1.Models.Repository
 	                        COUNT (1)
                         FROM
 	                        FavoriteRecord R
+                        WHERE
+	                        R.spot_ID = @spot_ID",
+                      new SqlParameter("@spot_ID", spotID)
+                      );
+
+            return spot.First();
+        }
+
+        public int? GetSpotCommentRecordsCount(int spotID)
+        {
+            var spot = db.Database.SqlQuery<int>(
+                     @"SELECT
+	                        COUNT (1)
+                        FROM
+	                        CommentRecord R
                         WHERE
 	                        R.spot_ID = @spot_ID",
                       new SqlParameter("@spot_ID", spotID)

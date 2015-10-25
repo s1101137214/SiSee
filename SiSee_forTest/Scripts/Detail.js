@@ -14,8 +14,8 @@
     //載入google map
     loadScript();
 
+    CheckCommentStatus();
 });
-
 
 function CheckAreaAndFBcomment() {
 
@@ -99,6 +99,25 @@ function CheckFavoriteRecordIsSet() {
         success: function (result) {
             if (result) {
                 $(".FavoriteRecordCount").text('：' + result);
+            }
+        }
+    });
+}
+
+function CheckCommentStatus() {
+    $.ajax({
+        url: '/CommentRecords/CheckCommentRecordsCount',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            id: $(".SpotID").val()
+        }),
+        type: 'POST',
+        async: true,
+        datatype: "text",
+        processData: false,
+        success: function (result) {
+            if (result) {
+                $(".CommentCount").text(result);
             }
         }
     });

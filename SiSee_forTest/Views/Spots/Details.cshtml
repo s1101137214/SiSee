@@ -66,44 +66,43 @@
             <div id="map-canvas" style="width:730px ;height:300px;"></div>
         </div>
     </div>
-</div>
-<h4 style="color:#db3a0e">評論</h4>  | 共 則
-@foreach (var item in Model.CommentRecords)
-{
-    <div class="contains-white">
-        <div>
-            @Html.HiddenFor(modelItem => item.commentrecord_ID)
-            @Html.DisplayFor(modelItem => item.comment_grade) 分
-            <br />
-            @Html.DisplayFor(modelItem => item.User.user_name) 覺得:
-            <br />
-            於 @Html.DisplayFor(modelItem => item.comment_date)
-        </div>
-        <div>
-            @Html.DisplayFor(modelItem => item.comment_context)
-        </div>
-    </div>
-}
-<div class="contains-white">
-    @using (Html.BeginForm("CreateNewCommand", "CommentRecords", FormMethod.Post))
+    <h4 style="color:#db3a0e">評論</h4>  | 共<span class="CommentCount"></span>則
+    @foreach (var item in Model.CommentRecords)
     {
-        @Html.HiddenFor(model => model.Spot.spot_ID)
-        @Html.Hidden("UserID", "1")
-        <div>
-            我要評分 <input type="text" class="text" name="Grade" />
-            <br />
-            你覺得 : <input class="text" name="Command" />
-            <br />
-            <input type="submit" value="送出" class="btn btn-warning" />
+        <div class="contains-white">
+            <div>
+                @Html.HiddenFor(modelItem => item.commentrecord_ID)
+                @Html.DisplayFor(modelItem => item.comment_grade) 分
+                <br />
+                @Html.DisplayFor(modelItem => item.User.user_name) 覺得:
+                <br />
+                於 @Html.DisplayFor(modelItem => item.comment_date)
+            </div>
+            <div>
+                @Html.DisplayFor(modelItem => item.comment_context)
+            </div>
         </div>
     }
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Spot.spot_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<div class="FBCommentt" style="display:block">
-    <input class="AreaName" value=@Html.DisplayFor(model => model.Spot.Area.area_Name) type="hidden" />
-    <div class=" fb-comments" data-href="" data-width="100%" data-numposts="4"></div>
-</div>
+    <div class="contains-white">
+        @using (Html.BeginForm("CreateNewCommand", "CommentRecords", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.Spot.spot_ID)
+            @Html.Hidden("UserID", "1")
+            <div>
+                我要評分 <input type="text" class="text" name="Grade" />
+                <br />
+                你覺得 : <input class="text" name="Command" />
+                <br />
+                <input type="submit" value="送出" class="btn btn-warning" />
+            </div>
+        }
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Spot.spot_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <div class="FBCommentt" style="display:block">
+        <input class="AreaName" value=@Html.DisplayFor(model => model.Spot.Area.area_Name) type="hidden" />
+        <div class=" fb-comments" data-href="" data-width="100%" data-numposts="4"></div>
+    </div>
 </div>

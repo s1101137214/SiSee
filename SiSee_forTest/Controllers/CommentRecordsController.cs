@@ -16,7 +16,7 @@ namespace SiSee_v1.Controllers
     {
         private sisdbEntities1 db = new sisdbEntities1();
 
-        private SpotRepository spotRepository = new SpotRepository();
+        private SpotRepository SpotRepository = new SpotRepository();
 
         // GET: CommentRecords
         public ActionResult Index()
@@ -62,6 +62,12 @@ namespace SiSee_v1.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Details", "Spots", new { id = data["Spot.spot_ID"] });
+        }
+
+        // GET: CommentRecords/CheckCommentRecordsCount
+        public int? CheckCommentRecordsCount(int id)
+        {
+            return SpotRepository.GetSpotCommentRecordsCount(id);
         }
 
         // GET: CommentRecords/Create
