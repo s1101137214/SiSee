@@ -1,0 +1,34 @@
+﻿@model SiSee_v1.Models.FavoriteRecord
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FavoriteRecord</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Spot.spot_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Spot.spot_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.user_FBID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.user_FBID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.searchrecord_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

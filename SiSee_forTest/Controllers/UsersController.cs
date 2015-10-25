@@ -84,7 +84,7 @@ namespace SiSee_v1.Controllers
                 return false;
             }
 
-            var userID = user.user_FBID.ToString();
+            var userID = user.user_ID.ToString();
 
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
                 userID,//你想要存放在 User.Identy.Name 的值，通常是使用者帳號

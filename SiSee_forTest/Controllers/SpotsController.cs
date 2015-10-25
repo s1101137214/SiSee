@@ -18,7 +18,6 @@ namespace SiSee_v1.Controllers
 
         private SpotRepository SpotRepository = new SpotRepository();
 
-
         // GET: Spots
         public ActionResult Index(string id)
         {
@@ -47,9 +46,10 @@ namespace SiSee_v1.Controllers
             {
                 TempData["SearchName"] = "全部";
 
+                //暫時取前十筆
                 spotList.AddRange(spot.Take<Spot>(10));
             }
-
+           
             ViewData["TotalCount"] = spotList.Count();
 
             return View(spotList);
@@ -75,9 +75,17 @@ namespace SiSee_v1.Controllers
 
                 spotDetail.CommentRecords = commentRecord;
 
-                return View(spotDetail);
+                //新增瀏覽次數 預設user_ID=1 未登入時
+                SearchRecord searchReacord = new SearchRecord()
+                {
+                    spot_ID = id,
+                    search_date = System.DateTime.Now,
+                    user_ID = String.IsNullOrEmpty(User.Identity.Name) ? 1 : int.Parse(User.Identity.Name)
+                };
 
-                //  return View("SpotDetail", spotDetail);
+                SpotRepository.CreateSearchReacord(searchReacord);
+
+                return View(spotDetail);
 
             }
             else

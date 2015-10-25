@@ -24,33 +24,32 @@
     <input class="SpotName" value=@Html.DisplayFor(model => model.Spot.spot_name) type="hidden" />
 </div>
 <div class="background">
-    <div>
         <div>
-            <span style="font-size:30px;">
-                @Html.DisplayFor(model => model.Spot.spot_name)
-            </span>
-            | @Html.DisplayNameFor(model => model.Spot.spot_add) :
-            <span id="address">@Html.DisplayFor(model => model.Spot.spot_add)</span>
+            <input class="SpotID" value=@Html.DisplayFor(model => model.Spot.spot_ID) type="hidden" />
+                <span style="font-size:30px;">
+                    @Html.DisplayFor(model => model.Spot.spot_name)
+                </span>
+                | @Html.DisplayNameFor(model => model.Spot.spot_add) :
+                <span id="address">@Html.DisplayFor(model => model.Spot.spot_add)</span>
         </div>
         <div style="float:left; width:30%;">
             <h4>
-                @Html.DisplayFor(model => model.Spot.Area.area_Name)
-                <br />
-                @Html.DisplayNameFor(model => model.Spot.spot_optimeS) :
-                @Html.DisplayFor(model => model.Spot.spot_optimeS)
-                <br />
-                @Html.DisplayNameFor(model => model.Spot.spot_fee) :
-                @Html.DisplayFor(model => model.Spot.spot_fee)
-                <br />
-                @Html.DisplayNameFor(model => model.Spot.spot_score) :
-                @Html.DisplayFor(model => model.Spot.spot_score)
-            </h4>
+            @Html.DisplayFor(model => model.Spot.Area.area_Name)
+            <br />
+            @Html.DisplayNameFor(model => model.Spot.spot_optimeS) :
+            @Html.DisplayFor(model => model.Spot.spot_optimeS)
+            <br />
+            @Html.DisplayNameFor(model => model.Spot.spot_fee) :
+            @Html.DisplayFor(model => model.Spot.spot_fee)
+            <br />
+            @Html.DisplayNameFor(model => model.Spot.spot_score) :
+            @Html.DisplayFor(model => model.Spot.spot_score)
             <p/>
-                <button type="button" class="btn btn-warning">評分/論</button>
+                <button type="button" class="btn btn-warning CommentRecordButton">評分/論</button>
             <p/>
-                <button type="button" class="btn btn-warning">收藏</button>
+                <button type="button" class="btn btn-warning FavoriteRecordButton">收藏</button>
             <p/>
-                <button type="button" class="btn btn-warning">加入規劃路線</button>
+            <button type="button" class="btn btn-warning">加入規劃路線</button>
         </div>
         <div style="float:left; width:70%">
             <h4>
@@ -64,10 +63,10 @@
             </div>
         </div>
     </div>
-    
+
         <h4 style="color:#db3a0e">評論</h4>  | 共 則
-@foreach (var item in Model.CommentRecords)
-{
+    @foreach (var item in Model.CommentRecords)
+    {
     <div class="contains-white">
         <div >
             @Html.HiddenFor(modelItem => item.commentrecord_ID)
@@ -78,31 +77,31 @@
             於 @Html.DisplayFor(modelItem => item.comment_date)
         </div>
         <div>
-            @Html.DisplayFor(modelItem => item.comment_context)
+                @Html.DisplayFor(modelItem => item.comment_context)
         </div>
     </div>
-}        
+    }
     <div class="contains-white">
         @using (Html.BeginForm("CreateNewCommand", "CommentRecords", FormMethod.Post))
-        {
-            @Html.HiddenFor(model => model.Spot.spot_ID)
-            @Html.Hidden("UserID", "1")
+    {
+        @Html.HiddenFor(model => model.Spot.spot_ID)
+        @Html.Hidden("UserID", "1")
     <div >
             我要評分 <input type="text" class="text" name="Grade" />
         <br/>
             你覺得 : <input class="text" name="Command" />
         <br/>
             <input type="submit" value="送出" class="btn btn-warning" />
-    </div>
-        }
+        </div>
+    }
 
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Spot.spot_ID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-    <div class="FBCommentt" style="display:block">
-        <input class="AreaName" value=@Html.DisplayFor(model => model.Spot.Area.area_Name) type="hidden" />
-        <div class=" fb-comments" data-href="" data-width="100%" data-numposts="4"></div>
-    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Spot.spot_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<div class="FBCommentt" style="display:block">
+    <input class="AreaName" value=@Html.DisplayFor(model => model.Spot.Area.area_Name) type="hidden" />
+    <div class=" fb-comments" data-href="" data-width="100%" data-numposts="4"></div>
+</div>
 </div>

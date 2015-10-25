@@ -1,18 +1,22 @@
 ﻿$(document).ready(function () {
 
+    //檢查選取的景點位置取得對應的FB留言板
     CheckAreaAndFBcomment();
 
-    //景點自動搜尋
+    //搜尋FB景點按鈕
     $(".SpotSearchButton").click(function () {
         SearchSpotName();
     });
+
+    //檢查是否已收藏
+    CheckFavoriteRecordIsSet();
 
     //載入google map
     loadScript();
 
 });
 
-//檢查選取的景點位置取得對應的FB留言板
+
 function CheckAreaAndFBcomment() {
 
     var fbcomment = $(".fb-comments");
@@ -43,7 +47,6 @@ function CheckAreaAndFBcomment() {
 
 }
 
-//搜尋FB
 function SearchSpotName() {
 
     var spotName = $(".SpotName").val();
@@ -51,6 +54,103 @@ function SearchSpotName() {
     var searchlink = "https://www.facebook.com/search/results/?q=" + spotName;
 
     window.open(searchlink);
+}
+function CheckFavoriteRecordIsSet() {
+    $.ajax({
+        url: '/FavoriteRecords/CheckFavoriteRecord',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            id: $(".SpotID").val()
+        }),
+        type: 'POST',
+        async: true,
+        datatype: "text",
+        processData: false,
+        success: function (result) {
+            if (result === "True") {
+                $(".FavoriteRecordButton").html('已收藏');
+                $(".FavoriteRecordButton").removeClass("btn-warning").addClass("btn-danger");
+
+                $(".FavoriteRecordButton").click(function () {
+                    DeleteFavoriteRecord();
+                });;
+            }else{
+                $(".FavoriteRecordButton").html('收藏');
+                $(".FavoriteRecordButton").removeClass("btn-danger").addClass("btn-warning");
+
+                $(".FavoriteRecordButton").click(function () {
+                    CreateFavoriteRecord();
+                });;
+            }
+        }
+    })
+}
+
+function CreateFavoriteRecord() {
+    $.ajax({
+        url: '/FavoriteRecords/CreateFavoriteRecord',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            id: $(".SpotID").val()
+        }),
+        type: 'POST',
+        async: true,
+        datatype: "text",
+        processData: false,
+        complete: function () {
+
+        },
+        beforeSend: function () {
+            $.blockUI({
+                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
+                css: { backgroundColor: '#fff', color: 'black' }
+            });
+        },
+        success: function (result) {
+            console.log(result);
+            if (result === 'False') {
+                //錯誤訊息要改
+                alert('請先登入唷～揪咪')
+            } else {
+                $(".FavoriteRecordButton").html('已收藏');
+                $(".FavoriteRecordButton").removeClass("btn-warning").addClass("btn-danger");
+
+                $(".FavoriteRecordButton").click(function () {
+                    DeleteFavoriteRecord();
+                });;
+            }
+            $.unblockUI();
+        },
+        error: function (xhr, status) {
+            $.unblockUI();
+            alert(xhr);
+        }
+    })
+}
+
+function DeleteFavoriteRecord() {
+    $.ajax({
+        url: '/FavoriteRecords/DeleteFavoriteRecord',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            id: $(".SpotID").val()
+        }),
+        type: 'POST',
+        async: true,
+        processData: false,
+        complete: function () {
+            $(".FavoriteRecordButton").html('收藏');
+            $(".FavoriteRecordButton").removeClass("btn-danger").addClass("btn-warning");
+
+            $(".FavoriteRecordButton").click(function () {
+                CreateFavoriteRecord();
+            });;
+        },
+        error: function (xhr, status) {
+            $.unblockUI();
+            alert(xhr);
+        }
+    })
 }
 
 function initialize() {
