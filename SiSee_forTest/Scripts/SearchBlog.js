@@ -34,6 +34,15 @@ function SearchBlogSpotName() {
             console.log(data);
             GetData(data);
         },
+        complete: function () {
+            $.unblockUI();
+        },
+        beforeSend: function () {
+            $.blockUI({
+                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
+                css: { backgroundColor: '#fff', color: 'black' }
+            });
+        },
 
         error: function (e) {
             console.log(e);

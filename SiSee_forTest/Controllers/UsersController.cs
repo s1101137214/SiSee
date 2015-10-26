@@ -49,23 +49,48 @@ namespace SiSee_v1.Controllers
         }
 
         // GET: Comment
-        public ActionResult Comment()
+        public ActionResult MyComment()
         {
             int id = int.Parse(User.Identity.Name);
 
-            var commentRecord = db.CommentRecord.Where(s => s.user_ID ==id ).Include(c => c.Spot).Include(c => c.User);
+            var commentRecord = db.CommentRecord.Where(s => s.user_ID == id).Include(c => c.Spot).Include(c => c.User);
+
+            ViewData["SpotCount"] = "目前有" + commentRecord.Count() + "個評論";
+
+            if (commentRecord.Count() == 0)
+            {
+                ViewData["SpotCount"] = "目前還沒有評論唷！趕快找到喜歡的景點加入評論！";
+            }
 
             return View(commentRecord);
         }
 
-        // GET: Comment
-        public ActionResult Favorite()
+        // GET: MyFavorite
+        public ActionResult MyFavorite()
         {
             int id = int.Parse(User.Identity.Name);
 
             var favoriteRecord = db.FavoriteRecord.Where(s => s.user_ID == id).Include(c => c.Spot).Include(c => c.User);
 
+            ViewData["SpotCount"] = "目前有" + favoriteRecord.Count() + "個收藏"; 
+
+            if (favoriteRecord.Count() == 0)
+            {
+                ViewData["SpotCount"] = "目前還沒有收藏唷！趕快找到喜歡的景點加入收藏！";
+            }
+
             return View(favoriteRecord);
+        }
+
+        public ActionResult CancelFavoriteRecord(int id)
+        {
+            var delTarget = db.FavoriteRecord.Find(id);
+
+            db.FavoriteRecord.Remove(delTarget);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Favorite", "Users");
         }
 
         // POST: Users/CreateByFB

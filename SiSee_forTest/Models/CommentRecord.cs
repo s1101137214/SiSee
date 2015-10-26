@@ -24,7 +24,7 @@ namespace SiSee_v1.Models
         [Display(Name = "會員")]
         public int user_ID { get; set; }
 
-        [Display(Name = "評論")]
+        [Display(Name = "評論內容")]
         public string comment_context { get; set; }
 
         [Display(Name = "評分")]

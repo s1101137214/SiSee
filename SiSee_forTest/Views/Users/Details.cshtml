@@ -1,13 +1,13 @@
 ﻿@model SiSee_v1.Models.ViewModels.UserDetail
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "關於我";
 }
 
 <div>
     <h4>關於我</h4>
-    @Html.ActionLink("我的評論", "Comment", "Users")
-    @Html.ActionLink("我的收藏", "Favorite", "Users")
+    @Html.ActionLink("我的評論", "MyComment", "Users")
+    @Html.ActionLink("我的收藏", "MyFavorite", "Users")
     <hr />
     <div class="form-horizontal">
         <div class="form-group">

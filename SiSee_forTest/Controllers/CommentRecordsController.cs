@@ -109,8 +109,13 @@ namespace SiSee_v1.Controllers
             {
                 return HttpNotFound();
             }
+
+            Spot spot = db.Spot.Where(s => s.spot_ID == commentRecord.spot_ID).First();
+            ViewData["SpotName"] = spot.spot_name;
+
             ViewBag.spot_ID = new SelectList(db.Spot, "spot_ID", "spot_name", commentRecord.spot_ID);
             ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_name", commentRecord.user_ID);
+
             return View(commentRecord);
         }
 
@@ -130,12 +135,12 @@ namespace SiSee_v1.Controllers
             {
                 db.Entry(commentRecord).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Comment", "Users");
+                return RedirectToAction("MyComment", "Users");
             }
             ViewBag.spot_ID = new SelectList(db.Spot, "spot_ID", "spot_name", commentRecord.spot_ID);
             ViewBag.user_ID = new SelectList(db.User, "user_ID", "user_name", commentRecord.user_ID);
 
-            return RedirectToAction("Comment", "Users");
+            return RedirectToAction("MyComment", "Users");
         }
 
         // GET: CommentRecords/Delete/5

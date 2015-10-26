@@ -1,10 +1,17 @@
 ﻿@model IEnumerable<SiSee_v1.Models.CommentRecord>
+@Scripts.Render("~/Scripts/MyComment.js")
+
+@{
+    ViewBag.Title = "我的評論";
+}
 
 <h2>我的評論</h2>
 
 @Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
 
-<table class="table">
+<p class="text-warning">=== @ViewData["SpotCount"]===  </p>
+
+<table class="table table-condensed table-striped ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Spot.spot_name)
@@ -25,7 +32,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Spot.spot_name)
+                @Html.ActionLink(Html.DisplayFor(modelItem => item.Spot.spot_name).ToString(), "Details", "Spots",new { id = item.spot_ID }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.comment_grade)
@@ -38,7 +45,7 @@
             </td>
             <td>
                 @Html.ActionLink("修改", "Edit", "CommentRecords", new { id = item.commentrecord_ID }, null) |
-                @Html.ActionLink("Delete", "DeleteByUser", "CommentRecords", new { id = item.commentrecord_ID }, null)
+                @*@Html.ActionLink("Delete", "DeleteByUser", "CommentRecords", new { id = item.commentrecord_ID }, null)*@
             </td>
         </tr>
     }

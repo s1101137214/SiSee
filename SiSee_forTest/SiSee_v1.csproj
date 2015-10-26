@@ -158,6 +158,8 @@
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\MyComment.js" />
+    <Content Include="Scripts\MyFavorite.js" />
     <Content Include="Scripts\fbapiconnect.js" />
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -259,8 +261,8 @@
     <Content Include="Views\FavoriteRecords\Details.cshtml" />
     <Content Include="Views\FavoriteRecords\Edit.cshtml" />
     <Content Include="Views\FavoriteRecords\Index.cshtml" />
-    <Content Include="Views\Users\Comment.cshtml" />
-    <Content Include="Views\Users\Favorite.cshtml" />
+    <Content Include="Views\Users\MyComment.cshtml" />
+    <Content Include="Views\Users\MyFavorite.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
