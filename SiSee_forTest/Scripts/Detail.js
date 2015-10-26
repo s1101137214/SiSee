@@ -73,7 +73,9 @@ function CheckFavoriteRecordIsSet() {
                 $(".FavoriteRecordButton").removeClass("btn-warning").addClass("btn-danger");
 
                 $(".FavoriteRecordButton").click(function () {
-                    DeleteFavoriteRecord();
+                    if (confirm("確定取消收藏嗎?")) {
+                        DeleteFavoriteRecord();
+                    }
                 });;
             } else {
                 $(".FavoriteRecordButton").html('收藏');
@@ -147,13 +149,15 @@ function CreateFavoriteRecord() {
             console.log(result);
             if (result === 'False') {
                 //錯誤訊息要改
-                alert('請先登入唷～揪咪')
+                alert('請先登入才能進行收藏')
             } else {
                 $(".FavoriteRecordButton").html('已收藏');
                 $(".FavoriteRecordButton").removeClass("btn-warning").addClass("btn-danger");
 
                 $(".FavoriteRecordButton").click(function () {
-                    DeleteFavoriteRecord();
+                    if (confirm("確定取消收藏嗎?")) {
+                        DeleteFavoriteRecord();
+                    }
                 });;
             }
             $.unblockUI();
