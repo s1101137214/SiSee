@@ -44,8 +44,13 @@
         <div style="float:left;background-size:cover;">
             <img src="~/Content/img/home01.png" />
             <div style="height:122px; background-color:#1D2038; text-align:center; ">
-                <input class="btn btn-default form-control " style=" width:70%;height:50%; margin: 0 auto; font-size:larger;" />
-                <span class="glyphicon glyphicon-search" style=" font-size: larger; color:white;"></span>
+                @using (Html.BeginForm("Index", "Spots"))
+                {
+                    @Html.TextBox("id", ViewBag.SearchName as string, new { @class = "text text-info btn btn-default form-control ", @style = "width:70%;height:50%; margin: 0 auto; font-size:larger;" })
+                    <button type="submit" class="SearchButton btn"><span class="glyphicon glyphicon-search"></span></button>
+                }
+                @*<span><input class="btn btn-default form-control " style=" width:70%;height:50%; margin: 0 auto; font-size:larger;" /></span>
+                <span class="glyphicon glyphicon-search" style=" font-size: 30px; color:white; padding:20px;">  </span>*@
             </div>
             <img src="~/Content/img/home03.png" />
         </div>
