@@ -201,5 +201,10 @@ namespace SiSee_v1.Controllers
         {
             return View();
         }
+
+        public ActionResult PathPlan()
+        {
+            return View();
+        }
     }
 }
