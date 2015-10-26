@@ -163,6 +163,7 @@
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\PathPlan.js" />
     <Content Include="Scripts\MyComment.js" />
     <Content Include="Scripts\MyFavorite.js" />
     <Content Include="Scripts\fbapiconnect.js" />
@@ -269,6 +270,7 @@
     <Content Include="Views\Users\MyComment.cshtml" />
     <Content Include="Views\Users\MyFavorite.cshtml" />
     <Content Include="Views\Spots\Home.cshtml" />
+    <Content Include="Views\Spots\PathPlan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

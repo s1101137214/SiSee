@@ -6,31 +6,23 @@
 
 @Scripts.Render("~/Scripts/Index.js")
 
-<h2>Index</h2>
+<h2>搜尋</h2>
+
 <div>
-
-    @using (Html.BeginForm("SearchBlog", "Spots", FormMethod.Get))
-    {
-        <div>
-            @Html.TextBox("SearchText", null, new { @class = "SearchText text text-info" })
-            <button type="button" class="SearchButton btn btn-info">站內搜尋</button>
-            <button type="submit" class="SpotBlogSearchButton btn btn-info">Blog大神</button>
-        </div>
-    }
-
+    <button type="button" class="SearchButton btn btn-info">站內搜尋</button>
+    <button type="button" onclick="document.getElementById('SearchForm').submit()" class="SpotBlogSearchButton btn btn-info">搜尋部落格</button>
 </div>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div>
+<br />
+
+<div style="font-size:large">
     <span id="SearchName">
-        @if (TempData["SearchName"] != "全部")
+        @if (ViewData["SearchName"] != "全部")
         {
-            <span> 搜尋: <strong> @TempData["SearchName"] </strong></span>
+            <span>搜尋</span><strong>: @ViewData["SearchName"] </strong>
         }
         else
         {
-            <span>  @TempData["SearchName"] </span>
+            <span>  @ViewData["SearchName"] </span>
         }
     </span>
     <span>
@@ -64,15 +56,15 @@
             @*<th>
                     @Html.DisplayNameFor(model => model.spot_context)
                 </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.spot_optimeS)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.spot_add)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.spot_fee)
-            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.spot_optimeS)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.spot_add)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.spot_fee)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.spot_score)
             </th>
@@ -99,15 +91,15 @@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.spot_context)
                     </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.spot_optimeS)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.spot_add)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.spot_fee)
-                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.spot_optimeS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.spot_add)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.spot_fee)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.spot_score)
                 </td>
@@ -129,5 +121,9 @@
         }
     </table>
 </div>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 
 

@@ -13,6 +13,14 @@
     @Scripts.Render("~/Scripts/Share.js")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        /*.SearchText {
+            border: 2px solid #456879;
+            border-radius: 10px;
+            height: 22px;
+            width: 230px;
+        }*/
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" id="navbartop">
@@ -23,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("SiSee", "Index", "Spots", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SiSee", "Home", "Spots", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav " id="navbartopfont">
@@ -31,6 +39,19 @@
                     <li>@Html.ActionLink("搜尋", "Index", "Spots")</li>
                     <li>@Html.ActionLink("行程", "About", "Home")</li>
                     <li>@Html.ActionLink("後台_user", "Index", "Users")</li>
+                    <li>
+                        @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @class = "navbar-form", @id = "SearchForm" }))
+                        {
+                            <div class="input-group">
+                                <input type="text" class="SearchText form-control" value="@ViewData["SearchName"]" />
+                                <div class="input-group-btn">
+                                    <a class="SearchButton">
+                                        <span class="SearchButton btn glyphicon glyphicon-search" style="font-size:5pt"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -73,7 +94,7 @@
         </div>
 
         <footer>
-            <p>&copy; @DateTime.Now.Year - KUAS MIS ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - KUAS MIS ASP.NET Application</p><span>最後更新 &mdash; 2015.9</span>
         </footer>
     </div>
 </body>

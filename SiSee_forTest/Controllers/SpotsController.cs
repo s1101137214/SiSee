@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using SiSee_v1.Models;
 using SiSee_v1.Models.Repository;
@@ -30,7 +28,7 @@ namespace SiSee_v1.Controllers
             //取得含有搜尋內容的資料
             if (!String.IsNullOrEmpty(searchName))
             {
-                TempData["SearchName"] = searchName;
+                ViewData["SearchName"] = searchName;
 
                 //取得含有該區域的資料 取得方式有點詭異 之後再改
                 List<Spot> spot_area = spot.Where(s => s.Area.area_Name.Contains(searchName)).ToList();
@@ -44,7 +42,7 @@ namespace SiSee_v1.Controllers
             }
             else
             {
-                TempData["SearchName"] = "全部";
+                ViewData["SearchName"] = "全部";
 
                 //暫時取前十筆
                 spotList.AddRange(spot.Take<Spot>(10));
@@ -53,6 +51,14 @@ namespace SiSee_v1.Controllers
             ViewData["TotalCount"] = spotList.Count();
 
             return View(spotList);
+        }
+
+        //判斷景點資料是否為空
+        private string SetSpotValueNull(string target)
+        {
+            if (String.IsNullOrEmpty(target))
+                return "未提供";
+            return target;
         }
 
         // GET: Spots/Details/5
@@ -70,6 +76,12 @@ namespace SiSee_v1.Controllers
             if (spot != null)
             {
                 SpotDetail spotDetail = new SpotDetail();
+
+                spot.spot_add = SetSpotValueNull(spot.spot_add);
+                spot.spot_context = SetSpotValueNull(spot.spot_context);
+                spot.spot_fee = String.IsNullOrEmpty(spot.spot_fee) ? "免費" : spot.spot_fee;
+                spot.spot_optimeS = String.IsNullOrEmpty(spot.spot_optimeS) ? "全天開放" : spot.spot_optimeS;
+                spot.spot_tel = SetSpotValueNull(spot.spot_tel);
 
                 spotDetail.Spot = spot;
 
@@ -201,5 +213,11 @@ namespace SiSee_v1.Controllers
         {
             return View();
         }
+
+        public ActionResult PathPlan()
+        {
+            return View();
+        }
+
     }
 }
