@@ -197,5 +197,9 @@ namespace SiSee_v1.Controllers
             return View();
         }
 
+        public ActionResult Home()
+        {
+            return View();
+        }
     }
 }

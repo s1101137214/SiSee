@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Home";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link href="~/Content/css/_layout.css" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/jquery.blockUI.js")
+    @Scripts.Render("~/Scripts/fbapiconnect.js")
+    @Scripts.Render("~/Scripts/Share.js")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color:#1D2038;">
+    <div class="navbar navbar-inverse navbar-fixed-top" id="navbartop">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("SiSee", "Index", "Spots", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav " id="navbartopfont">
+                    <li>@Html.ActionLink("首頁", "Index", "Spots")</li>
+                    <li>@Html.ActionLink("行程", "About", "Home")</li>
+                    <li>@Html.ActionLink("關於", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("後台_user", "Index", "Users")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div>
+        <div style="float:left;background-size:cover;">
+            <img src="~/Content/img/home01.png" />
+            <div style="height:122px; background-color:#1D2038; text-align:center; ">
+                <input class="btn btn-default form-control " style=" width:70%;height:50%; margin: 0 auto; font-size:larger;" />
+                <span class="glyphicon glyphicon-search" style=" font-size: larger; color:white;"></span>
+            </div>
+            <img src="~/Content/img/home03.png" />
+        </div>
+        <div style="float:left;">
+            <img src="~/Content/img/home04.png" />
+        </div>
+    </div>
+</body>
+</html>
