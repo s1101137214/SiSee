@@ -90,7 +90,7 @@ namespace SiSee_v1.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Favorite", "Users");
+            return RedirectToAction("MyFavorite", "Users");
         }
 
         // POST: Users/CreateByFB
