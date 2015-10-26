@@ -47,7 +47,7 @@ namespace SiSee_v1.Controllers
                 //暫時取前十筆
                 spotList.AddRange(spot.Take<Spot>(10));
             }
-
+           
             ViewData["TotalCount"] = spotList.Count();
 
             return View(spotList);
@@ -213,5 +213,11 @@ namespace SiSee_v1.Controllers
         {
             return View();
         }
+
+        public ActionResult PathPlan()
+        {
+            return View();
+        }
+
     }
 }
