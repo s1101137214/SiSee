@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using SiSee_v1.Models.ViewModels;
 using System.Data.SqlClient;
 
 namespace SiSee_v1.Models.Repository

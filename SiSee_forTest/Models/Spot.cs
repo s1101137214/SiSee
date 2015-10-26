@@ -27,13 +27,13 @@ namespace SiSee_v1.Models
         [Display(Name = "地區")]
         public int area_ID { get; set; }
         [Required]
-        [Display(Name = "名稱")]
+        [Display(Name = "景點")]
         public string spot_name { get; set; }
         [Display(Name = "連絡電話")]
         public string spot_tel { get; set; }
         [Display(Name = "介紹")]
         public string spot_context { get; set; }
-        [Display(Name = "營業時間")]
+        [Display(Name = "開放時間")]
         public string spot_optimeS { get; set; }
         [Display(Name = "地址")]
         public string spot_add { get; set; }
