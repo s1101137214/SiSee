@@ -27,9 +27,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav " id="navbartopfont">
-                    <li>@Html.ActionLink("首頁", "Index", "Spots")</li>
+                    <li>@Html.ActionLink("首頁", "Home", "Spots")</li>
+                    <li>@Html.ActionLink("搜尋", "Index", "Spots")</li>
                     <li>@Html.ActionLink("行程", "About", "Home")</li>
-                    <li>@Html.ActionLink("關於", "Contact", "Home")</li>
                     <li>@Html.ActionLink("後台_user", "Index", "Users")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -52,7 +52,8 @@
                         <h4 class="modal-title">歡迎加入...</h4>
                     </div>
                     <div class="modal-body">
-                        <p class="text-info" style="text-align:center">你的資料要被我偷過來了唷~</p>
+                        <p class="text-info" style="text-align:center">SiSee將取得你的基本資料</p>
+                        <p class="text-info" style="text-align:center">往後您將可自由修改!</p>
                         <div class="form-group">
                             姓名:<span style="text-align:right" id="FBName"></span>
                         </div>

@@ -83,11 +83,13 @@ namespace SiSee_v1.Models.Repository
                     SET 
                     [user_name] = @user_name,
                     [user_tel] =@user_tel,
+                    [user_email] =@user_email,
                     [user_birth] = @user_birth
                     WHERE
 	                    [user_ID] = @user_ID
                     ",
                      new SqlParameter("@user_name", user.user_name),
+                     new SqlParameter("@user_email", String.IsNullOrEmpty(user.user_email) ? "" : user.user_email),
                      new SqlParameter("@user_tel", String.IsNullOrEmpty(user.user_tel) ? "" : user.user_tel),
                      new SqlParameter("@user_birth", user.user_birth),
                      new SqlParameter("@user_ID", user.user_ID)

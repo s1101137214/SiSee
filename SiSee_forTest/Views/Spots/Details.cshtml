@@ -20,8 +20,9 @@
         border-radius: 10px;
         background-color: white;
     }
-    .context{
-        color:#565656;
+
+    .context {
+        color: #565656;
     }
 </style>
 <div class="Control">
@@ -53,7 +54,7 @@
             @Html.DisplayFor(model => model.Spot.spot_score)
         </div>
         <p />
-        <button type="button" class="btn btn-warning CommentRecordButton">評論</button>
+        <a href="#Comment" class="btn btn-warning CommentRecordButton">評論</a>
         <span class="CommentCount" style="color:#db3a0e;">  </span>則評論
         <p />
         <button type="button" class="btn btn-warning FavoriteRecordButton"><span class="glyphicon glyphicon-heart "></span>收藏</button>
@@ -63,7 +64,7 @@
         <p />
     </div>
     <div style="float:left; width:70%;" class="context">
-        <p/>
+        <p />
         <h4>
             @Html.DisplayNameFor(model => model.Spot.spot_context) :
         </h4>
@@ -75,6 +76,7 @@
         </div>
     </div>
     <span style="font-size:20px;color:#db3a0e;">評論</span>  |  共<span class="CommentCount"></span>則
+
     @foreach (var item in Model.CommentRecords)
     {
         <div class="contains-white">
@@ -91,23 +93,35 @@
             </span>
         </div>
     }
+    <a name="Comment"></a>
+    <br />
+    <br />
     <div class="contains-white">
+
         @using (Html.BeginForm("CreateCommandRecord", "CommentRecords", FormMethod.Post))
         {
             @Html.HiddenFor(model => model.Spot.spot_ID)
             @Html.Hidden("UserID", "1")
             <div>
-                我要評分 <input type="text" class="text" name="Grade" />
-                <br />
-                你覺得 : <input class="text" name="Command" />
-                <br />
+                <p class="col-lg-12">
+                    <span class="col-lg-12 col-sm-2">
+                        我要評分
+                    </span>
+                    <input type="text" class="text form-control col-lg-12 col-sm-10" name="Grade" />
+                </p>
+                <p class="col-lg-12">
+                    <span class="col-lg-12 col-sm-2">
+                        你覺得 :
+                    </span>
+                    <textarea class="text form-control col-lg-12 col-sm-10" cols="3" name="Command" placeholder="留點評論..."></textarea>
+                </p>
                 <input type="submit" value="送出" class="btn btn-warning" />
             </div>
         }
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Spot.spot_ID }) |
-        @Html.ActionLink("Back to List", "Index")
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Spot.spot_ID }) |*@
+        @Html.ActionLink("回到列表", "Index")
     </p>
     <div class="FBCommentt" style="display:block">
         <input class="AreaName" value=@Html.DisplayFor(model => model.Spot.Area.area_Name) type="hidden" />
