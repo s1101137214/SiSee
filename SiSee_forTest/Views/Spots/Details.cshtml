@@ -54,11 +54,15 @@
             @Html.DisplayFor(model => model.Spot.spot_score)
         </div>
         <p />
+        <a href="/Spots/SearchBlog?SearchText=@ViewData["SearchName"]" class="btn btn-warning ">找部落格</a>
+        <p />
         <a href="#Comment" class="btn btn-warning CommentRecordButton">評論</a>
         <span class="CommentCount" style="color:#db3a0e;">  </span>則評論
         <p />
         <button type="button" class="btn btn-warning FavoriteRecordButton"><span class="glyphicon glyphicon-heart "></span>收藏</button>
         <span class="FavoriteRecordCount" style="color:#db3a0e;">  </span>人收藏
+        <p />
+        瀏覽數:<span class="SearchCount" style="color:#db3a0e;"> @ViewData["SearchCount"]</span>
         <p />
         <button type="button" class="btn btn-warning">加入規劃路線</button>
         <p />

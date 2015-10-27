@@ -62,3 +62,8 @@ textarea {
 .context {
     color: #565656;
 }
+
+.blogimg{
+    max-height:45px;
+    max-width:45px;
+}

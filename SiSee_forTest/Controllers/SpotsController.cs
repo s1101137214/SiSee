@@ -47,7 +47,7 @@ namespace SiSee_v1.Controllers
                 //暫時取前十筆
                 spotList.AddRange(spot.Take<Spot>(10));
             }
-           
+
             ViewData["TotalCount"] = spotList.Count();
 
             return View(spotList);
@@ -77,6 +77,8 @@ namespace SiSee_v1.Controllers
             {
                 SpotDetail spotDetail = new SpotDetail();
 
+                ViewData["SearchName"] = spot.spot_name;
+
                 spot.spot_add = SetSpotValueNull(spot.spot_add);
                 spot.spot_context = SetSpotValueNull(spot.spot_context);
                 spot.spot_fee = String.IsNullOrEmpty(spot.spot_fee) ? "免費" : spot.spot_fee;
@@ -94,6 +96,8 @@ namespace SiSee_v1.Controllers
                     search_date = System.DateTime.Now,
                     user_ID = String.IsNullOrEmpty(User.Identity.Name) ? 1 : int.Parse(User.Identity.Name)
                 };
+
+                ViewData["SearchCount"] = db.SearchRecord.Select(s => s.spot_ID == id).Count();
 
                 SpotRepository.CreateSearchReacord(searchReacord);
 

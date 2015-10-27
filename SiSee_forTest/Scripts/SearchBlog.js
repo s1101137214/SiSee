@@ -18,6 +18,8 @@ function SearchBlogSpotName() {
 
     var spotName = $.urlParam('SearchText');
 
+    console.log(spotName);
+
     //https://developer.pixnet.pro/#!/doc/pixnetApi/oauthApi API相關變數
 
     var page = "1";
@@ -33,6 +35,7 @@ function SearchBlogSpotName() {
         success: function (data) {
             console.log(data);
             GetData(data);
+            $.unblockUI();;
         },
         complete: function () {
             $.unblockUI();
@@ -58,7 +61,7 @@ function SearchBlogSpotName() {
 
         for (var i = 0; i < data.articles.length; i++) {
             $(".table").append
-                ("<tr '><td><img alt='Cinque Terre' class='.img-rounded' src=" + data.articles[i].thumb + "/></td>" + "<td><h5><a href='" + data.articles[i].link + "'> " + data.articles[i].title + "</a></h5></td></tr>");
+                ("<tr '><td><img alt='Cinque Terre' class='img-rounded blogimg' src=" + data.articles[i].thumb + "/></td>" + "<td><h5><a href='" + data.articles[i].link + "'> " + data.articles[i].title + "</a></h5></td></tr>");
         }
     }
 }
