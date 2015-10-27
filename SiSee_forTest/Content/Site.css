@@ -48,6 +48,7 @@ textarea {
     -moz-border-radius: 10px;
     border-radius: 10px;
     background-color: #e9eaee;
+    margin-top:20px;
 }
 
 .contains-white {
@@ -150,12 +151,6 @@ textarea {
         .responsive-table-input-matrix th:last-child, .responsive-table-input-matrix td:last-child {
             padding-right: 0;
         }
-}
-
-body {
-    padding: 0 2em;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
 }
 
 h1 {

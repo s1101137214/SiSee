@@ -4,31 +4,27 @@
 @{
     ViewBag.Title = "我的收藏";
 }
-
-<h2>我的收藏</h2>
-
-@Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
-
-<p class="text-info">=== @ViewData["SpotCount"] === </p>
-
-<table class="responsive-table responsive-table-input-matrix ">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Spot.spot_name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="background">
+    <h2>我的收藏</h2>
+    @Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
+    <p class="text-info">=== @ViewData["SpotCount"] === </p>
+    <table class="responsive-table responsive-table-input-matrix ">
         <tr>
-            <td>
-                @Html.ActionLink(Html.DisplayFor(modelItem => item.Spot.spot_name).ToString(), "Details", "Spots", new { id = item.spot_ID }, null)
-            </td>
-            <td>
-                @Html.ActionLink("取消收藏", "CancelFavoriteRecord", "Users", new { id = item.searchrecord_ID }, new { @class = "text-danger CancelFavoriteRecord CancelFavoriteRecordButton" })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Spot.spot_name)
+            </th>
+            <th></th>
         </tr>
-    }
-</table>
-
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(Html.DisplayFor(modelItem => item.Spot.spot_name).ToString(), "Details", "Spots", new { id = item.spot_ID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("取消收藏", "CancelFavoriteRecord", "Users", new { id = item.searchrecord_ID }, new { @class = "text-danger CancelFavoriteRecord CancelFavoriteRecordButton" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
