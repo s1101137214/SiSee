@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNet.Identity
+@if (User.Identity.IsAuthenticated)
+{
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span>個人管理 <span class="caret"></span></a>
+        <ul class="dropdown-menu" style="background-color:#1D2038">
+            <li>@Html.ActionLink("個人資料", "Details", "Users", new { id =User.Identity.Name }, new { @style = "" })</li>
+            <li role="separator" class="divider"></li>
+            <li>@Html.ActionLink("我的景點", "MySpots", "Users", null, new { @style = "" })</li>
+            <li>@Html.ActionLink("我的評論", "MyComment", "Users", null, new { @style = "" })</li>
+            <li>@Html.ActionLink("我的收藏", "MyFavorite", "Users", null, new { @style = "" })</li>
+        </ul>
+    </li>
+}
+else
+{
+        <li>
+            <a href="#" class="FBloginbutton"><span class="glyphicon glyphicon-tree-deciduous"></span></a>
+        </li>
+}
+

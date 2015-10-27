@@ -26,22 +26,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("SiSee", "Index", "Spots", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SiSee", "Home", "Spots", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav " id="navbartopfont">
-                    <li>@Html.ActionLink("首頁", "Index", "Spots")</li>
+                    <li>@Html.ActionLink("首頁", "Home", "Spots")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">景點 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="background-color:#1D2038">
+                            <li>@Html.ActionLink("北部", "Index", "Spots", new { id = "北部" }, new { @style = "" })</li>
+                            <li>@Html.ActionLink("中部", "Index", "Spots", new { id = "中部" }, new { @style = "" })</li>
+                            <li>@Html.ActionLink("南部", "Index", "Spots", new { id = "南部" }, new { @style = "" })</li>
+                            <li>@Html.ActionLink("東部", "Index", "Spots", new { id = "東部" }, new { @style = "" })</li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("搜尋", "Index", "Spots")</li>
                     <li>@Html.ActionLink("行程", "About", "Home")</li>
-                    <li>@Html.ActionLink("關於", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("後台_user", "Index", "Users")</li>
+                    @Html.Partial("_LoginMyPartial")
+                    <li>
+                        @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @class = "navbar-form", @id = "SearchForm" }))
+                        {
+                            <div class="input-group">
+                                <input type="text" class="SearchText form-control" value="@ViewData["SearchName"]" />
+                                <div class="input-group-btn">
+                                    <a class="SearchButton">
+                                        <span class="SearchButton btn glyphicon glyphicon-search" style="font-size:5pt"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
     <div>
         <div style="float:left;background-size:cover;">
-            <img src="~/Content/img/home01.png" />
+            <img class="HomeImg01" src="~/Content/img/home01.png" />
             <div style="height:122px; background-color:#1D2038; text-align:center; ">
                 @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @id = "SearchForm" }))
                 {
@@ -55,10 +79,10 @@
                 @*<span><input class="btn btn-default form-control " style=" width:70%;height:50%; margin: 0 auto; font-size:larger;" /></span>
                     <span class="glyphicon glyphicon-search" style=" font-size: 30px; color:white; padding:20px;">  </span>*@
             </div>
-            <img src="~/Content/img/home03.png" />
+            <img class="HomeImg03" src="~/Content/img/home03.png" />
         </div>
         <div style="float:left;">
-            <img src="~/Content/img/home04.png" />
+            <img class="HomeImg04" src="~/Content/img/home04.png" />
         </div>
     </div>
 </body>

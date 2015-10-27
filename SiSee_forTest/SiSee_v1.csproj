@@ -271,6 +271,8 @@
     <Content Include="Views\Users\MyFavorite.cshtml" />
     <Content Include="Views\Spots\Home.cshtml" />
     <Content Include="Views\Spots\PathPlan.cshtml" />
+    <Content Include="Views\Shared\_LoginMyPartial.cshtml" />
+    <Content Include="Views\Users\MySpots.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

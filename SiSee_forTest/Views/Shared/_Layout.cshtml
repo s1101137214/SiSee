@@ -36,9 +36,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav " id="navbartopfont">
                     <li>@Html.ActionLink("首頁", "Home", "Spots")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">景點 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="background-color:#1D2038">
+                            <li>@Html.ActionLink("北部", "Index", "Spots", new { id = "北部" }, new { @style = "" })</li>
+                            <li>@Html.ActionLink("中部", "Index", "Spots", new { id = "中部" }, new { @style = "" })</li>
+                            <li>@Html.ActionLink("南部", "Index", "Spots", new { id = "南部" }, new { @style = "" })</li>
+                            <li>@Html.ActionLink("東部", "Index", "Spots", new { id = "東部" }, new { @style = "" })</li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("搜尋", "Index", "Spots")</li>
                     <li>@Html.ActionLink("行程", "About", "Home")</li>
-                    <li>@Html.ActionLink("後台_user", "Index", "Users")</li>
+                    @Html.Partial("_LoginMyPartial")
                     <li>
                         @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @class = "navbar-form", @id = "SearchForm" }))
                         {
@@ -93,8 +103,8 @@
             </div>
         </div>
 
-        <footer>
-            <p>&copy; @DateTime.Now.Year - KUAS MIS ASP.NET Application</p><span>最後更新 &mdash; 2015.9</span>
+        <footer style="margin-top:50px">
+            <p>&copy; @DateTime.Now.ToShortDateString()- KUAS MIS .NET Application</p>
         </footer>
     </div>
 </body>

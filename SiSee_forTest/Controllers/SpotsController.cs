@@ -42,7 +42,7 @@ namespace SiSee_v1.Controllers
             }
             else
             {
-                ViewData["SearchName"] = "全部";
+                //ViewData["SearchName"] = "全部";
 
                 //暫時取前十筆
                 spotList.AddRange(spot.Take<Spot>(10));
