@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="responsive-table responsive-table-input-matrix">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.comment_context)
@@ -29,29 +29,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.comment_context)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.comment_grade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.comment_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Spot.spot_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.user_email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.commentrecord_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.commentrecord_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.commentrecord_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_context)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comment_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spot.spot_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.user_email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.commentrecord_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.commentrecord_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.commentrecord_ID })
+            </td>
+        </tr>
+    }
 
 </table>

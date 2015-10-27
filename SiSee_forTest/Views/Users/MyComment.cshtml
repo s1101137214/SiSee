@@ -11,43 +11,42 @@
 
 <p class="text-warning">=== @ViewData["SpotCount"]===  </p>
 
-<table class="table table-condensed table-striped ">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Spot.spot_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.comment_grade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.comment_context)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.comment_date)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <table class="responsive-table responsive-table-input-matrix ">
         <tr>
-            <td>
-                @Html.ActionLink(Html.DisplayFor(modelItem => item.Spot.spot_name).ToString(), "Details", "Spots",new { id = item.spot_ID }, null)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.comment_grade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.comment_context)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.comment_date)
-            </td>
-            <td>
-                @Html.ActionLink("修改", "Edit", "CommentRecords", new { id = item.commentrecord_ID }, null) |
-                @*@Html.ActionLink("Delete", "DeleteByUser", "CommentRecords", new { id = item.commentrecord_ID }, null)*@
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Spot.spot_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comment_grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comment_context)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comment_date)
+            </th>
+            <th></th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(Html.DisplayFor(modelItem => item.Spot.spot_name).ToString(), "Details", "Spots", new { id = item.spot_ID }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment_grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment_context)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment_date)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", "CommentRecords", new { id = item.commentrecord_ID }, null) |
+                    @*@Html.ActionLink("Delete", "DeleteByUser", "CommentRecords", new { id = item.commentrecord_ID }, null)*@
+                </td>
+            </tr>
+        }
+    </table>
 </div>

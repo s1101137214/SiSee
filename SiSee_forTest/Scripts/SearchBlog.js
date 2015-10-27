@@ -18,7 +18,7 @@ function SearchBlogSpotName() {
 
     var spotName = $.urlParam('SearchText');
 
-    console.log(spotName);
+    $("#SearchName").val(spotName);
 
     //https://developer.pixnet.pro/#!/doc/pixnetApi/oauthApi API相關變數
 
@@ -42,7 +42,7 @@ function SearchBlogSpotName() {
         },
         beforeSend: function () {
             $.blockUI({
-                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
+                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> 讀取中...</h4>",
                 css: { backgroundColor: '#fff', color: 'black' }
             });
         },
@@ -55,13 +55,17 @@ function SearchBlogSpotName() {
     //取得blog api回傳資料 取得內容可在調整
     function GetData(data) {
 
-        $("#ResultCount").text(data.total);
+        if (data.total > 0) {
 
-        $("#ResultPage").text(data.page);
+            $("#ResultCount").text(data.total);
 
-        for (var i = 0; i < data.articles.length; i++) {
-            $(".table").append
-                ("<tr '><td><img alt='Cinque Terre' class='img-rounded blogimg' src=" + data.articles[i].thumb + "/></td>" + "<td><h5><a href='" + data.articles[i].link + "'> " + data.articles[i].title + "</a></h5></td></tr>");
+            $("#ResultPage").text(data.page);
+
+            for (var i = 0; i < data.articles.length; i++) {
+                $(".table").append
+                    ("<tr '><td><img alt='Cinque Terre' class='img-rounded blogimg' src=" + data.articles[i].thumb + "/></td>" + "<td><h5><a href='" + data.articles[i].link + "'> " + data.articles[i].title + "</a></h5></td></tr>");
+            }
         }
+     
     }
 }

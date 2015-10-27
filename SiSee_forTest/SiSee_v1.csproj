@@ -273,6 +273,7 @@
     <Content Include="Views\Spots\PathPlan.cshtml" />
     <Content Include="Views\Shared\_LoginMyPartial.cshtml" />
     <Content Include="Views\Users\MySpots.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -41,14 +41,16 @@ textarea {
         transform: scale(1) rotate(360deg);
     }
 }
-
+td a{
+    color:whitesmoke;
+}
 .background {
     padding: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     background-color: #e9eaee;
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .contains-white {
