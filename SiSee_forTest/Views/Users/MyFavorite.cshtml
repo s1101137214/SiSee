@@ -11,7 +11,7 @@
 
 <p class="text-info">=== @ViewData["SpotCount"] === </p>
 
-<table class="table table-condensed table-striped ">
+<table class="responsive-table responsive-table-input-matrix ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Spot.spot_name)
@@ -24,7 +24,7 @@
         <tr>
             <td>
                 @Html.ActionLink(Html.DisplayFor(modelItem => item.Spot.spot_name).ToString(), "Details", "Spots", new { id = item.spot_ID }, null)
-            </td> 
+            </td>
             <td>
                 @Html.ActionLink("取消收藏", "CancelFavoriteRecord", "Users", new { id = item.searchrecord_ID }, new { @class = "text-danger CancelFavoriteRecord CancelFavoriteRecordButton" })
             </td>
