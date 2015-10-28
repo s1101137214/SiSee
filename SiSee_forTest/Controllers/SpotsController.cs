@@ -97,7 +97,7 @@ namespace SiSee_v1.Controllers
                     user_ID = String.IsNullOrEmpty(User.Identity.Name) ? 1 : int.Parse(User.Identity.Name)
                 };
 
-                ViewData["SearchCount"] = db.SearchRecord.Select(s => s.spot_ID == id).Count();
+                ViewData["SearchCount"] = db.SearchRecord.Where(s => s.Spot.spot_ID == id).Count();
 
                 SpotRepository.CreateSearchReacord(searchReacord);
 
