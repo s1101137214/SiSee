@@ -7,7 +7,7 @@ namespace SiSee_v1.Models.Repository
 {
     public class SpotRepository
     {
-        
+
         private sisdbEntities1 db = new sisdbEntities1();
 
         #region Create
@@ -126,6 +126,10 @@ namespace SiSee_v1.Models.Repository
         {
             List<Spot> spot = db.Spot.Where(s => s.spot_name.Contains(searchName)).ToList();
 
+            foreach (Spot s in spot)
+            {
+                s.spot_score = this.GetSpotScore(s.spot_ID);
+            }
             return spot;
         }
 
@@ -137,7 +141,7 @@ namespace SiSee_v1.Models.Repository
             return spot;
         }
 
-        public bool GetSpotFavoriteRecordIsSet(int spotID,string userID)
+        public bool GetSpotFavoriteRecordIsSet(int spotID, string userID)
         {
             IEnumerable<FavoriteRecord> favoriteRecord = db.Database.SqlQuery<FavoriteRecord>(
                         @"SELECT 
@@ -157,6 +161,27 @@ namespace SiSee_v1.Models.Repository
             }
 
             return false;
+        }
+
+        public string GetSpotScore(int spotID)
+        {
+            var score = db.CommentRecord.Where(c => c.spot_ID == spotID).Select(s => s.comment_grade);
+
+            int sum = 0;
+
+            foreach (string s in score)
+            {
+                sum = sum + int.Parse(s);
+            }
+            if (score.Count() > 0)
+            {
+                int avg = sum / score.Count();
+
+                return avg.ToString();
+            }
+
+            return "0";
+
         }
 
         #endregion

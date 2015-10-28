@@ -62,7 +62,7 @@ namespace SiSee_v1.Controllers
         }
 
         // GET: Spots/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
@@ -71,7 +71,7 @@ namespace SiSee_v1.Controllers
 
             Spot spot = db.Spot.Find(id);
 
-            List<CommentRecord> commentRecord = db.CommentRecord.Where(s => s.spot_ID == id).ToList();
+            List<CommentRecord> commentRecord = db.CommentRecord.Where(s => s.spot_ID == id).OrderBy(s => s.comment_date).ToList();
 
             if (spot != null)
             {
@@ -84,6 +84,7 @@ namespace SiSee_v1.Controllers
                 spot.spot_fee = String.IsNullOrEmpty(spot.spot_fee) ? "免費" : spot.spot_fee;
                 spot.spot_optimeS = String.IsNullOrEmpty(spot.spot_optimeS) ? "全天開放" : spot.spot_optimeS;
                 spot.spot_tel = SetSpotValueNull(spot.spot_tel);
+                spot.spot_score = SpotRepository.GetSpotScore(id);
 
                 spotDetail.Spot = spot;
 
@@ -98,6 +99,7 @@ namespace SiSee_v1.Controllers
                 };
 
                 ViewData["SearchCount"] = db.SearchRecord.Where(s => s.Spot.spot_ID == id).Count();
+
 
                 SpotRepository.CreateSearchReacord(searchReacord);
 

@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<SiSee_v1.Models.FavoriteRecord>
 @Scripts.Render("~/Scripts/MyFavorite.js")
-
 @{
     ViewBag.Title = "我的收藏";
 }
 <div class="background">
     <h2>我的收藏</h2>
     @Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
-    <p class="text-info">=== @ViewData["SpotCount"] === </p>
+    <p class="text-info"><strong>=== @ViewData["SpotCount"] === </strong></p>
     <table class="responsive-table responsive-table-input-matrix ">
         <tr>
             <th>
