@@ -76,8 +76,8 @@ td a {
 }
 
 .blogimg {
-    max-height: 45px;
-    max-width: 45px;
+    max-height: 52px;
+    max-width: 52;
 }
 
 @import "http://fonts.googleapis.com/css?family=Montserrat:300,400,700";

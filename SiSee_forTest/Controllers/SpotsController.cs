@@ -21,7 +21,7 @@ namespace SiSee_v1.Controllers
         {
             string searchName = id;
 
-            var spot = SpotRepository.GetAll();
+            List<Spot> spot = SpotRepository.GetAll();
 
             List<Spot> spotList = new List<Spot>();
 
@@ -30,22 +30,34 @@ namespace SiSee_v1.Controllers
             {
                 ViewData["SearchName"] = searchName;
 
-                //取得含有該區域的資料 取得方式有點詭異 之後再改
-                List<Spot> spot_area = spot.Where(s => s.Area.area_Name.Contains(searchName)).ToList();
+                List<Spot> spot_name = new List<Spot>();
 
-                List<Spot> spot_name = SpotRepository.GetByName(searchName);
+                if (searchName == "依名稱排列")
+                {
+                    spot_name = db.Spot.Include(s => s.Area).ToList() ;
+                }
+                else
+                {
+                    spot_name = SpotRepository.GetByName(searchName);
+                }
+
+                List<Spot> spot_area = SpotRepository.GetByAreaName(searchName);
 
                 spotList.AddRange(spot_name);
 
-                spotList.AddRange(spot_area);
+                if (spot_area != null)
+                {
+                    spotList.AddRange(spot_area);
+                }
 
             }
             else
             {
                 //ViewData["SearchName"] = "全部";
 
-                //暫時取前十筆
-                spotList.AddRange(spot.Take<Spot>(10));
+                //spotList.AddRange(spot.Take<Spot>(50));
+
+                spotList.AddRange(spot);
             }
 
             ViewData["TotalCount"] = spotList.Count();
