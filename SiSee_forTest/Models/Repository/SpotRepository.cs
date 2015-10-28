@@ -7,7 +7,7 @@ namespace SiSee_v1.Models.Repository
 {
     public class SpotRepository
     {
-        
+
         private sisdbEntities1 db = new sisdbEntities1();
 
         #region Create
@@ -112,32 +112,80 @@ namespace SiSee_v1.Models.Repository
             return spot.First();
         }
 
-        public IEnumerable<Spot> GetAll()
+        public List<Spot> GetAll()
         {
-            //IEnumerable<Spot> spot = db.Database.SqlQuery<Spot>(
-            //    "Select TOP 10 * FROM SPOT"
-            //    );
-            //   return db.Spot.take<Spot>(10);
+            //依熱門(搜尋次數)排列
+            List<Spot> spot = db.Database.SqlQuery<Spot>(
+                @"SELECT
+	                        *
+                        FROM
+	                        (
+		                        SELECT
+			                        Spot.spot_ID,
+			                        COUNT (SearchRecord.spot_ID) AS num
+		                        FROM
+			                        Spot
+		                        JOIN SearchRecord ON SearchRecord.spot_ID = Spot.spot_ID
+		                        GROUP BY
+			                        Spot.spot_ID
+	                        ) AS Spotcount
+                        JOIN Spot ON Spot.spot_ID = Spotcount.spot_ID
+                        ORDER BY
+	                        num DESC"
+                ).ToList();
 
-            return db.Spot;
+            foreach (Spot s in spot)
+            {
+                s.spot_score = this.GetSpotScore(s.spot_ID);
+            }
+
+            return spot ;
         }
 
         public List<Spot> GetByName(String searchName)
         {
             List<Spot> spot = db.Spot.Where(s => s.spot_name.Contains(searchName)).ToList();
 
+            foreach (Spot s in spot)
+            {
+                s.spot_score = this.GetSpotScore(s.spot_ID);
+            }
             return spot;
         }
 
         public List<Spot> GetByAreaName(String areaName)
         {
-            //有bug
-            List<Spot> spot = db.Spot.Where(s => s.Area.area_Name.Contains(areaName)).ToList();
+            int area_ID;
 
-            return spot;
+            switch (areaName)
+            {
+                case"北部":
+                    area_ID = 1;
+                    break;
+                case "中部":
+                    area_ID = 2;
+                    break;
+                case "南部":
+                    area_ID = 3;
+                    break;
+                case "東部":
+                    area_ID = 4;
+                    break;
+                default:
+                    return null;
+            }
+
+            List<Spot> spot = db.Spot.Where(s => s.area_ID == area_ID).ToList() ;
+            
+            foreach (Spot s in spot)
+            {
+                s.spot_score = this.GetSpotScore(s.spot_ID);
+            }
+
+            return spot.ToList();
         }
 
-        public bool GetSpotFavoriteRecordIsSet(int spotID,string userID)
+        public bool GetSpotFavoriteRecordIsSet(int spotID, string userID)
         {
             IEnumerable<FavoriteRecord> favoriteRecord = db.Database.SqlQuery<FavoriteRecord>(
                         @"SELECT 
@@ -157,6 +205,27 @@ namespace SiSee_v1.Models.Repository
             }
 
             return false;
+        }
+
+        public string GetSpotScore(int spotID)
+        {
+            var score = db.CommentRecord.Where(c => c.spot_ID == spotID).Select(s => s.comment_grade);
+
+            int sum = 0;
+
+            foreach (string s in score)
+            {
+                sum = sum + int.Parse(s);
+            }
+            if (score.Count() > 0)
+            {
+                int avg = sum / score.Count();
+
+                return avg.ToString();
+            }
+
+            return "0";
+
         }
 
         #endregion

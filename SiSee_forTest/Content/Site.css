@@ -4,6 +4,13 @@
     font-family: "微軟正黑體",'Comic Sans MS';
 }
 
+a:hover {
+    color: #e9eaee;
+}
+li:hover {
+    color:#1D2038;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -41,9 +48,11 @@ textarea {
         transform: scale(1) rotate(360deg);
     }
 }
-td a{
-    color:whitesmoke;
+
+td a {
+    color: whitesmoke;
 }
+
 .background {
     padding: 10px;
     -webkit-border-radius: 10px;
@@ -67,8 +76,8 @@ td a{
 }
 
 .blogimg {
-    max-height: 45px;
-    max-width: 45px;
+    max-height: 52px;
+    max-width: 52;
 }
 
 @import "http://fonts.googleapis.com/css?family=Montserrat:300,400,700";

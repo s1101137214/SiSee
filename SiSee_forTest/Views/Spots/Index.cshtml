@@ -20,7 +20,7 @@
     <span id="SearchName">
         @if (ViewData["SearchName"] != "全部")
         {
-            <span>搜尋</span><strong>: @ViewData["SearchName"] </strong>
+            <span></span><strong>→ @ViewData["SearchName"] </strong>
         }
         else
         {
@@ -38,7 +38,8 @@
 </div>
 
 <div style="text-align:right">
-
+    @Html.ActionLink("依名稱排列", "Index", new { id = "依名稱排列" })
+    @Html.ActionLink("依熱門排列", "Index", new { id = "" })
 </div>
 
 <div class="table-responsive">
@@ -71,9 +72,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.spot_loaction)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Area.area_Name)
-            </th>
+            </th>*@
             <th></th>
         </tr>
         @foreach (var item in Model)
@@ -106,13 +107,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.spot_loaction)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Area.area_Name)
-                </td>
+                </td>*@
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.spot_ID }) |
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.spot_ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.spot_ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.spot_ID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.spot_ID })*@
                 </td>
             </tr>
         }

@@ -21,7 +21,7 @@ namespace SiSee_v1.Controllers
         {
             string searchName = id;
 
-            var spot = SpotRepository.GetAll();
+            List<Spot> spot = SpotRepository.GetAll();
 
             List<Spot> spotList = new List<Spot>();
 
@@ -30,22 +30,34 @@ namespace SiSee_v1.Controllers
             {
                 ViewData["SearchName"] = searchName;
 
-                //取得含有該區域的資料 取得方式有點詭異 之後再改
-                List<Spot> spot_area = spot.Where(s => s.Area.area_Name.Contains(searchName)).ToList();
+                List<Spot> spot_name = new List<Spot>();
 
-                List<Spot> spot_name = SpotRepository.GetByName(searchName);
+                if (searchName == "依名稱排列")
+                {
+                    spot_name = db.Spot.Include(s => s.Area).ToList() ;
+                }
+                else
+                {
+                    spot_name = SpotRepository.GetByName(searchName);
+                }
+
+                List<Spot> spot_area = SpotRepository.GetByAreaName(searchName);
 
                 spotList.AddRange(spot_name);
 
-                spotList.AddRange(spot_area);
+                if (spot_area != null)
+                {
+                    spotList.AddRange(spot_area);
+                }
 
             }
             else
             {
                 //ViewData["SearchName"] = "全部";
 
-                //暫時取前十筆
-                spotList.AddRange(spot.Take<Spot>(10));
+                //spotList.AddRange(spot.Take<Spot>(50));
+
+                spotList.AddRange(spot);
             }
 
             ViewData["TotalCount"] = spotList.Count();
@@ -62,7 +74,7 @@ namespace SiSee_v1.Controllers
         }
 
         // GET: Spots/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
@@ -71,7 +83,7 @@ namespace SiSee_v1.Controllers
 
             Spot spot = db.Spot.Find(id);
 
-            List<CommentRecord> commentRecord = db.CommentRecord.Where(s => s.spot_ID == id).ToList();
+            List<CommentRecord> commentRecord = db.CommentRecord.Where(s => s.spot_ID == id).OrderBy(s => s.comment_date).ToList();
 
             if (spot != null)
             {
@@ -84,6 +96,7 @@ namespace SiSee_v1.Controllers
                 spot.spot_fee = String.IsNullOrEmpty(spot.spot_fee) ? "免費" : spot.spot_fee;
                 spot.spot_optimeS = String.IsNullOrEmpty(spot.spot_optimeS) ? "全天開放" : spot.spot_optimeS;
                 spot.spot_tel = SetSpotValueNull(spot.spot_tel);
+                spot.spot_score = SpotRepository.GetSpotScore(id);
 
                 spotDetail.Spot = spot;
 
@@ -97,7 +110,8 @@ namespace SiSee_v1.Controllers
                     user_ID = String.IsNullOrEmpty(User.Identity.Name) ? 1 : int.Parse(User.Identity.Name)
                 };
 
-                ViewData["SearchCount"] = db.SearchRecord.Select(s => s.spot_ID == id).Count();
+                ViewData["SearchCount"] = db.SearchRecord.Where(s => s.Spot.spot_ID == id).Count();
+
 
                 SpotRepository.CreateSearchReacord(searchReacord);
 

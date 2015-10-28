@@ -1,16 +1,12 @@
 ﻿@model IEnumerable<SiSee_v1.Models.CommentRecord>
 @Scripts.Render("~/Scripts/MyComment.js")
-
 @{
     ViewBag.Title = "我的評論";
 }
 <div class="background">
-<h2>我的評論</h2>
-
-@Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
-
-<p class="text-warning">=== @ViewData["SpotCount"]===  </p>
-
+    <h2>我的評論</h2>
+    @Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
+    <p class="text-warning"><strong>=== @ViewData["SpotCount"]===  </strong></p>
     <table class="responsive-table responsive-table-input-matrix ">
         <tr>
             <th>
