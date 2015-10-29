@@ -55,9 +55,64 @@
 
 
         }
-
     });
+
+    $(".PlanButton").click(function () {
+        GetPlanPoint();
+    });
+
+
+
 });
+
+
+function GetPlanPoint() {
+
+    var set = localStorage["PlanSet"];
+
+    var spotName = $(".SpotName").val();
+
+    var spotAdd = $(".address").val();
+
+    if (set !== "True") {
+
+        localStorage.setItem("PlanSet", "True");
+
+        var SpotNamePoint = new Array();
+
+        SpotNamePoint[0] = spotName;
+
+        localStorage.setItem("SpotNamePoint", JSON.stringify(SpotNamePoint));
+
+        var SpotAddPoint = new Array();
+
+        SpotAddPoint[0] = spotAdd;
+
+        localStorage.setItem("SpotAddPoint", JSON.stringify(SpotAddPoint));
+
+    } else {
+
+        var dataName = JSON.parse(localStorage.getItem("SpotNamePoint"));
+
+        var dataAdd = JSON.parse(localStorage.getItem("SpotAddPoint"));
+
+        var length = JSON.parse(localStorage.getItem("SpotNamePoint")).length;
+
+        dataName[length] = spotName;
+
+        dataAdd[length] = spotAdd;
+
+        localStorage.setItem("SpotNamePoint", JSON.stringify(dataName));
+
+        localStorage.setItem("SpotAddPoint", JSON.stringify(dataAdd));
+
+    }
+
+
+
+}
+
+
 
 //方法很鳥，有空再修改
 function SetStarImg(id, status) {

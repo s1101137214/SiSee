@@ -11,10 +11,10 @@
 </style>
 <div class="Control">
     <input class="SpotName" value=@Html.DisplayFor(model => model.Spot.spot_name) type="hidden" />
+    <input class="SpotID" value=@Html.DisplayFor(model => model.Spot.spot_ID) type="hidden" />
 </div>
 <div class="background">
     <div>
-        <input class="SpotID" value=@Html.DisplayFor(model => model.Spot.spot_ID) type="hidden" />
         <span style="font-size:30px;">
             @Html.DisplayFor(model => model.Spot.spot_name)
         </span>
@@ -50,7 +50,7 @@
         瀏覽數:
         <span class="SearchCount" style="color:#db3a0e;"> @ViewData["SearchCount"]</span>
         <p />
-        <button type="button" class="btn btn-warning">加入規劃路線</button>
+        <button type="button" class="btn btn-warning PlanButton" >加入規劃路線</button>
         <p />
     </div>
     <div style="float:left; width:70%;" class="context">

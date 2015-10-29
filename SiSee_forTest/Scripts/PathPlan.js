@@ -2,6 +2,19 @@
 
     //載入google map
     loadScript();
+
+
+    //取值
+    var namePoint = JSON.parse(localStorage.getItem("SpotNamePoint"));
+
+    var addPoint = JSON.parse(localStorage.getItem("SpotAddPoint"));
+
+    //同陣列取法,地址和名稱同陣列編號,沒值預設"null"
+    console.log(namePoint);
+
+    console.log(namePoint[0]);
+
+    console.log(addPoint);
 });
 
 function initialize() {
