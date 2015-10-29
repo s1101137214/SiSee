@@ -38,7 +38,7 @@ function loadScript() {
 
 function calcRoute(directionsService, directionsDisplay) {
     var start = "彰化鹿港";
-    var waypoints =[ {'location': '彰化合美'}];
+    var waypoints =[ {'location': '彰化合美'}, {'location': '鹿港龍山寺'}];
     var end = "彰化福興";
     //var start = document.getElementById('start').value;
     //var end = document.getElementById('end').value;
