@@ -4,16 +4,15 @@
 }
 @Scripts.Render("~/Scripts/PathPlan.js")
 
-<div class="background">
-    <div class="contains-white" style="float:left;" >
-        <p><a href="@Html.Encode(Request.UrlReferrer.ToString())" class="btn btn-warning">上一頁</a></p>
-        <div id="directions_panel" style=" width: 30%;">
-        </div>
-    </div>
-    <div class="contains-white" style="width:70%;">
+<div class="background" style="float:left;">
+    <h2>路線規劃</h2>
+    <div class=" contains-white" style="float:left; width: 30%;">
+    <p><a href="@Html.Encode(Request.UrlReferrer.ToString())" class="btn btn-warning">上一頁</a></p>
+    <div id="directions_panel"></div>
+</div>
+    <div class="contains-white" style="width:60%; float:left;">
         google 地圖
-        <div id="map-canvas" style="width:750px;height:250px;">
-        </div>
+        <div id="map-canvas" style="width:600px;height:600px;"></div>
     </div>
 </div>
 

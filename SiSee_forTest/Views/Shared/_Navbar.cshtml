@@ -21,7 +21,7 @@
                     </ul>
                 </li>
                 <li>@Html.ActionLink("搜尋", "Index", "Spots")</li>
-                <li>@Html.ActionLink("行程", "About", "Home")</li>
+                <li>@Html.ActionLink("路線規劃", "PathPlan", "Spots")</li>
                 @Html.Partial("_LoginMyPartial")
                 <li>
                     @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @class = "navbar-form", @id = "SearchLayoutForm" }))
