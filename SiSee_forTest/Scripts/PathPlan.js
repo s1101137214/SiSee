@@ -21,6 +21,8 @@ function initialize() {
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById("directions_panel"));
     calcRoute(directionsService, directionsDisplay);
+    //var long = map.getDirectionsInfo();
+    //alert(long.distance['text']);
 
 }
 
@@ -36,13 +38,27 @@ function loadScript() {
 
 function calcRoute(directionsService, directionsDisplay) {
     var start = "彰化鹿港";
+    var waypoints =[ {'location': '彰化合美'}, {'location': '鹿港龍山寺'}];
     var end = "彰化福興";
     //var start = document.getElementById('start').value;
     //var end = document.getElementById('end').value;
 
+    //var arrPoint = waypoints.split(",");
+  
+    //    //經過地點
+    //    var waypts = [];
+    //    for (var i = 0; i < arrPoint.length; i++) {
+    //            waypts.push({
+    //                    location: arrPoint[i],
+    //                    stopover: true
+    //            });
+    //    }
+
     var request = {
         origin: start,
+        waypoints:waypoints,
         destination: end,
+        optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING
     };
     directionsService.route(request, function (response, status) {
