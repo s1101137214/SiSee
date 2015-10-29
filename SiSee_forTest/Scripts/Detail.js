@@ -1,5 +1,9 @@
 ﻿$(document).ready(function () {
 
+    var status = "/Content/img/star_b.png";
+
+
+
     //檢查選取的景點位置取得對應的FB留言板
     CheckAreaAndFBcomment();
 
@@ -17,7 +21,7 @@
     //檢查總評論數量
     CheckCommentStatus();
 
-    var status = "/Content/img/star_b.png";
+
 
     //滑鼠經過時的變化，有問題先不使用
 
@@ -56,15 +60,102 @@
 
         }
     });
+    //SetCancelPlanButton()
+    CheckPlanPoint();
+
+});
+
+function CheckPlanPoint() {
+ 
+    var set = localStorage["PlanSet"];
+
+    var spotName = $(".SpotName").val();
+
+    if (set !== "True") {
+
+        SetCancelPlanButton();
+
+    } else {
+
+        var length = JSON.parse(localStorage.getItem("SpotNamePoint")).length;
+
+        var namePoint = JSON.parse(localStorage.getItem("SpotNamePoint"));
+
+        var status = false;
+
+        for (i = 0; i < length; i++) {
+            if (namePoint[i] === spotName) {
+
+                SetAddPlanButton();
+
+                status = true;
+
+                break;
+            }
+        };
+
+        if (!status) {
+            SetCancelPlanButton();
+        }
+
+    }
+}
+
+function SetCancelPlanButton() {
+    $(".PlanButton").off('click');
+
+    $(".PlanButton").html('加入路線規劃');
+    $(".PlanButton").removeClass("btn-warning").addClass("btn-warning");
 
     $(".PlanButton").click(function () {
         GetPlanPoint();
     });
+}
 
+function SetAddPlanButton() {
+    $(".PlanButton").off('click');
 
+    $(".PlanButton").html('已加入規劃');
+    $(".PlanButton").removeClass("btn-warning").addClass("btn-danger");
 
-});
+    $(".PlanButton").click(function () {
+        if (confirm("確定取消嗎?")) {
+            CancelPlanPiont();
+        }
+    });;
 
+}
+
+function CancelPlanPiont() {
+
+    var length = JSON.parse(localStorage.getItem("SpotNamePoint")).length;
+
+    var dataName = JSON.parse(localStorage.getItem("SpotNamePoint"));
+
+    var spotName = $(".SpotName").val();
+
+    var spotAdd = $(".SpotAddress").val();
+
+    for (i = 0; i < length; i++) {
+
+        if (dataName[i] === spotName) {
+
+            var dataAdd = JSON.parse(localStorage.getItem("SpotAddPoint"));
+
+            dataName[i] = "null";
+
+            dataAdd[i] = "null";
+
+            localStorage.setItem("SpotNamePoint", JSON.stringify(dataName));
+
+            localStorage.setItem("SpotAddPoint", JSON.stringify(dataAdd));
+
+            break;
+        }
+    }
+
+    SetCancelPlanButton();
+}
 
 function GetPlanPoint() {
 
@@ -72,7 +163,7 @@ function GetPlanPoint() {
 
     var spotName = $(".SpotName").val();
 
-    var spotAdd = $(".address").val();
+    var spotAdd = $(".SpotAddress").val();
 
     if (set !== "True") {
 
@@ -81,6 +172,8 @@ function GetPlanPoint() {
         var SpotNamePoint = new Array();
 
         SpotNamePoint[0] = spotName;
+
+        console.log(spotName);
 
         localStorage.setItem("SpotNamePoint", JSON.stringify(SpotNamePoint));
 
@@ -108,7 +201,7 @@ function GetPlanPoint() {
 
     }
 
-
+    SetAddPlanButton();
 
 }
 

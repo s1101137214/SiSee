@@ -6,7 +6,7 @@
         <ul class="dropdown-menu" style="background-color:#1D2038">
             <li>@Html.ActionLink("個人資料", "Details", "Users", new { id =User.Identity.Name }, new { @style = "" })</li>
             <li role="separator" class="divider"></li>
-            <li>@Html.ActionLink("我的景點", "MySpots", "Users", null, new { @style = "" })</li>
+            @*<li>@Html.ActionLink("我的景點", "MySpots", "Users", null, new { @style = "" })</li>*@
             <li>@Html.ActionLink("我的評論", "MyComment", "Users", null, new { @style = "" })</li>
             <li>@Html.ActionLink("我的收藏", "MyFavorite", "Users", null, new { @style = "" })</li>
         </ul>
