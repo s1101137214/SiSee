@@ -10,10 +10,11 @@
         <input type="text" class="text text-info" name="SearchText" />
         <button type="submit" class="btn btn-warning ">搜尋</button>
     </form>
+    <p><a href="@Html.Encode(Request.UrlReferrer.ToString())" class="btn btn-warning">上一頁</a></p>
 </div>
 
 <div class="Context">
-    <table class="table " style="background-color:#0f51a1">
+    <table class="table " style="background-color:#005bff">
         <tr class="info">
             <th colspan="2">搜尋結果：共<span id="ResultCount"></span>筆，第<span id="ResultPage"></span>頁</th>
         </tr>

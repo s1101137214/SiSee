@@ -3,10 +3,12 @@
     ViewBag.Title = "Details";
 }
 @Scripts.Render("~/Scripts/Detail.js")
+@Scripts.Render("~/Content/css/Details.css")
 <style type="text/css">
     .context {
         color: #565656;
     }
+
 </style>
 <div class="Control">
     <input class="SpotName" value=@Html.DisplayFor(model => model.Spot.spot_name) type="hidden" />
@@ -36,6 +38,7 @@
             @Html.DisplayNameFor(model => model.Spot.spot_score) :
             @Html.DisplayFor(model => model.Spot.spot_score)
         </div>
+        <p><a href="@Html.Encode(Request.UrlReferrer.ToString())" class="btn btn-warning">上一頁</a></p>
         <p />
         <a href="/Spots/SearchBlog?SearchText=@ViewData["SearchName"]" class="btn btn-warning ">找部落格</a>
         <p />

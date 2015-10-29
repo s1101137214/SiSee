@@ -126,6 +126,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Details.css" />
     <Content Include="Content\css\_layout.css" />
     <Content Include="Content\img\ajax-loader.gif" />
     <Content Include="Content\img\home01.png" />

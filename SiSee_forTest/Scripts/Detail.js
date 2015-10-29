@@ -204,8 +204,9 @@ function initialize() {
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    google.maps.event.trigger(map, 'resize');
 
     var geocoder = new google.maps.Geocoder();
     GetLatlng($("#address").text(), "123", geocoder, map);
@@ -219,11 +220,14 @@ function loadScript() {
         '&signed_in=true&callback=initialize';
     document.body.appendChild(script);
 
+
+
 }
 
 function GetLatlng(address, title, geocoder, resultsMap) {
     geocoder.geocode({ 'address': address }, function (results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
+
             resultsMap.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
                 map: resultsMap,

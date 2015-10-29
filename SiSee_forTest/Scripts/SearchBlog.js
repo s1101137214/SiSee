@@ -24,7 +24,7 @@ function SearchBlogSpotName() {
 
     var page = "1";
 
-    var url = "https://emma.pixnet.cc/blog/articles/search?key=" + spotName + "&format=json&type=tag&per_page=20&page=" + page;
+    var url = "https://emma.pixnet.cc/blog/articles/search?key=" + spotName + "&format=json&type=tag&per_page=25&trim_user=0page=" + page;
 
     $.ajax({
         url: url,
@@ -63,8 +63,12 @@ function SearchBlogSpotName() {
 
             for (var i = 0; i < data.articles.length; i++) {
                 $(".table").append
-                    ("<tr '><td><img alt='Cinque Terre' class='img-rounded blogimg' src=" + data.articles[i].thumb + "/></td>" + "<td><h5><a href='" + data.articles[i].link + "'> " + data.articles[i].title + "</a></h5></td></tr>");
+                    ("<tr '><td><img alt='Cinque Terre' class='img-rounded blogimg' src=" + data.articles[i].thumb + "/></td>" + "<td><h5><a  href='" + data.articles[i].link + "'> " + data.articles[i].title + "</a></h5></td></tr>");
             }
+        } else {
+            $("#ResultCount").text("Sorry 沒有搜尋到相關資訊");
+
+            $("#ResultPage").text("0");
         }
      
     }

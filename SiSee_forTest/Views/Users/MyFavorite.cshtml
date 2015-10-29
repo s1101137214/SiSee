@@ -5,7 +5,7 @@
 }
 <div class="background">
     <h2>我的收藏</h2>
-    @Html.ActionLink("上一頁", "Details", new { id = User.Identity.Name })
+    <p><a href="@Html.Encode(Request.UrlReferrer.ToString())" class="btn btn-warning">上一頁</a></p>
     <p class="text-info"><strong>=== @ViewData["SpotCount"] === </strong></p>
     <table class="responsive-table responsive-table-input-matrix ">
         <tr>

@@ -24,12 +24,12 @@
                 <li>@Html.ActionLink("行程", "About", "Home")</li>
                 @Html.Partial("_LoginMyPartial")
                 <li>
-                    @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @class = "navbar-form", @id = "SearchForm" }))
+                    @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @class = "navbar-form", @id = "SearchLayoutForm" }))
                     {
                         <div class="input-group">
-                            <input type="text" class="SearchText form-control" value="@ViewData["SearchName"]" />
+                            <input name="id" type="text" class="SearchText form-control" value="@ViewData["SearchName"]" />
                             <div class="input-group-btn">
-                                <a class="SearchButton">
+                                <a onclick="document.getElementById('SearchLayoutForm').submit() " class="SearchButton">
                                     <span class="SearchButton btn glyphicon glyphicon-search" style="font-size:5pt"></span>
                                 </a>
                             </div>

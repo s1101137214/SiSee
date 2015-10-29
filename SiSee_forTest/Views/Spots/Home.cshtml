@@ -22,13 +22,13 @@
     <div>
         <div style="float:left;background-size:cover;">
             <img class="HomeImg01" src="~/Content/img/home01.png" />
-            <div style="height:122px; background-color:#1D2038; text-align:center; ">
+            <div style="height:122px; background-color:#1D2038; text-align:center; margin-left:60px;">
                 @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @id = "SearchForm" }))
                 {
-                    <div class="label">
-                        @Html.TextBox("id", ViewBag.SearchName as string, new { @class = "text text-info btn btn-default form-control ", @style = "width:70%;height:70px; margin: 0 auto; font-size:32pt;" })
+                    <div class="label ">
+                        <input name="id" type="text" class="SearchText text text-info btn btn-default form-control" style="width:70%;height:70px; margin: 0 auto; font-size:32pt;" />
                         <a onclick="document.getElementById('SearchForm').submit()">
-                            <span class="btn glyphicon glyphicon-search" style=" font-size: 40px; color:white; height:100%"></span>
+                            <span class="SearchHomeButton btn glyphicon glyphicon-search" style=" font-size: 40px; color:white; height:100%"></span>
                         </a>
                     </div>
                 }

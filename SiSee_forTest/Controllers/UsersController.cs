@@ -80,6 +80,13 @@ namespace SiSee_v1.Controllers
             return View(favoriteRecord);
         }
 
+        // GET: MySpots
+        public ActionResult MySpots()
+        {
+            return RedirectToAction("Details", "Users");
+        }
+
+
         public ActionResult CancelFavoriteRecord(int id)
         {
             var delTarget = db.FavoriteRecord.Find(id);

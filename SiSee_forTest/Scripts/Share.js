@@ -5,10 +5,23 @@
 
 $(document).ready(function () {
 
-    //景點自動搜尋
-    $(".SearchButton").click(function () {
-        window.location = "http://localhost:9542/Spots/Index/" + $(".SearchText").val() + "/";
-    });
+    ////景點自動搜尋
+    //$(".SearchButton").click(function () {
+
+    //    if ($(".SearchText").val() != "") {
+    //        window.location = "http://localhost:9542/Spots/Index/" + $(".SearchText").val() + "/";
+    //    }
+
+    //});
+
+    //$(".SearchHomeButton").click(function () {
+
+    //    if ($(".SearchHomeButton").val() != "") {
+    //        window.location = "http://localhost:9542/Spots/Index/" + $("#id").val() + "/";
+    //    }
+
+    //});
     
+
 });
 
