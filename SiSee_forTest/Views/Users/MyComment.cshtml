@@ -30,8 +30,8 @@
                     @Html.ActionLink(Html.DisplayFor(modelItem => item.Spot.spot_name).ToString(), "Details", "Spots", new { id = item.spot_ID }, null)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.comment_grade)
-                </td>
+                    <span class="ScoreList">@Html.DisplayFor(modelItem => item.comment_grade)</span>
+</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.comment_context)
                 </td>

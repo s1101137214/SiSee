@@ -4,6 +4,9 @@
     ViewBag.Title = "我的評論 - 修改";
 }
 
+@Styles.Render("~/Content/css/CREdit.css")
+@Scripts.Render("~/Scripts/CREdit.js")
+
 <h2>我的評論 - 修改</h2>
 
 <p><a href="@Html.Encode(Request.UrlReferrer.ToString())" class="btn btn-warning">上一頁</a></p>
@@ -34,8 +37,15 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.comment_grade, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.comment_grade, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0", max = "5" } })
+            <div class="col-md-10 CommentImgdiv">
+
+                <img src="~/Content/img/star_b.png" class="CommentImg" id="1" title="1分~頗差不推薦" />
+                <img src="~/Content/img/star_b.png" class="CommentImg" id="2" title="2分~勉強還可以" />
+                <img src="~/Content/img/star_b.png" class="CommentImg" id="3" title="3分~普普通通" />
+                <img src="~/Content/img/star_b.png" class="CommentImg" id="4" title="4分~值得推薦" />
+                <img src="~/Content/img/star_b.png" class="CommentImg" id="5" title="5分~此生無憾的好地方" />
+
+                @Html.HiddenFor(model => model.comment_grade)
                 @Html.ValidationMessageFor(model => model.comment_grade, "", new { @class = "text-danger" })
             </div>
         </div>

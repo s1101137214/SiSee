@@ -126,6 +126,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\CREdit.css" />
     <Content Include="Content\css\Details.css" />
     <Content Include="Content\css\_layout.css" />
     <Content Include="Content\img\ajax-loader.gif" />
@@ -166,6 +167,7 @@
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CREdit.js" />
     <Content Include="Scripts\PathPlan.js" />
     <Content Include="Scripts\MyComment.js" />
     <Content Include="Scripts\MyFavorite.js" />

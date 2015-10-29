@@ -15,6 +15,11 @@ li:hover {
       color: white;
 }
 
+.ListCommentImg {
+    max-height: 26px;
+    max-width: 26px;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

@@ -21,9 +21,35 @@ $(document).ready(function () {
     //    }
 
     //});
-    
 
+    //轉換分數成星星
+    if ($(".ScoreList").text() != "") {
+        $('.ScoreList').each(function () {
+            var score = $(this).text();
 
+            $(this).html("");
+
+            switch (score) {
+                case "5":
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg"/>');
+                case "4":
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg"  />');
+                case "3":
+                    $(this).append(' <img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg"  />');
+                case "2":
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg"  />');
+                case "1":
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg" />');
+                    break;
+                case "0":
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_b.png" class="ListCommentImg" title="評分數不足~" />');
+                    break;
+
+            }
+            
+        });
+      
+    }
 
 });
 
