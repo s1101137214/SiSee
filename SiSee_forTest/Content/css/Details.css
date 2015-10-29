@@ -30,3 +30,18 @@
         height: 300px;
     }
 }
+
+.CommentImgdiv {
+
+}
+
+.CommentImg :hover {
+   background: url(../img/star_s.png);
+    background-size: 40px 40px;
+}
+
+.Imgdiv {
+    border:solid;
+    width: 220px;
+    height: 50px;
+}

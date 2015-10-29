@@ -15,7 +15,106 @@
     loadScript();
 
     CheckCommentStatus();
+
+    var status = "/Content/img/star_b.png";
+
+    //$(".CommentImg")
+    //    .mouseover(function () {
+
+    //        status = $(this).attr("src");
+
+    //        if (statu = "/Content/img/star_b.png");
+
+    //        $(this).attr("src", "/Content/img/star_s.png");
+    //    })
+    //   .mouseout(function () {
+    //       $(this).attr("src", status);
+    //   });
+
+    $(".CommentImg").click(function () {
+        if ($(this).attr('src') === "/Content/img/star_b.png") {
+
+            var id = $(this).attr('id');
+
+            $(".Grade").val(id);
+
+            SetStarImg(id, "select")
+
+        } else {
+
+            var id = $(this).attr('id');
+
+            console.log(id);
+
+            $(".Grade").val("0");
+
+            SetStarImg(id, "cancel")
+
+
+        }
+
+    });
 });
+function SetStarImg(id, status) {
+
+    var srcS = "/Content/img/star_s.png";
+
+    var srcB = "/Content/img/star_b.png";
+
+    if (status == "select") {
+        switch (id) {
+            case "5":
+                document.getElementById("5").setAttribute("src", srcS);
+                document.getElementById("4").setAttribute("src", srcS);
+                document.getElementById("3").setAttribute("src", srcS);
+                document.getElementById("2").setAttribute("src", srcS);
+                document.getElementById("1").setAttribute("src", srcS);
+                break;
+            case "4":
+                document.getElementById("5").setAttribute("src", srcB);
+                document.getElementById("4").setAttribute("src", srcS);
+                document.getElementById("3").setAttribute("src", srcS);
+                document.getElementById("2").setAttribute("src", srcS);
+                document.getElementById("1").setAttribute("src", srcS);
+                break;
+            case "3":
+                document.getElementById("5").setAttribute("src", srcB);
+                document.getElementById("4").setAttribute("src", srcB);
+                document.getElementById("3").setAttribute("src", srcB);
+                document.getElementById("2").setAttribute("src", srcS);
+                document.getElementById("1").setAttribute("src", srcS);
+                break;
+            case "2":
+                document.getElementById("5").setAttribute("src", srcB);
+                document.getElementById("4").setAttribute("src", srcB);
+                document.getElementById("3").setAttribute("src", srcB);
+                document.getElementById("2").setAttribute("src", srcS);
+                document.getElementById("1").setAttribute("src", srcS);
+                break;
+            case "1":
+                document.getElementById("5").setAttribute("src", srcB);
+                document.getElementById("4").setAttribute("src", srcB);
+                document.getElementById("3").setAttribute("src", srcB);
+                document.getElementById("2").setAttribute("src", srcB);
+                document.getElementById("1").setAttribute("src", srcS);
+                break;
+        }
+    } else {
+        switch (id) {
+            case "5":
+            case "4":
+            case "3":
+            case "2":
+            case "1":
+                document.getElementById("5").setAttribute("src", srcB);
+                document.getElementById("4").setAttribute("src", srcB);
+                document.getElementById("3").setAttribute("src", srcB);
+                document.getElementById("2").setAttribute("src", srcB);
+                document.getElementById("1").setAttribute("src", srcB);
+                break;
+        }
+    }
+}
 
 function CheckAreaAndFBcomment() {
 
@@ -243,4 +342,6 @@ function GetLatlng(address, title, geocoder, resultsMap) {
         }
     });
 }
+
+
 

@@ -134,6 +134,8 @@
     <Content Include="Content\img\home03.png" />
     <Content Include="Content\img\home04.png" />
     <Content Include="Content\img\home05.png" />
+    <Content Include="Content\img\star_b.png" />
+    <Content Include="Content\img\star_s.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -8,7 +8,6 @@
     .context {
         color: #565656;
     }
-
 </style>
 <div class="Control">
     <input class="SpotName" value=@Html.DisplayFor(model => model.Spot.spot_name) type="hidden" />
@@ -48,7 +47,8 @@
         <button type="button" class="btn btn-warning FavoriteRecordButton"><span class="glyphicon glyphicon-heart "></span>收藏</button>
         <span class="FavoriteRecordCount" style="color:#db3a0e;">  </span>人收藏
         <p />
-        瀏覽數:<span class="SearchCount" style="color:#db3a0e;"> @ViewData["SearchCount"]</span>
+        瀏覽數:
+        <span class="SearchCount" style="color:#db3a0e;"> @ViewData["SearchCount"]</span>
         <p />
         <button type="button" class="btn btn-warning">加入規劃路線</button>
         <p />
@@ -65,7 +65,8 @@
             <div id="map-canvas" style="width:99% ;height:280px;"></div>
         </div>
     </div>
-    <span style="font-size:20px;color:#db3a0e;">評論</span>  |  共<span class="CommentCount"></span>則
+    <span style="font-size:20px;color:#db3a0e;">評論</span>  |  共
+    <span class="CommentCount"></span>則
 
     @foreach (var item in Model.CommentRecords)
     {
@@ -87,7 +88,6 @@
     <br />
     <br />
     <div class="contains-white">
-
         @using (Html.BeginForm("CreateCommandRecord", "CommentRecords", FormMethod.Post))
         {
             @Html.HiddenFor(model => model.Spot.spot_ID)
@@ -97,7 +97,16 @@
                     <span class="col-lg-12 col-sm-2">
                         我要評分
                     </span>
-                    <input type="text" class="text form-control col-lg-12 col-sm-10" name="Grade" />
+                    <input type="text" class="Grade text form-control col-lg-12 col-sm-10" name="Grade" value="0"  />
+                    <div class="">
+                        <div class="CommentImgdiv">
+                            <img src="~/Content/img/star_b.png" style="max-height:32px;max-width:32px" class="CommentImg" id="1" /> 
+                          <img src="~/Content/img/star_b.png" style="max-height:32px;max-width:32px"  class="CommentImg" id="2" />
+                            <img src="~/Content/img/star_b.png" style="max-height:32px;max-width:32px"  class="CommentImg" id="3" />
+                            <img src="~/Content/img/star_b.png" style="max-height:32px;max-width:32px"  class="CommentImg" id="4" />
+                            <img src="~/Content/img/star_b.png" style="max-height:32px;max-width:32px"  class="CommentImg" id="5" />
+                        </div>
+                    </div>
                 </p>
                 <p class="col-lg-12">
                     <span class="col-lg-12 col-sm-2">
