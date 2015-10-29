@@ -206,7 +206,11 @@ function initialize() {
     };
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+
+
+
     google.maps.event.trigger(map, 'resize');
+
 
     var geocoder = new google.maps.Geocoder();
     GetLatlng($("#address").text(), "123", geocoder, map);

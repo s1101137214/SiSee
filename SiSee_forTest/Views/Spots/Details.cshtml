@@ -3,7 +3,7 @@
     ViewBag.Title = "Details";
 }
 @Scripts.Render("~/Scripts/Detail.js")
-@Scripts.Render("~/Content/css/Details.css")
+@Styles.Render("~/Content/css/Details.css")
 <style type="text/css">
     .context {
         color: #565656;
@@ -62,7 +62,7 @@
         @Html.DisplayFor(model => model.Spot.spot_context)
         <div class="contains-white">
             google 地圖
-            <div id="map-canvas" style="width:730px ;height:300px;"></div>
+            <div id="map-canvas" style="width:99% ;height:280px;"></div>
         </div>
     </div>
     <span style="font-size:20px;color:#db3a0e;">評論</span>  |  共<span class="CommentCount"></span>則
