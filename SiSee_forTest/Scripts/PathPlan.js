@@ -5,17 +5,38 @@
 
 
     //取值
-    var namePoint = JSON.parse(localStorage.getItem("SpotNamePoint"));
+    if (localStorage.getItem("PlanSet") === "True") {
 
-    var addPoint = JSON.parse(localStorage.getItem("SpotAddPoint"));
+        var namePoint = JSON.parse(localStorage.getItem("SpotNamePoint"));
 
-    //同陣列取法,地址和名稱同陣列編號,沒值預設"null"
-    console.log(namePoint);
+        var addPoint = JSON.parse(localStorage.getItem("SpotAddPoint"));
 
-    console.log(namePoint[0]);
+        //同陣列取法,地址和名稱同陣列編號,沒值預設"null"
+        console.log(namePoint);
 
-    console.log(addPoint);
+        console.log(namePoint[0]);
+
+        console.log(addPoint);
+
+    } else {
+
+        alert("yeeee沒有規劃的路線ㄛ你要去哪裡~~");
+
+    }
+
 });
+
+//清楚全部的localStorage 
+function ClearlocalStorage() {
+
+    localStorage.clear();
+
+    alert("yeeeeeeee重新規劃了唷");
+
+    //window.location.reload();
+
+}
+
 
 function initialize() {
     var directionsService = new google.maps.DirectionsService();
@@ -51,13 +72,13 @@ function loadScript() {
 
 function calcRoute(directionsService, directionsDisplay) {
     var start = "彰化鹿港";
-    var waypoints =[ {'location': '彰化合美'}, {'location': '鹿港龍山寺'}];
+    var waypoints = [{ 'location': '彰化合美' }, { 'location': '鹿港龍山寺' }];
     var end = "彰化福興";
     //var start = document.getElementById('start').value;
     //var end = document.getElementById('end').value;
 
     //var arrPoint = waypoints.split(",");
-  
+
     //    //經過地點
     //    var waypts = [];
     //    for (var i = 0; i < arrPoint.length; i++) {
@@ -69,7 +90,7 @@ function calcRoute(directionsService, directionsDisplay) {
 
     var request = {
         origin: start,
-        waypoints:waypoints,
+        waypoints: waypoints,
         destination: end,
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING
