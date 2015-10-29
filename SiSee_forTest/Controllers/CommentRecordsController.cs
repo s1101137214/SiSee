@@ -39,6 +39,12 @@ namespace SiSee_v1.Controllers
         [HttpPost]
         public ActionResult CreateCommandRecord(FormCollection data)
         {
+
+            if (string.IsNullOrEmpty(User.Identity.Name))
+            {
+                return RedirectToAction("Details", "Spots", new { id = data["Spot.spot_ID"] });
+            }
+
             CommentRecord commentRecord = new CommentRecord()
             {
                 spot_ID = int.Parse(data["Spot.spot_ID"]),

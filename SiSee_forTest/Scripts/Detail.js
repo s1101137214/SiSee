@@ -14,9 +14,12 @@
     //載入google map
     loadScript();
 
+    //檢查總評論數量
     CheckCommentStatus();
 
     var status = "/Content/img/star_b.png";
+
+    //滑鼠經過時的變化，有問題先不使用
 
     //$(".CommentImg")
     //    .mouseover(function () {
@@ -55,10 +58,14 @@
 
     });
 });
+
+//方法很鳥，有空再修改
 function SetStarImg(id, status) {
 
+    //被選取的圖示
     var srcS = "/Content/img/star_s.png";
 
+    //當然就是還沒被選的圖示
     var srcB = "/Content/img/star_b.png";
 
     if (status == "select") {
@@ -80,7 +87,7 @@ function SetStarImg(id, status) {
             case "3":
                 document.getElementById("5").setAttribute("src", srcB);
                 document.getElementById("4").setAttribute("src", srcB);
-                document.getElementById("3").setAttribute("src", srcB);
+                document.getElementById("3").setAttribute("src", srcS);
                 document.getElementById("2").setAttribute("src", srcS);
                 document.getElementById("1").setAttribute("src", srcS);
                 break;

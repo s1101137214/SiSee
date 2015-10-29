@@ -1,47 +1,15 @@
 ﻿body {
     font-family: "微軟正黑體";
 }
-/*結果這邊都用不到*/
 
-@media only screen and (max-width:767px) {
-    #map-canvas {
-        width: 280px;
-        height: 240px;
-    }
-}
-
-@media only screen and (max-width:768px) {
-    #map-canvas {
-        width: 300px;
-        height: 250px;
-    }
-}
-
-@media only screen and (max-width:992px) {
-    #map-canvas {
-        width: 550px;
-        height: 280px;
-    }
-}
-
-@media only screen and (max-width:1200px) {
-    #map-canvas {
-        width: 730px;
-        height: 300px;
-    }
+/*設定星星圖片的Size*/
+.CommentImg {
+    max-height: 32px;
+    max-width: 32px;
 }
 
 .CommentImgdiv {
-
-}
-
-.CommentImg :hover {
-   background: url(../img/star_s.png);
-    background-size: 40px 40px;
-}
-
-.Imgdiv {
-    border:solid;
     width: 220px;
-    height: 50px;
+    height: 40px;
+    margin-bottom:6px;
 }
