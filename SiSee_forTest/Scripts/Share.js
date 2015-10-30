@@ -24,6 +24,7 @@ $(document).ready(function () {
 
     //轉換分數成星星
     if ($(".ScoreList").text() != "") {
+
         $('.ScoreList').each(function () {
             var score = $(this).text();
 

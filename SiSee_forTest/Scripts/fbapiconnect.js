@@ -107,7 +107,7 @@ function CreateNewUser(response) {
             datatype: "text",
             processData: false,
             complete: function () {
-                window.location.replace("http://localhost:9542/Spots/Index");
+                window.location.replace("http://localhost:9542/Spots/Home");
             },
             beforeSend: function () {
                 $.blockUI({

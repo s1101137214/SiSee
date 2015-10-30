@@ -10,6 +10,7 @@
         $("#pathContext").css("width", "98%");
     }
     
+   
 
 });
 
@@ -20,7 +21,7 @@ function ClearlocalStorage() {
 
     alert("已經重新規劃了唷!");
 
-    //window.location.reload();
+    window.location.reload();
 
 }
 

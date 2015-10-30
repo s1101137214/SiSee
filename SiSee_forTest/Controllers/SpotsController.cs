@@ -34,7 +34,7 @@ namespace SiSee_v1.Controllers
 
                 if (searchName == "依名稱排列")
                 {
-                    spot_name = db.Spot.Include(s => s.Area).ToList() ;
+                    spot_name = db.Spot.Include(s => s.Area).ToList();
                 }
                 else
                 {
@@ -128,6 +128,29 @@ namespace SiSee_v1.Controllers
         // GET: Spots/Create
         public ActionResult Create()
         {
+            Random crandom = new Random(Guid.NewGuid().GetHashCode());
+
+            Random crandomUser = new Random(Guid.NewGuid().GetHashCode());
+
+            for (int i = 0; i < 100; i++)
+            {
+                int id = crandom.Next(1, 3619);
+
+                int uid = crandomUser.Next(3, 39);
+
+                SearchRecord searchReacord = new SearchRecord()
+                {
+                    spot_ID = id,
+                    search_date = System.DateTime.Now,
+                    user_ID = uid
+                };
+
+                SpotRepository.CreateSearchReacord(searchReacord);
+
+
+            }
+
+
             ViewBag.area_ID = new SelectList(db.Area, "area_ID", "area_Name");
             return View();
         }
