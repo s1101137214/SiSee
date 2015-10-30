@@ -1,37 +1,24 @@
 ﻿$(document).ready(function () {
-
-    //載入google map
-    loadScript();
-
-
-    //取值
-    if (localStorage.getItem("PlanSet") === "True") {
-
-        var namePoint = JSON.parse(localStorage.getItem("SpotNamePoint"));
-
-        var addPoint = JSON.parse(localStorage.getItem("SpotAddPoint"));
-
-        //同陣列取法,地址和名稱同陣列編號,沒值預設"null"
-        console.log(namePoint);
-
-        console.log(namePoint[0]);
-
-        console.log(addPoint);
-
-    } else {
-
-        alert("yeeee沒有規劃的路線ㄛ你要去哪裡~~");
-
+    //有加入景點規劃才顯示地圖
+    if (localStorage.getItem("PlanSet") === "True" && JSON.parse(localStorage.getItem("SpotAddPoint")).length > 1) {
+        //載入google map
+        loadScript();
+    }else{
+        $("#msg").text("目前沒有規劃的路線喔~快加入你喜歡的景點吧!")
+        $("#mapsContain").hide();
+        $("#pathContain").hide();
+        $("#pathContext").css("width", "98%");
     }
+    
 
 });
 
-//清楚全部的localStorage 
+//清除全部的localStorage 
 function ClearlocalStorage() {
 
     localStorage.clear();
 
-    alert("yeeeeeeee重新規劃了唷");
+    alert("已經重新規劃了唷!");
 
     //window.location.reload();
 
@@ -55,9 +42,6 @@ function initialize() {
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById("directions_panel"));
     calcRoute(directionsService, directionsDisplay);
-    //var long = map.getDirectionsInfo();
-    //alert(long.distance['text']);
-
 }
 
 function loadScript() {
@@ -71,30 +55,49 @@ function loadScript() {
 }
 
 function calcRoute(directionsService, directionsDisplay) {
-    var start = "彰化鹿港";
-    var waypoints = [{ 'location': '彰化合美' }, { 'location': '鹿港龍山寺' }];
-    var end = "彰化福興";
-    //var start = document.getElementById('start').value;
-    //var end = document.getElementById('end').value;
+    //取值
+    if (localStorage.getItem("PlanSet") === "True") {
 
-    //var arrPoint = waypoints.split(",");
+        var namePoint = JSON.parse(localStorage.getItem("SpotNamePoint"));
 
-    //    //經過地點
-    //    var waypts = [];
-    //    for (var i = 0; i < arrPoint.length; i++) {
-    //            waypts.push({
-    //                    location: arrPoint[i],
-    //                    stopover: true
-    //            });
-    //    }
+        var addPoint = JSON.parse(localStorage.getItem("SpotAddPoint"));
 
-    var request = {
-        origin: start,
-        waypoints: waypoints,
-        destination: end,
-        optimizeWaypoints: true,
-        travelMode: google.maps.TravelMode.DRIVING
-    };
+    } 
+
+    //經過地點
+    var waypts = [];
+    var request = {};
+    var start = addPoint[0];
+    var addPointCount = addPoint.length;
+    var end = addPoint[addPointCount-1];
+    for (var i = 1; i < addPoint.length - 1; i++) {
+        if (addPoint[i] != "null" || addPoint[i] != null) {
+            waypts.push({
+                location: addPoint[i],
+                stopover: true
+            });
+        }
+    }
+    //判斷是否為多點規劃
+    if (addPoint.length <= 2) {
+        if (addPoint.length == 1) {
+            end = "";
+        }
+        request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.DRIVING //汽車路線
+        };
+    } else {
+        request = {
+            origin: start,
+            waypoints:waypts,
+            destination: end,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+    }
+    
     directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
