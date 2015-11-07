@@ -14,9 +14,9 @@ namespace SiSee_v1.Models
     
     public partial class SearchRecord
     {
-        public int search_ID { get; set; }
-        public int? user_ID { get; set; }
-        public int? spot_ID { get; set; }
+        public int searchrecord_ID { get; set; }
+        public int user_ID { get; set; }
+        public int spot_ID { get; set; }
         public Nullable<System.DateTime> search_date { get; set; }
     
         public virtual Spot Spot { get; set; }

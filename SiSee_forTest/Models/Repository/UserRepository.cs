@@ -6,11 +6,8 @@ using SiSee_v1.Models.ViewModels;
 
 namespace SiSee_v1.Models.Repository
 {
-    public class UserRepository
+    public class UserRepository : IRepository
     {
-        //Spot
-        private sisdbEntities1 db = new sisdbEntities1();
-
         #region Create
 
         public void CreateUser(User user)
@@ -71,7 +68,6 @@ namespace SiSee_v1.Models.Repository
         }
 
         #endregion
-
 
         #region Update
 

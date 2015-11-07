@@ -9,7 +9,7 @@ namespace SiSee_v1.Controllers
 {
     public class CommentRecordsController : Controller
     {
-        private sisdbEntities1 db = new sisdbEntities1();
+        private SiSeeDBEntities db = new SiSeeDBEntities();
 
         private SpotRepository SpotRepository = new SpotRepository();
 
@@ -51,9 +51,7 @@ namespace SiSee_v1.Controllers
                 comment_context = data["Command"],
                 comment_grade = data["Grade"],
                 user_ID = int.Parse(User.Identity.Name),
-                comment_date = System.DateTime.Now,
-                commentrecord_ID = null
-
+                comment_date = System.DateTime.Now
             };
 
             //SpotRepository.CreateCommand(commentRecord) 

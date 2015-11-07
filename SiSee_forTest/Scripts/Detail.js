@@ -1,8 +1,7 @@
-﻿$(document).ready(function () {
+﻿/// <reference path="Share.js" />
+//IIS http://localhost/SiSee_v1/
 
-    var status = "/Content/img/star_b.png";
-
-
+$(document).ready(function () {
 
     //檢查選取的景點位置取得對應的FB留言板
     CheckAreaAndFBcomment();
@@ -20,8 +19,6 @@
 
     //檢查總評論數量
     CheckCommentStatus();
-
-
 
     //滑鼠經過時的變化，有問題先不使用
 
@@ -66,7 +63,7 @@
 });
 
 function CheckPlanPoint() {
- 
+
     var set = localStorage["PlanSet"];
 
     var spotName = $(".SpotName").val();
@@ -281,19 +278,19 @@ function CheckAreaAndFBcomment() {
 
     switch (areaName) {
         case "北部":
-            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/1");
+            fbcomment.attr("data-href", "http://localhost/SiSee_v1/Spots/Detailsl/1");
             break;
         case "中部":
-            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/2");
+            fbcomment.attr("data-href", "http://localhost/SiSee_v1/Spots/Detailsl/2");
             break;
         case "南部":
-            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/3");
+            fbcomment.attr("data-href", "http://localhost/SiSee_v1/Spots/Detailsl/3");
             break;
         case "東部":
-            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/4");
+            fbcomment.attr("data-href", "http://localhost/SiSee_v1/Spots/Detailsl/4");
             break;
         default:
-            fbcomment.attr("data-href", "http://localhost:9542/");
+            fbcomment.attr("data-href", "http://localhost/SiSee_v1/");
             break;
     }
 
@@ -312,7 +309,7 @@ function SearchSpotName() {
 
 function CheckFavoriteRecordIsSet() {
     $.ajax({
-        url: '/FavoriteRecords/CheckFavoriteRecord',
+        url: url + "FavoriteRecords/CheckFavoriteRecord",
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -323,6 +320,8 @@ function CheckFavoriteRecordIsSet() {
         processData: false,
         success: function (result) {
             if (result === "True") {
+                $(".FavoriteRecordButton").off('click');
+
                 $(".FavoriteRecordButton").html('已收藏');
                 $(".FavoriteRecordButton").removeClass("btn-warning").addClass("btn-danger");
 
@@ -332,6 +331,8 @@ function CheckFavoriteRecordIsSet() {
                     }
                 });;
             } else {
+                $(".FavoriteRecordButton").off('click');
+
                 $(".FavoriteRecordButton").html('收藏');
                 $(".FavoriteRecordButton").removeClass("btn-danger").addClass("btn-warning");
 
@@ -343,7 +344,7 @@ function CheckFavoriteRecordIsSet() {
     });
 
     $.ajax({
-        url: '/FavoriteRecords/CheckFavoriteRecordCount',
+        url: url + 'FavoriteRecords/CheckFavoriteRecordCount',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -362,7 +363,7 @@ function CheckFavoriteRecordIsSet() {
 
 function CheckCommentStatus() {
     $.ajax({
-        url: '/CommentRecords/CheckCommentRecordsCount',
+        url: url + 'CommentRecords/CheckCommentRecordsCount',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -381,7 +382,7 @@ function CheckCommentStatus() {
 
 function CreateFavoriteRecord() {
     $.ajax({
-        url: '/FavoriteRecords/CreateFavoriteRecord',
+        url: url + 'FavoriteRecords/CreateFavoriteRecord',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -395,7 +396,7 @@ function CreateFavoriteRecord() {
         },
         beforeSend: function () {
             $.blockUI({
-                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
+                message: "<h4><img src='http://localhost/SiSee_v1/Content/img/ajax-loader.gif'/> loading...</h4>",
                 css: { backgroundColor: '#fff', color: 'black' }
             });
         },
@@ -405,6 +406,8 @@ function CreateFavoriteRecord() {
                 //錯誤訊息要改
                 alert('請先登入才能進行收藏')
             } else {
+                $(".FavoriteRecordButton").off('click');
+
                 $(".FavoriteRecordButton").html('已收藏');
                 $(".FavoriteRecordButton").removeClass("btn-warning").addClass("btn-danger");
 
@@ -425,7 +428,7 @@ function CreateFavoriteRecord() {
 
 function DeleteFavoriteRecord() {
     $.ajax({
-        url: '/FavoriteRecords/DeleteFavoriteRecord',
+        url: url + 'FavoriteRecords/DeleteFavoriteRecord',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -434,6 +437,8 @@ function DeleteFavoriteRecord() {
         async: true,
         processData: false,
         complete: function () {
+            $(".FavoriteRecordButton").off('click');
+
             $(".FavoriteRecordButton").html('收藏');
             $(".FavoriteRecordButton").removeClass("btn-danger").addClass("btn-warning");
 
@@ -460,11 +465,8 @@ function initialize() {
     };
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-
-
-
+    //RWD設定
     google.maps.event.trigger(map, 'resize');
-
 
     var geocoder = new google.maps.Geocoder();
     GetLatlng($("#address").text(), "123", geocoder, map);
@@ -477,8 +479,6 @@ function loadScript() {
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC-FGBpt242zn5yJA__WVGX8k0V8EQp8x8&v=3.exp' +
         '&signed_in=true&callback=initialize';
     document.body.appendChild(script);
-
-
 
 }
 

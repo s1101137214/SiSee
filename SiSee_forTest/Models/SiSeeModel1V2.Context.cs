@@ -16,7 +16,7 @@ namespace SiSee_v1.Models
     public partial class sisdbEntities1 : DbContext
     {
         public sisdbEntities1()
-            : base("name=sisdbEntities1")
+            : base("name=sisdbEntities2")
         {
         }
     

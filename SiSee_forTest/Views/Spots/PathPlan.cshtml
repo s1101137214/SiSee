@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "PathPlan";
+    ViewBag.Title = "路線規劃";
 }
 @Scripts.Render("~/Scripts/PathPlan.js")
 
@@ -13,7 +13,7 @@
             <a href="@Html.Encode(Request.UrlReferrer.ToString())" class="btn btn-warning">上一頁</a>
             <button type="button" onclick="ClearlocalStorage()" class="btn-danger btn ">重新規劃</button>
         </p>
-        <div></div>
+        <div id="pathPnt"></div>
     </div>
     <div id="mapsContain" class="contains-white" style="width:50%; float:left;">
         google 地圖

@@ -14,7 +14,7 @@ namespace SiSee_v1.Models
     
     public partial class FavoriteRecord
     {
-        public int searchrecord_ID { get; set; }
+        public int favoriterecord_ID { get; set; }
         public int spot_ID { get; set; }
         public int user_ID { get; set; }
     

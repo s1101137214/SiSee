@@ -1,14 +1,16 @@
 ﻿@model SiSee_v1.Models.ViewModels.SpotDetail
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "詳細資料";
 }
 @Scripts.Render("~/Scripts/Detail.js")
 @Styles.Render("~/Content/css/Details.css")
+
 <style type="text/css">
     .context {
         color: #565656;
     }
 </style>
+
 <div class="Control">
     <input class="SpotName" value=@Html.DisplayFor(model => model.Spot.spot_name) type="hidden" />
     <input class="SpotAddress" value=@Html.DisplayFor(model => model.Spot.spot_add) type="hidden" />
@@ -118,7 +120,7 @@
                             你覺得 :
                         </strong>
                     </span>
-                    <textarea  style="margin:2px;" class="text form-control col-lg-12 col-sm-10" cols="3" name="Command" placeholder="留點評論..."></textarea>
+                    <textarea style="margin:2px;" class="text form-control col-lg-12 col-sm-10" cols="3" name="Command" placeholder="留點評論..."></textarea>
                 </p>
                 <input type="submit" value="送出" class="btn btn-warning" />
             </div>

@@ -5,11 +5,8 @@ using System.Data.SqlClient;
 
 namespace SiSee_v1.Models.Repository
 {
-    public class SpotRepository
+    public class SpotRepository : IRepository
     {
-
-        private sisdbEntities1 db = new sisdbEntities1();
-
         #region Create
 
         public void CreateCommand(CommentRecord CommentRecord)
@@ -125,7 +122,7 @@ namespace SiSee_v1.Models.Repository
 			                        COUNT (SearchRecord.spot_ID) AS num
 		                        FROM
 			                        Spot
-		                        JOIN SearchRecord ON SearchRecord.spot_ID = Spot.spot_ID
+		                        Left JOIN SearchRecord ON SearchRecord.spot_ID = Spot.spot_ID
 		                        GROUP BY
 			                        Spot.spot_ID
 	                        ) AS Spotcount
@@ -134,12 +131,7 @@ namespace SiSee_v1.Models.Repository
 	                        num DESC"
                 ).ToList();
 
-            foreach (Spot s in spot)
-            {
-                s.spot_score = this.GetSpotScore(s.spot_ID);
-            }
-
-            return spot ;
+            return spot;
         }
 
         public List<Spot> GetByName(String searchName)
@@ -159,7 +151,7 @@ namespace SiSee_v1.Models.Repository
 
             switch (areaName)
             {
-                case"北部":
+                case "北部":
                     area_ID = 1;
                     break;
                 case "中部":
@@ -175,12 +167,7 @@ namespace SiSee_v1.Models.Repository
                     return null;
             }
 
-            List<Spot> spot = db.Spot.Where(s => s.area_ID == area_ID).ToList() ;
-            
-            foreach (Spot s in spot)
-            {
-                s.spot_score = this.GetSpotScore(s.spot_ID);
-            }
+            List<Spot> spot = db.Spot.Where(s => s.area_ID == area_ID).ToList();
 
             return spot.ToList();
         }
@@ -246,6 +233,53 @@ namespace SiSee_v1.Models.Repository
                  );
 
             db.SaveChanges();
+        }
+
+        #endregion
+
+
+        #region Update
+
+        public void UpdateSpotScoreByAuto()
+        {
+            List<Spot> spot = db.Database.SqlQuery<Spot>(
+                    @"SELECT
+	                                        *
+                                        FROM
+	                                        (
+		                                        SELECT
+			                                        Spot.spot_ID,
+			                                        COUNT (SearchRecord.spot_ID) AS num
+		                                        FROM
+			                                        Spot
+		                                        Left JOIN SearchRecord ON SearchRecord.spot_ID = Spot.spot_ID
+		                                        GROUP BY
+			                                        Spot.spot_ID
+	                                        ) AS Spotcount
+                                        JOIN Spot ON Spot.spot_ID = Spotcount.spot_ID
+                                        ORDER BY
+	                                        num DESC"
+                    ).ToList();
+
+
+            foreach (Spot s in spot)
+            {
+                db.Database.ExecuteSqlCommand(
+               @"UPDATE [dbo].[Spot]
+                    SET 
+                    [spot_score] = @spot_score
+                    WHERE
+	                    [spot_ID]  = @spot_ID
+                    ",
+                    new SqlParameter("@spot_ID", s.spot_ID),
+                    new SqlParameter("@spot_score", String.IsNullOrEmpty(s.spot_score) ? "0" : s.spot_score)
+
+                    );
+
+                db.SaveChanges();
+
+            }
+           
         }
 
         #endregion

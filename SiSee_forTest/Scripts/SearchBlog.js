@@ -42,7 +42,7 @@ function SearchBlogSpotName() {
         },
         beforeSend: function () {
             $.blockUI({
-                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> 讀取中...</h4>",
+                message: "<h4><img src='http://localhost/SiSee_v1/Content/img/ajax-loader.gif'/> 讀取中...</h4>",
                 css: { backgroundColor: '#fff', color: 'black' }
             });
         },

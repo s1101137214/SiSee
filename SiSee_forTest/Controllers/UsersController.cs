@@ -13,7 +13,7 @@ namespace SiSee_v1.Controllers
 {
     public class UsersController : Controller
     {
-        private sisdbEntities1 db = new sisdbEntities1();
+        private SiSeeDBEntities db = new SiSeeDBEntities();
 
         private UserRepository UserRepository = new UserRepository();
 
