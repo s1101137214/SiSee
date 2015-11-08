@@ -3,8 +3,8 @@
 
 */
 
-//IIS http://localhost/SiSee_v1/
-var url = "/SiSee_v1/"
+//IIS http://localhost:9542/
+var url = ""
 
 $(document).ready(function () {
 
@@ -12,7 +12,7 @@ $(document).ready(function () {
     $(".SearchButton").click(function () {
 
         if ($(".SearchText").val() != "") {
-            window.location = "http://localhost/SiSee_v1//Spots/Index/" + $(".SearchText").val() + "/";
+            window.location = "http://localhost:9542/Spots/Index/" + $(".SearchText").val() + "/";
         }
 
     });
@@ -27,18 +27,18 @@ $(document).ready(function () {
 
             switch (score) {
                 case "5":
-                    $(this).append('<img src="http://localhost/SiSee_v1/Content/img/star_s.png" class="ListCommentImg"/>');
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg"/>');
                 case "4":
-                    $(this).append('<img src="http://localhost/SiSee_v1/Content/img/star_s.png" class="ListCommentImg"  />');
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg"  />');
                 case "3":
-                    $(this).append(' <img src="http://localhost/SiSee_v1/Content/img/star_s.png" class="ListCommentImg"  />');
+                    $(this).append(' <img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg"  />');
                 case "2":
-                    $(this).append('<img src="http://localhost/SiSee_v1/Content/img/star_s.png" class="ListCommentImg"  />');
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg"  />');
                 case "1":
-                    $(this).append('<img src="http://localhost/SiSee_v1/Content/img/star_s.png" class="ListCommentImg" />');
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_s.png" class="ListCommentImg" />');
                     break;
                 case "0":
-                    $(this).append('<img src="http://localhost/SiSee_v1/Content/img/star_b.png" class="ListCommentImg" title="評分數不足~" />');
+                    $(this).append('<img src="http://localhost:9542/Content/img/star_b.png" class="ListCommentImg" title="評分數不足~" />');
                     break;
             }
             

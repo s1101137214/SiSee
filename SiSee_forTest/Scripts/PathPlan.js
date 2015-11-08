@@ -64,13 +64,13 @@ function calcRoute(directionsService, directionsDisplay) {
 
     var nameCount = namePoint.length;
     if (nameCount >= 2) {
-        $("#pathPnt").append("<span><img  class='point' src='http://localhost/SiSee_v1/Content/img/point02.png'  /></span>");
+        $("#pathPnt").append("<span><img  class='point' src='http://localhost:9542/Content/img/point02.png'  /></span>");
         $("#pathPnt").append("<span>" + namePoint[0] + "</span><br />　" + "  | <br />");
         for (i = 1; i < namePoint.length - 1; i++) {
-            $("#pathPnt").append("<span ><img class='point'' src='http://localhost/SiSee_v1/Content/img/point01.png'  /></span>");
+            $("#pathPnt").append("<span ><img class='point'' src='http://localhost:9542/Content/img/point01.png'  /></span>");
             $("#pathPnt").append("<span>" + namePoint[i] + "</span><br />　" + " | <br />");
         }
-        $("#pathPnt").append("<span ><img class='point' src='http://localhost/SiSee_v1/Content/img/point02.png'  /></span>");
+        $("#pathPnt").append("<span ><img class='point' src='http://localhost:9542/Content/img/point02.png'  /></span>");
         $("#pathPnt").append("<span>" + namePoint[nameCount - 1] + "</span><br />");
     }
 

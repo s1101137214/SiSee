@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiSee_v1", "SiSee_forTest\SiSee_v1.csproj", "{AB2E91C4-4E11-415F-92A3-7C308E4B7C4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiSee_html", "SiSee_html\SiSee_html.csproj", "{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{FBD85869-EF03-4CFE-9086-C5B63BFAEF31}"
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.txt = ReadMe.txt
@@ -22,10 +20,6 @@ Global
 		{AB2E91C4-4E11-415F-92A3-7C308E4B7C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB2E91C4-4E11-415F-92A3-7C308E4B7C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB2E91C4-4E11-415F-92A3-7C308E4B7C4E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00E76484-EBFE-4112-AAE2-C8BCED1D0BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

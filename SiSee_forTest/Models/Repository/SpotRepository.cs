@@ -114,7 +114,7 @@ namespace SiSee_v1.Models.Repository
             //依熱門(搜尋次數)排列
             List<Spot> spot = db.Database.SqlQuery<Spot>(
                 @"SELECT
-	                        *
+	                        TOP 100 *
                         FROM
 	                        (
 		                        SELECT

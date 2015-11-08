@@ -6,12 +6,11 @@
     <title>@ViewBag.Title - SiSee ASP.NET Application</title>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <link href="~/Content/css/_layout.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/_layout.css")
     @Scripts.Render("~/Scripts/Share.js")
     @Scripts.Render("~/Scripts/jquery.blockUI.js")
     @Scripts.Render("~/Scripts/fbapiconnect.js")
-    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
         /*.SearchText {

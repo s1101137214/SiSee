@@ -1,5 +1,5 @@
 ﻿/// <reference path="Share.js" />
-//IIS http://localhost/SiSee_v1/
+//IIS http://localhost:9542/
 
 $(document).ready(function () {
 
@@ -98,7 +98,7 @@ function CreateNewUser(response) {
         }
 
         $.ajax({
-            url: url + 'Users/CreateByFB',
+            url:  '/Users/CreateByFB',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 id: response.id,
@@ -110,11 +110,11 @@ function CreateNewUser(response) {
             datatype: "text",
             processData: false,
             complete: function () {
-                window.location.replace("http://localhost/SiSee_v1//Spots/Home");
+                window.location.replace("http://localhost:9542/Spots/Home");
             },
             beforeSend: function () {
                 $.blockUI({
-                    message: "<h4><img src='http://localhost/SiSee_v1//Content/img/ajax-loader.gif'/> loading...</h4>",
+                    message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
                     css: { backgroundColor: '#fff', color: 'black' }
                 });
             },
@@ -134,7 +134,7 @@ function CheckUserDBStatus(response) {
     var loaded = false;
 
     $.ajax({
-        url: url+ 'Users/CheckLogined',
+        url:  '/Users/CheckLogined',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: response.id
@@ -145,12 +145,12 @@ function CheckUserDBStatus(response) {
         processData: false,
         complete: function () {
             if (loaded == true) {
-                window.location.replace("http://localhost/SiSee_v1/Spots/Index");
+                window.location.replace("http://localhost:9542/Spots/Index");
             }
         },
         beforeSend: function () {
             $.blockUI({
-                message: "<h4><img src='http://localhost/SiSee_v1/Content/img/ajax-loader.gif'/> loading...</h4>",
+                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
                 css: { backgroundColor: '#fff', color: 'black' }
             });
         },

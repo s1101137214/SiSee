@@ -10,7 +10,7 @@ namespace SiSee_v1.Controllers
 {
     public class FavoriteRecordsController : Controller
     {
-        private SiSeeDBEntities db = new SiSeeDBEntities();
+        private AmazonDB db = new AmazonDB();
 
         private SpotRepository SpotRepository = new SpotRepository();
 

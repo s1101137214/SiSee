@@ -12,7 +12,7 @@ namespace SiSee_v1.Controllers
 {
     public class SpotsController : Controller
     {
-        private SiSeeDBEntities db = new SiSeeDBEntities();
+        private AmazonDB db = new AmazonDB();
 
         private SpotRepository SpotRepository = new SpotRepository();
 
@@ -76,11 +76,6 @@ namespace SiSee_v1.Controllers
         // GET: Spots/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
             Spot spot = db.Spot.Find(id);
 
             List<CommentRecord> commentRecord = db.CommentRecord.Where(s => s.spot_ID == id).OrderBy(s => s.comment_date).ToList();

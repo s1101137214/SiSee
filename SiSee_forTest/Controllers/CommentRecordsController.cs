@@ -9,7 +9,7 @@ namespace SiSee_v1.Controllers
 {
     public class CommentRecordsController : Controller
     {
-        private SiSeeDBEntities db = new SiSeeDBEntities();
+        private AmazonDB db = new AmazonDB();
 
         private SpotRepository SpotRepository = new SpotRepository();
 
@@ -39,7 +39,6 @@ namespace SiSee_v1.Controllers
         [HttpPost]
         public ActionResult CreateCommandRecord(FormCollection data)
         {
-
             if (string.IsNullOrEmpty(User.Identity.Name))
             {
                 return RedirectToAction("Details", "Spots", new { id = data["Spot.spot_ID"] });

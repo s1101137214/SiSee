@@ -14,7 +14,7 @@
     <RootNamespace>SiSee_v1</RootNamespace>
     <AssemblyName>SiSee_v1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -121,10 +121,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\sisdb.mdf" />
-    <Content Include="App_Data\sisdb_log.ldf">
-      <DependentUpon>sisdb.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -152,40 +148,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <EntityDeploy Include="Models\SiSeeModel1V2.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SiSeeModel1V2.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SiSeeModel1V2.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SiSeeModel1V2.edmx</DependentUpon>
-      <LastGenOutput>SiSeeModel1V2.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\SiSeeModel1V2.edmx.diagram">
-      <DependentUpon>SiSeeModel1V2.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\SiSeeModel1V2.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SiSeeModel1V2.edmx</DependentUpon>
-      <LastGenOutput>SiSeeModel1V2.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\AmazonDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AmazonDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\AmazonDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AmazonDB.edmx</DependentUpon>
-      <LastGenOutput>AmazonDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\AmazonDB.edmx.diagram">
-      <DependentUpon>AmazonDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\AmazonDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AmazonDB.edmx</DependentUpon>
-      <LastGenOutput>AmazonDB.cs</LastGenOutput>
-    </Content>
+    <None Include="Properties\PublishProfiles\sisee.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -223,66 +186,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AmazonDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AmazonDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AmazonDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AmazonDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AmazonDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Area.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Class.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CommentRecord.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CustomSpot.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FavoriteRecord.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\AmazonDB.cs" />
+    <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\CommentRecord.cs" />
+    <Compile Include="Models\CustomSpot.cs" />
+    <Compile Include="Models\FavoriteRecord.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
     <Compile Include="Models\Repository\SpotRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
-    <Compile Include="Models\SearchRecord.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SiSeeModel1V2.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SiSeeModel1V2.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SiSeeModel1V2.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SiSeeModel1V2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SiSeeModel1V2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SiSeeModel1V2.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Spot.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>AmazonDB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\SearchRecord.cs" />
+    <Compile Include="Models\Spot.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewModels\SpotComment.cs" />
     <Compile Include="Models\ViewModels\SpotDetail.cs" />
     <Compile Include="Models\ViewModels\UserDetail.cs" />
@@ -332,6 +248,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Ltinerary\" />
   </ItemGroup>
@@ -353,9 +270,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64108</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/SiSee_v1</IISUrl>
+          <IISUrl>http://localhost:9542</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:9542</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

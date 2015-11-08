@@ -7,6 +7,6 @@ namespace SiSee_v1.Models.Repository
 {
     public class IRepository
     {
-        protected SiSeeDBEntities db = new SiSeeDBEntities();
+        protected AmazonDB db = new AmazonDB();
     }
 }

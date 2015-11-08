@@ -13,7 +13,7 @@ namespace SiSee_v1.Controllers
 {
     public class UsersController : Controller
     {
-        private SiSeeDBEntities db = new SiSeeDBEntities();
+        private AmazonDB db = new AmazonDB();
 
         private UserRepository UserRepository = new UserRepository();
 

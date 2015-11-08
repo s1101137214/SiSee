@@ -6,7 +6,7 @@ $(document).ready(function () {
     SetStarImg(defaultscore, "select")
 
     $(".CommentImg").click(function () {
-        if ($(this).attr('src') === "/SiSee_v1/Content/img/star_b.png") {
+        if ($(this).attr('src') === "/Content/img/star_b.png") {
 
             var id = $(this).attr('id');
 
@@ -35,10 +35,10 @@ f
 function SetStarImg(id, status) {
 
     //被選取的圖示
-    var srcS = "/SiSee_v1/Content/img/star_s.png";
+    var srcS = "/Content/img/star_s.png";
 
     //當然就是還沒被選的圖示
-    var srcB = "/SiSee_v1/Content/img/star_b.png";
+    var srcB = "/Content/img/star_b.png";
 
     if (status == "select") {
         switch (id) {

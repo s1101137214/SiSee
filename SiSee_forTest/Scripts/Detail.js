@@ -1,5 +1,5 @@
 ﻿/// <reference path="Share.js" />
-//IIS http://localhost/SiSee_v1/
+//IIS http://localhost:9542/
 
 $(document).ready(function () {
 
@@ -36,7 +36,7 @@ $(document).ready(function () {
     //   });
 
     $(".CommentImg").click(function () {
-        if ($(this).attr('src') === "/Content/img/star_b.png") {
+        if ($(this).attr('src') === url+ "/Content/img/star_b.png") {
 
             var id = $(this).attr('id');
 
@@ -208,10 +208,10 @@ function GetPlanPoint() {
 function SetStarImg(id, status) {
 
     //被選取的圖示
-    var srcS = "/Content/img/star_s.png";
+    var srcS =  "/Content/img/star_s.png";
 
     //當然就是還沒被選的圖示
-    var srcB = "/Content/img/star_b.png";
+    var srcB =  "/Content/img/star_b.png";
 
     if (status == "select") {
         switch (id) {
@@ -278,19 +278,19 @@ function CheckAreaAndFBcomment() {
 
     switch (areaName) {
         case "北部":
-            fbcomment.attr("data-href", "http://localhost/SiSee_v1/Spots/Detailsl/1");
+            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/1");
             break;
         case "中部":
-            fbcomment.attr("data-href", "http://localhost/SiSee_v1/Spots/Detailsl/2");
+            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/2");
             break;
         case "南部":
-            fbcomment.attr("data-href", "http://localhost/SiSee_v1/Spots/Detailsl/3");
+            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/3");
             break;
         case "東部":
-            fbcomment.attr("data-href", "http://localhost/SiSee_v1/Spots/Detailsl/4");
+            fbcomment.attr("data-href", "http://localhost:9542/Spots/Detailsl/4");
             break;
         default:
-            fbcomment.attr("data-href", "http://localhost/SiSee_v1/");
+            fbcomment.attr("data-href", "http://localhost:9542/");
             break;
     }
 
@@ -309,7 +309,7 @@ function SearchSpotName() {
 
 function CheckFavoriteRecordIsSet() {
     $.ajax({
-        url: url + "FavoriteRecords/CheckFavoriteRecord",
+        url:  "/FavoriteRecords/CheckFavoriteRecord",
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -344,7 +344,7 @@ function CheckFavoriteRecordIsSet() {
     });
 
     $.ajax({
-        url: url + 'FavoriteRecords/CheckFavoriteRecordCount',
+        url:  '/FavoriteRecords/CheckFavoriteRecordCount',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -363,7 +363,7 @@ function CheckFavoriteRecordIsSet() {
 
 function CheckCommentStatus() {
     $.ajax({
-        url: url + 'CommentRecords/CheckCommentRecordsCount',
+        url:  '/CommentRecords/CheckCommentRecordsCount',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -382,7 +382,7 @@ function CheckCommentStatus() {
 
 function CreateFavoriteRecord() {
     $.ajax({
-        url: url + 'FavoriteRecords/CreateFavoriteRecord',
+        url:  '/FavoriteRecords/CreateFavoriteRecord',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
@@ -396,7 +396,7 @@ function CreateFavoriteRecord() {
         },
         beforeSend: function () {
             $.blockUI({
-                message: "<h4><img src='http://localhost/SiSee_v1/Content/img/ajax-loader.gif'/> loading...</h4>",
+                message: "<h4><img src='http://localhost:9542/Content/img/ajax-loader.gif'/> loading...</h4>",
                 css: { backgroundColor: '#fff', color: 'black' }
             });
         },
@@ -428,7 +428,7 @@ function CreateFavoriteRecord() {
 
 function DeleteFavoriteRecord() {
     $.ajax({
-        url: url + 'FavoriteRecords/DeleteFavoriteRecord',
+        url:  '/FavoriteRecords/DeleteFavoriteRecord',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             id: $(".SpotID").val()
