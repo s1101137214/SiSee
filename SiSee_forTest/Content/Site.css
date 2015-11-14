@@ -203,3 +203,16 @@ h1 {
 .responsive-table th, .responsive-table td:before {
     color: #dd5;
 }
+@media(max-width:767px){
+            .homeContain{
+            }
+        }
+@media(min-width:768px){
+    .homeContain{
+            }
+}
+@media(min-width:1200px){
+    .homeContain{
+                float:left;
+            }
+}
