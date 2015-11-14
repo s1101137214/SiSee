@@ -20,8 +20,14 @@
 <body style="background-color:#1D2038;">
     @Html.Partial("_Navbar")
     <div>
-        <div style="float:left;background-size:cover;">
-            <img class="HomeImg01" src="~/Content/img/home01.png" />
+        <div style="float:left; width:auto !important;">
+            <br />
+            <div style="text-align:center; height:250px; color:white; background-color :#1D2038; ">
+                <p style="font-size:70px; font-family:Georgia; ">SiSee</p>
+                <p style="font-size:30px; font-family:Iskoola Pota ;">Have Own Sight</p>
+                <br />
+                <hr style="width:60%;" />
+            </div>
             <div style="height:122px; background-color:#1D2038; text-align:center; margin-left:60px;">
                 @using (Html.BeginForm("Index", "Spots", FormMethod.Post, new { @id = "SearchForm" }))
                 {
@@ -35,9 +41,12 @@
                 @*<span><input class="btn btn-default form-control " style=" width:70%;height:50%; margin: 0 auto; font-size:larger;" /></span>
                     <span class="glyphicon glyphicon-search" style=" font-size: 30px; color:white; padding:20px;">  </span>*@
             </div>
-            <img class="HomeImg03" src="~/Content/img/home03.png" />
+            <div style="text-align:center; height:150px; color:white; background-color :#1D2038; ">
+                <p style="font-size:20px; font-family:Iskoola Pota ;">click to search your sight</p>
+            </div>
         </div>
         <div style="float:left;">
+            <br />
             <img class="HomeImg04" src="~/Content/img/home04.png" />
         </div>
     </div>
